@@ -1,35 +1,25 @@
 <template>
 
-<section>
-    <div>
-        <div class="container">
-          <h1>Líneas de investigación</h1>
-        </div>
-        <div class="container py-4 py-xl-5">  
-
-          <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <div class="col" v-for ="lineas_investigacion in Lineas_investigacion" :key="lineas_investigacion.id" >
-              <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
-                <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg"><img src="@/assets/logo.png" height="100" width="100"  alt=""> </div>
-                <div class="px-3">
-                    <h4 style="text-align:center; font-size: 18px;" > {{lineas_investigacion.nombre}} </h4>
-                </div>
-              <div class="row">
-                <div class="col"><button class="btn btn-primary" type="button">Editar</button></div>
-                <div class="col"><button class="btn btn-primary" type="button">Eliminar</button></div>
-              </div>
-            </div>
+  <nav class="navbar navbar-expand-md bg-body">
+      <div class="container-fluid"><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+          <div id="navcol-1" class="collapse navbar-collapse text-center" style="width: initial;"><img class="img-fluid" src="@/assets/logos/imacuna.png" width="171" height="76" loading="auto" style="margin-left: 60px;" />
+              <ul class="navbar-nav mx-auto">
+                  <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Quienes somos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">productos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Contactanos</a></li>
+              </ul><button class="btn btn-primary" type="button" style="border-radius: 10;border-style: solid;margin-left: 2px;margin-right: 102px;">Ingresar</button>
           </div>
-        </div>
       </div>
-    </div>
-</section>
- 
+  </nav>
+
+  
 
 </template>
 
 <script >
-    
+  
+  
 </script>
 
 <style>

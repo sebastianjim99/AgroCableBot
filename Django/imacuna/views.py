@@ -1,8 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 
 from rest_framework.response import Response
-
 
 from .serializers import Lineas_investigacionSerializer, ServiciosSerializer, serializers
 

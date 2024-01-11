@@ -1,5 +1,4 @@
 <template>
-
 <nav class="navbar navbar-expand-md bg-body">
     <div class="container-fluid"><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="navcol-1" class="collapse navbar-collapse text-center" style="width: initial;"><img class="img-fluid" src="@/assets/logos/imacuna.png" width="171" height="76" loading="auto" style="margin-left: 60px;" />
@@ -58,8 +57,9 @@
           <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xl-4">
             <div class="col" v-for ="lineas_investigacion in Lineas_investigacion" :key="lineas_investigacion.id" >
               <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
-                <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg"><img :src="lineas_investigacion.imagen" height="100" width="100"  alt=""> </div>
+                <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg"><img :src=" lineas_investigacion.imagen" height="100" width="100"  alt=""> </div>
                 <div class="px-3">
+                  <img: src="previewImage" class="img-thumbnail mt-2" v-if="lineas_investigacion.imagen" style="width:50%" />
                     <h4 style="text-align:center; font-size: 18px;" > {{lineas_investigacion.nombre}} </h4>
                 </div>
             </div>
@@ -67,6 +67,13 @@
         </div>
       </div>
     </div>
+</section>
+
+<section>
+  <div>
+    <h1>{{ nombreLinea }}</h1>
+    <img :src="imagenUrl" alt="Imagen de la línea de investigación">
+  </div>
 </section>
  <!--  SECCION DE MISION  -->
 
@@ -110,9 +117,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -125,9 +130,8 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -141,9 +145,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -156,9 +158,8 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -171,9 +172,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -188,9 +187,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -206,9 +203,9 @@
         <h1>INTEGRANTES</h1>
       </div>
         <div class="row">
-            <div class="col-sm-6 col-lg-4 mb-4 text-center"><img class="rounded-circle img-fluid d-block mx-auto" src="@/assets/media/perfiles/perfil.jpeg" />
-                <h3 class="m-0">John Smith</h3>
-                <h5 class="my-1">Job Title</h5>
+            <div class="col-sm-6 col-lg-4 mb-4 text-center"><img class="rounded-circle img-fluid d-block mx-auto" src="@/assets/Integrantes/juancho.jpg" />
+                <h3 class="m-0">EL PATRON </h3>
+                <h5 class="my-1">SIUUUU</h5>
                 <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
             </div>
             <div class="col-sm-6 col-lg-4 mb-4 text-center"><img class="rounded-circle img-fluid d-block mx-auto" src="@/assets/media/perfiles/perfil.jpeg" />
@@ -358,9 +355,18 @@
       </div>
       <div class="col">
         <div class="form-group" >
-            <!-- Input para seleccionar una imagen -->
-            <label for="image">Imagen:</label>
-            <input type="file" @change="handleFileChange" />
+          <div class="input-group mt-2">
+          <label class="font-bold">Seleccione una imagen</label>
+            <input
+                type="file"
+                ref="fileupload"
+                accept="image/*"
+                class="form-control-file"
+                @change="onImageChanged"
+                name="imagen"
+            />
+      </div>
+
             <button @click="createData">Crear Datos</button>
           </div>
         </div>
@@ -408,35 +414,31 @@ export default{
         Response => {
           console.log(Response.data)
           this.Lineas_investigacion = Response.data;
-          const data = Response.data;
-          if (this.isURL(data.imagen)) {
-            this.lineas_investigacion.imagen = data.imagen;
-          } else {
-            // Si es un dato base64, puedes asignarlo directamente
-            this.lineas_investigacion.imagen = data.imagen;
-          }
+          this.previewImage = URL.createObjectURL(this.lineas_investigacion.imagen);
         }
       ).catch(error =>{
         console.error(error)
       })
       },
 
-      handleFileChange(event) {
-      // Obtener el archivo seleccionado
-       this.lineas_investigacion.imagen = event.target.files[0];
+      onImageChanged: function(event) {
+      // Preview imagen
+      this.lineas_investigacion.imagen = event.target.files[0];
+      this.previewImage = URL.createObjectURL(this.lineas_investigacion.imagen);
       },
 
       createData() {
       // Crear un objeto FormData para enviar el nombre y la imagen
-      const formData = new FormData();
 
       const requestData = {
       nombre: this.lineas_investigacion.nombre,
-      imagen: formData.append("image", this.lineas_investigacion.imagen)
+      imagen: this.lineas_investigacion.imagen,
       };
 
+      var formData = this.toFormData(requestData)
+
       // Enviar el formulario al backend
-      axios.post(this.api + /Lineas_investigacion/, requestData)
+      axios.post(this.api + /Lineas_investigacion/, formData, {"content-type": "multipart/form-data"})
         .then(response => {
           console.log("Datos subidos exitosamente", response.data);
           this.getLineas_investigacion()
@@ -446,6 +448,15 @@ export default{
         });
         
     },
+
+    toFormData(obj) {
+    // funcion que convierte a formData
+            var formData = new FormData()
+            for (var key in obj) {
+                formData.append(key, obj[key])
+            }
+            return formData
+        },
 
     editData(id) {
       // Redirige a la página de edición con el ID del dato

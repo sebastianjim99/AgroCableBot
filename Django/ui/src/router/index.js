@@ -7,10 +7,12 @@ import Crear from '../views/CrearView.vue'
 import Editar from '../views/EditarView.vue'
 
 const routes = [
-  { path: '/', name: 'inicio', component: Inicio },
+  { path: '/Imacuna', name: 'inicio', component: Inicio },
   {path: '/Admin', name: 'Admin', component: Admin},
   {path: '/crear',name: 'Crear', component: Crear },
   {path: '/editar/:id', name: 'Editar', component: Editar, props:true},
+
+
 
   ]
 

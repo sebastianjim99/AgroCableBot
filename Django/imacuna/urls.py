@@ -12,5 +12,5 @@ router.register('Servicios', ServiciosViewSet, basename= 'Servicios')
 
 urlpatterns = [
 
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls))
 ]
