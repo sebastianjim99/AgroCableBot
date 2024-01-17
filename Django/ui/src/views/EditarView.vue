@@ -8,14 +8,24 @@
     <!-- Formulario para editar los datos existentes -->
     <label for="chartfieldName">Nombre:</label>
     <input type="text" v-model="lineas_investigacion.nombre" />
-    <label for="imageFile">Imagen:</label>
-    <input type="file" @change="handleFileChange" />
+    <label class="font-bold">Seleccione una imagen</label>
+      <input
+          type="file"
+          ref="fileupload"
+          accept="image/*"
+          class="form-control-file"
+          @change="onImageChanged"
+          name="imagen"
+      />
     <button @click="updateData">Actualizar Datos</button>
   </div>
+
+  
 </template>
 <script>
 
 import axios from 'axios';
+import FormData from 'form-data';
 
 export default {
   data() {
@@ -47,20 +57,22 @@ export default {
     },
 
 
-    handleFileChange(event) {
+   onImageChanged: function(event) {
+      // Preview imagen
       this.lineas_investigacion.imagen = event.target.files[0];
     },
-    async updateData() {
-
+    
+    updateData() {
       const requestData = {
-      nombre: this.lineas_investigacion.nombre,
-      // Convertir la imagen a Base64
-      //imagen: this.lineas_investigacion.imagen? await this.convertImageToBase64() : null,
+        nombre: this.lineas_investigacion.nombre,
+        imagen: this.lineas_investigacion.imagen,
       };
+      var formData = this.toFormData(requestData)
 
-      axios.put(this.api + `/Lineas_investigacion/${this.lineas_investigacion.id}/`, requestData).then(
-        response => {
+      axios.put(this.api + `/Lineas_investigacion/${this.lineas_investigacion.id}/`, formData, {"content-type": "multipart/form-data"})
+      .then(response => {
           console.log('Datos actualizados exitosamente', response.data);
+          this.getLineas_investigacion()
           this.goToHome(); // Redirige a la página principal
           
         })
@@ -69,15 +81,13 @@ export default {
         });
     },
 
-    async convertImageToBase64() {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          resolve(reader.result);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(this.lineas_investigacion.imagen);
-      });
+    toFormData(obj) {
+    // funcion que convierte a formData
+            var formData = new FormData()
+            for (var key in obj) {
+                formData.append(key, obj[key])
+            }
+            return formData
     },
 
     goToHome() {

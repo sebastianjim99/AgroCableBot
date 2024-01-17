@@ -1,6 +1,11 @@
-from dataclasses import fields
 from rest_framework import serializers
-from .models import Lineas_investigacion, Servicios
+from .models import Lineas_investigacion, Servicios, Usuarios
+
+
+class UsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuarios
+        fields = ['user', 'nombre', 'Completado', 'fecha_creado', 'fecha_actualizado']
 
 
 class Lineas_investigacionSerializer(serializers.ModelSerializer):

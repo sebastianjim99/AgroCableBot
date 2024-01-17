@@ -12,14 +12,35 @@
           </div>
       </div>
   </nav>
+    
+    <!-- Crear nuevo usuario  -->
+  <div>
+      <router-link class="btn btn-primary" to="/CrearCuenta"> Agregar usuario </router-link>
+  </div>
 
+  <div class="users">
+      <UsersList />
+  </div>
   
+    <div class="Lineas_servicios">
+      <Lineas />
+  </div>
+
 
 </template>
 
-<script >
-  
-  
+<script>
+import Lineas from '../components/Lineas.vue'
+import UsersList from '../components/UsersList.vue'
+
+
+export default {
+    name: "ListUsers",
+    components:{
+        UsersList,
+        Lineas, 
+    }
+}
 </script>
 
 <style>

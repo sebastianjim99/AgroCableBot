@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'core',  
+    'rest_framework_simplejwt',
+    'djoser',                   # Libreia implementada para todo lo que es la autenticacion del login 
+    'rest_framework.authtoken', # Para crear tokens de identificacion
     'imacuna.apps.ImacunaConfig',
 ]
 
@@ -67,6 +70,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -77,9 +81,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'Imacuna2023.',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '3306'
     }
 }
+
 
 
 # Password validation
@@ -120,12 +125,16 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'public/static/')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'ui/src/assets/media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media/')
 
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'public/static_dev/'),
-#    os.path.join(BASE_DIR, "ui/dist"), # Bundle de VUE
-#)
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
