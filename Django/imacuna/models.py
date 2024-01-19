@@ -27,8 +27,6 @@ class Servicios(models.Model):
 class Roles(models.Model):
     id = models.AutoField(primary_key= True)
     nombre = models.CharField(max_length= 50 , verbose_name="rol" )
-
-
 # Usuario de otra forma
 class Usuarios(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL , related_name= 'usuarios', on_delete= models.CASCADE)
@@ -45,7 +43,7 @@ class Usuarios(models.Model):
 
 # Modelo Facultades ---------------------
 class facultades(models.Model):
-    nombre=models.CharField(max_length= 50, verbose_name='Nombre')
+    nombre=models.CharField(max_length= 50, verbose_name='Nombre', unique=True)
 
     def __str__(self):
         return self.nombre
@@ -58,7 +56,7 @@ class facultades(models.Model):
 
 # Modelo programas---------------------
 class programa(models.Model):
-    nombre=models.CharField(max_length= 50, verbose_name='Nombre')
+    nombre=models.CharField(max_length= 50, verbose_name='Nombre', unique=True)
     facultades=models.ForeignKey(facultades,null=True,blank=True,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -72,7 +70,7 @@ class programa(models.Model):
 
 # Modelo tipo de integrante---------------------
 class tipoIntegrante(models.Model):
-    nombre=models.CharField(max_length= 50, verbose_name='Nombre')
+    nombre=models.CharField(max_length= 50, verbose_name='Nombre', unique=True)
     
     def __str__(self):
         return self.nombre
@@ -91,9 +89,9 @@ class integrante(models.Model):
     correo=models.CharField(max_length= 50, verbose_name='Correo Electrónico')
     sexo = models.CharField(max_length=1, choices=sexos, default='M')
     imagen = models.ImageField(upload_to='fotoPerfil/', null=True, blank=True)
-    facultades=models.ForeignKey(facultades ,null=True,blank=True,on_delete=models.CASCADE)
-    programa=models.ForeignKey(programa,null=True,blank=True,on_delete=models.CASCADE)
-    tipoIntegrante=models.ForeignKey(tipoIntegrante,null=True,blank=True,on_delete=models.CASCADE)
+    facultades=models.ForeignKey(facultades,to_field='nombre' ,null=True,blank=True,on_delete=models.CASCADE)
+    programa=models.ForeignKey(programa,to_field='nombre', null=True,blank=True,on_delete=models.CASCADE)
+    tipoIntegrante=models.ForeignKey(tipoIntegrante,to_field='nombre',null=True,blank=True,on_delete=models.CASCADE)
 
     def nombre_completo(self):
         return "{} {}, {}".format(self.primer_apellido, self.segundo_apellido, self.nombres)
@@ -141,9 +139,9 @@ class imagenesProyectos(models.Model):
 class proyectos(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     descripcion = models.TextField(blank=True, verbose_name='Descripción')
-    integrante=models.ForeignKey(integrante,null=True,blank=True,on_delete=models.CASCADE)
-    videoProyectos=models.ForeignKey(videoProyectos,null=True,blank=True,on_delete=models.CASCADE)
-    imagenesProyectos=models.ForeignKey(imagenesProyectos,null=True,blank=True,on_delete=models.CASCADE)
+    integrante=models.ManyToManyField(integrante, verbose_name="Integrantes",blank=True)
+    videoProyectos=models.ManyToManyField(videoProyectos, verbose_name="Videos",blank=True)
+    imagenesProyectos=models.ManyToManyField(imagenesProyectos, verbose_name="Imágenes",blank=True)
     
     def __str__(self):
         return self.nombre

@@ -1,22 +1,25 @@
 <template>    
-     SECCION DE PROYECTOS 
-    <!-- <section class="py-4 py-xl-5">
-        <div class="container">
-        <div>
-            <h1>INTEGRANTES</h1>
+  <section>
+    <div class="container py-4 py-xl-5">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto" >
+                <h2>PROYECTOS DEL SEMILLERO IMACUNA</h2>
+                <p class="w-lg-50"> EL MEJOR SEMILLERO DEL MUNDO </p>
+            </div>
         </div>
-            <br>
-            <div class="row" >
-                <div class="col-sm-6 col-lg-4 mb-4 text-center" v-for ="integrantes in Integrantes" :key="integrantes.id" >
-                    <img class="rounded-circle img-fluid d-block mx-auto" :src="integrantes.imagen" height="278" width="278"/>
-                    <h3 class="m-0">{{integrantes.nombres}}  {{integrantes.primer_apellido}}  {{integrantes.segundo_apellido}} </h3>
-                    <h5 class="my-1">{{integrantes.facultades}} {{integrantes.programa}} </h5>
-                    <p>{{integrantes.tipo_Integrante}}</p>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" v-for ="proyectos in Proyectos" :key="proyectos.id" >
+            <div class="col">
+                <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="C:/Users/SEBASTIAN/OneDrive/Escritorio/AgroCableBot/Django/public/media/imagenesProyectos/2024/01/19/AgroCableBot.png" />
+                    <div class="py-4">
+                        <h4>{{proyectos.nombre}} </h4>
+                        <p>{{proyectos.descripcion}}</p>
+                    </div>
                 </div>
             </div>
+        </div>
     </div>
-    </section> -->
-        
+</section>
+   
 
 
 </template>
@@ -37,8 +40,8 @@ export default {
       'proyetos':{
           'nombre': '',
           'descripcion': '',
-          'videoProyectos': '',
-          'imagenesProyectos': '',
+          'videoProyectos': null,
+          'imagenesProyectos': null,
       },
     }
   },
@@ -58,7 +61,7 @@ export default {
         Response => {
           console.log("proyectos")
           console.log(Response.data)
-          this.Integrantes= Response.data;
+          this.Proyectos= Response.data;
         }
       ).catch(error =>{
         console.error(error)
@@ -67,7 +70,7 @@ export default {
 
     onImageChanged: function(event) {
       // Preview imagen
-      this.Integrantes.imagen = event.target.files[0];
+      this.proyetos.imagenesProyectos = event.target.files[0];
     },
 
     toFormData(obj) {

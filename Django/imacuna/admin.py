@@ -11,6 +11,9 @@ admin.site.register(facultades)
 admin.site.register(programa)  
 admin.site.register(tipoIntegrante)  
 admin.site.register(integrante)  
-admin.site.register(proyectos)  
+class integrantesxProyecto(admin.ModelAdmin):
+    filter_horizontal=['integrante','videoProyectos','imagenesProyectos']   
+
+admin.site.register(proyectos,integrantesxProyecto)
 admin.site.register(imagenesProyectos)  
 admin.site.register(videoProyectos)  

@@ -10,10 +10,15 @@
                 <div class="col-sm-6 col-lg-4 mb-4 text-center" v-for ="integrantes in Integrantes" :key="integrantes.id" >
                     <img class="rounded-circle img-fluid d-block mx-auto" :src="integrantes.imagen" height="278" width="278"/>
                     <h3 class="m-0">{{integrantes.nombres}}  {{integrantes.primer_apellido}}  {{integrantes.segundo_apellido}} </h3>
+                    <h5 class="my-1">{{integrantes.correo}} </h5>
                     <h5 class="my-1">{{integrantes.facultades}} {{integrantes.programa}} </h5>
                     <p>{{integrantes.tipo_Integrante}}</p>
                 </div>
+                
             </div>
+            <br>
+            <br>
+            <br>
     </div>
     </section>
         

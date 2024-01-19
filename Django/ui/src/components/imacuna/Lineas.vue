@@ -126,12 +126,10 @@ export default{
         console.error(error)
       })
     },
-
     onImageChanged: function(event) {
       // Preview imagen
       this.lineas_investigacion.imagen = event.target.files[0];
     },
-
     createData() {
       // Crear un objeto FormData para enviar el nombre y la imagen
       const requestData = {
@@ -152,7 +150,6 @@ export default{
         });
         
     },
-
     toFormData(obj) {
     // funcion que convierte a formData
             var formData = new FormData()
@@ -161,12 +158,10 @@ export default{
             }
             return formData
     },
-
     editData(id) {
       // Redirige a la página de edición con el ID del dato
       this.$router.push(`/editar/${id}`);
     },
-
     deleteData(id) {
       axios.delete(this.api + `/Lineas_investigacion/${id}/`).then(
         response => {
