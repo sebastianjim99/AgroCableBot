@@ -1,6 +1,6 @@
 <template>    
-    <!--  SECCION DE INTEGRANTES  -->
-    <section class="py-4 py-xl-5">
+     SECCION DE PROYECTOS 
+    <!-- <section class="py-4 py-xl-5">
         <div class="container">
         <div>
             <h1>INTEGRANTES</h1>
@@ -15,7 +15,7 @@
                 </div>
             </div>
     </div>
-    </section>
+    </section> -->
         
 
 
@@ -56,8 +56,8 @@ export default {
     getProyectos(){
       axios.get(this.api + /proyectos/ ).then(
         Response => {
-          console.log("integrantes")
-          console.log(Response.data.facultades)
+          console.log("proyectos")
+          console.log(Response.data)
           this.Integrantes= Response.data;
         }
       ).catch(error =>{

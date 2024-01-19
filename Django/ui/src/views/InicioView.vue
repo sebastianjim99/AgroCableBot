@@ -19,7 +19,7 @@
     <h1 style="position: static;text-align: left;margin: 40px;">¿Quiénes somos?</h1>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/media/iconos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
+            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
             <div class="col-md-6 col-xl-8">
                 <p style="color: var(--bs-emphasis-color);text-align: center;transform: perspective(0px);margin-top: 19px;margin-left: 19px;margin-right: -1px;padding-left: 4px;font-size: 30px;">Somos el semillero de investigación IMACUNA, un grupo de ingenieros entusiastas por impulsar la innovación y la modernización de la agricultura, en beneficio de productores y consumidores.<br />“Somos el futuro agrícola”.</p>
             </div>
@@ -30,8 +30,12 @@
 <br>
 <br>
 
-<div class="Lineas_servicios">
+<div class="Lineas">
     <Lineas />
+</div>
+
+<div class="servicios">
+    <Servicios />
 </div>
 
  <!--  SECCION DE MISION  -->
@@ -39,7 +43,7 @@
     <h1 style="position: static;text-align: center ;margin: 40px;">MISIÓN</h1>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/media/iconos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
+            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
             <div class="col-md-6 col-xl-8">
                 <p style="color: var(--bs-emphasis-color);text-align: center;transform: perspective(0px);margin-top: 19px;margin-left: 19px;margin-right: -1px;padding-left: 4px;font-size: 30px;">Somos el semillero de investigación IMACUNA, un grupo de ingenieros entusiastas por impulsar la innovación y la modernización de la agricultura, en beneficio de productores y consumidores.<br />“Somos el futuro agrícola”.</p>
             </div>
@@ -55,132 +59,23 @@
             <div class="col-md-6 col-xl-8">
                 <p style="color: var(--bs-emphasis-color);text-align: center;transform: perspective(0px);margin-top: 19px;margin-left: 19px;margin-right: -1px;padding-left: 4px;font-size: 30px;">Somos el semillero de investigación IMACUNA, un grupo de ingenieros entusiastas por impulsar la innovación y la modernización de la agricultura, en beneficio de productores y consumidores.<br />“Somos el futuro agrícola”.</p>
             </div>
-            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/media/iconos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
+            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
         </div>
     </div>
 </section>
 
  <!--  SECCION DE PROYECTOS  -->
 <section>
-  <div class="container">
-  <div>
-    <h1>PROYECTOS</h1>
-  </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c3692fba8%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c3692fba8%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9453125%22%20y%3D%22117.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c3692fba9%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c3692fba9%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9453125%22%20y%3D%22117.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c3692fbaa%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c3692fbaa%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9453125%22%20y%3D%22117.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c3692fbab%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c3692fbab%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9453125%22%20y%3D%22117.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c3692fbab%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c3692fbab%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9453125%22%20y%3D%22117.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c3692fbac%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c3692fbac%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9453125%22%20y%3D%22117.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
+  <div class="proyectos_imacuna">
+    <proyectos_imacuna /> 
+    </div>
 </section>
 
 <!--  SECCION DE INTEGRANTES  -->
 <section class="py-4 py-xl-5">
-    <div class="container">
-      <div>
-        <h1>INTEGRANTES</h1>
-      </div>
-        <div class="row">
-            <div class="col-sm-6 col-lg-4 mb-4 text-center"><img class="rounded-circle img-fluid d-block mx-auto" src="@/assets/Integrantes/juancho.jpg" />
-                <h3 class="m-0">EL PATRON </h3>
-                <h5 class="my-1">SIUUUU</h5>
-                <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-            </div>
-            <div class="col-sm-6 col-lg-4 mb-4 text-center"><img class="rounded-circle img-fluid d-block mx-auto" src="@/assets/media/perfiles/perfil.jpeg" />
-                <h3 class="m-0">John Doe</h3>
-                <h5 class="my-1">Job Title</h5>
-                <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-            </div>
-            <div class="col-sm-6 col-lg-4 mb-4 text-center"><img class="rounded-circle img-fluid d-block mx-auto" src="@/assets/media/perfiles/perfil.jpeg" />
-                <h3 class="m-0">Jane Doe</h3>
-                <h5 class="my-1">Job Title</h5>
-                <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-            </div>
-          </div>
-          
-      <div class="container"></div>
-    <div class="bg-dark border rounded border-0 border-dark overflow-hidden"></div>
-  </div>
+  <div class="integrantes">
+    <Integrantes /> 
+    </div>
 </section>
 
 
@@ -273,12 +168,17 @@
 </template>
 
 <script>
-import Lineas from '../components/Lineas.vue'
-
+import Lineas from '../components/imacuna/Lineas.vue'
+import Servicios from '../components/imacuna/Servicios.vue'
+import proyectos_imacuna from '@/components/imacuna/proyectos_imacuna.vue'
+import Integrantes from '../components/imacuna/Integrantes.vue'
 export default{
   name: "imacuna_inicio",
   components:{
         Lineas, 
+        Servicios,
+        proyectos_imacuna,
+        Integrantes
     }
 }
 

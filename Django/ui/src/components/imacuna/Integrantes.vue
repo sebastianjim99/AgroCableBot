@@ -65,7 +65,7 @@ export default {
       axios.get(this.api + /integrante/ ).then(
         Response => {
           console.log("integrantes")
-          console.log(Response.data.facultades)
+          console.log(Response.data)
           this.Integrantes= Response.data;
         }
       ).catch(error =>{

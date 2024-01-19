@@ -4,9 +4,9 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
-from .serializers import Lineas_investigacionSerializer, ServiciosSerializer, UsersSerializer
+from .serializers import Lineas_investigacionSerializer, ServiciosSerializer, UsersSerializer, facultadesSerializer, programaSerializer, tipoIntegranteSerializer, integranteSerializer, proyectosSerializer, imagenesProyectosSerializer, videoProyectosSerializer
 
-from .models import Lineas_investigacion, Servicios, Usuarios
+from .models import Lineas_investigacion, Servicios, Usuarios, facultades, programa,tipoIntegrante, integrante, proyectos, imagenesProyectos, videoProyectos 
 # Create your views here.
 
 class Login(ObtainAuthToken):
@@ -22,9 +22,6 @@ class ListCreateUsers(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = UsersSerializer
 
-    def get_queryset(self):
-        return Usuarios.objects.filter(user=self.request.user)
-
 class RetrieveUpdateDestroyUsuarios(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     queryset = Usuarios.objects.all()
@@ -39,4 +36,34 @@ class Lineas_investigacionViewSet(viewsets.ModelViewSet):
 class ServiciosViewSet(viewsets.ModelViewSet):
     queryset = Servicios.objects.all()
     serializer_class = ServiciosSerializer
-    
+
+class facultadesViewSet(viewsets.ModelViewSet):
+    queryset = facultades.objects.all()
+    serializer_class = facultadesSerializer
+
+    def get_queryset(self):
+        return facultades.objects.filter(nombre=self.request.facultades_id)
+
+class programaViewSet(viewsets.ModelViewSet):
+    queryset = programa.objects.all()
+    serializer_class = programaSerializer
+
+class tipoIntegranteViewSet(viewsets.ModelViewSet):
+    queryset =  tipoIntegrante.objects.all()
+    serializer_class = tipoIntegranteSerializer
+
+class integranteViewSet(viewsets.ModelViewSet):
+    queryset = integrante.objects.all()
+    serializer_class = integranteSerializer
+
+class proyectosViewSet(viewsets.ModelViewSet):
+    queryset = proyectos.objects.all()
+    serializer_class = proyectosSerializer
+
+class imagenesProyectosViewSet(viewsets.ModelViewSet):
+    queryset = imagenesProyectos.objects.all()
+    serializer_class = imagenesProyectosSerializer
+
+class videoProyectosViewSet(viewsets.ModelViewSet):
+    queryset = videoProyectos.objects.all()
+    serializer_class = videoProyectosSerializer
