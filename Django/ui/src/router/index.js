@@ -5,7 +5,7 @@ import Admin from '../views/AdminView.vue'
 import Crear from '../views/CrearView.vue'
 import Editar from '../views/EditarView.vue'
 import LoginView from '../components/loginView.vue'
-import Signup from 'C:/Users/SEBASTIAN/OneDrive/Escritorio/AgroCableBot/Django/ui/src/components/signup.vue'
+import Signup from '../components/signup.vue'
 
 const routes = [
   {path: '/', name: 'inicio', component: Inicio },
