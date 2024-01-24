@@ -28,7 +28,7 @@
 
 <script>
 import axios from 'axios';
-import FormData from 'form-data';
+// import FormData from 'form-data';
 
 export default {
     name: "Integrantes_imacuna",
@@ -69,8 +69,8 @@ export default {
     getIntegrantes(){
       axios.get(this.api + /integrante/ ).then(
         Response => {
-          console.log("integrantes")
-          console.log(Response.data)
+          // console.log("integrantes")
+          // console.log(Response.data)
           this.Integrantes= Response.data;
         }
       ).catch(error =>{
@@ -83,14 +83,6 @@ export default {
       this.Integrantes.imagen = event.target.files[0];
     },
 
-    toFormData(obj) {
-    // funcion que convierte a formData
-            var formData = new FormData()
-            for (var key in obj) {
-                formData.append(key, obj[key])
-            }
-            return formData
-    },
   },
 }
 </script>

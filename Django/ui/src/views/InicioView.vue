@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-md bg-body">
+    <nav class="navbar navbar-expand-md bg-body">
     <div class="container-fluid"><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="navcol-1" class="collapse navbar-collapse text-center" style="width: initial;"><img class="img-fluid" src="@/assets/logos/imacuna.png" width="171" height="76" loading="auto" style="margin-left: 60px;" />
             <ul class="navbar-nav mx-auto">
@@ -10,16 +10,29 @@
             </ul>
             <a class="btn btn-primary" type="button" href="loginView" style="border-radius: 10;border-style: solid;margin-left: 2px;margin-right: 102px;">Ingresar</a>
             
+            </div>
+        </div>
+    </nav>
+
+<section>
+    <div id="videoContainer" class="mobile-background">
+        <div class="container-fluid d-flex justify-content-center align-items-center align-content-center video-parallax-container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center" style="color: rgba(251, 101, 66, 1); font-size: 50px"> SEMILLERO </h1>
+                    <p class="text-center" style="color: rgba(251, 101, 66, 1); font-weight: 500; font-size: 150px; margin: 0px"> IMACUNA </p>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+</section>
 
  <!--  SECCION DE QUIENES  -->
 <section>
-    <h1 style="position: static;text-align: left;margin: 40px;">¿Quiénes somos?</h1>
+    <h1 style="position: static;text-align: center ;margin: 70px;">¿Quiénes somos?</h1>
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
+        <div class="row" style="position: static; text-align: center; margin: 10px " >
+            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 10px;" /></div>
             <div class="col-md-6 col-xl-8">
                 <p style="color: var(--bs-emphasis-color);text-align: center;transform: perspective(0px);margin-top: 19px;margin-left: 19px;margin-right: -1px;padding-left: 4px;font-size: 30px;">Somos el semillero de investigación IMACUNA, un grupo de ingenieros entusiastas por impulsar la innovación y la modernización de la agricultura, en beneficio de productores y consumidores.<br />“Somos el futuro agrícola”.</p>
             </div>
@@ -43,7 +56,8 @@
     <h1 style="position: static;text-align: center ;margin: 40px;">MISIÓN</h1>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 38px;" /></div>
+            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="height: 100vh,  " /></div>
+            
             <div class="col-md-6 col-xl-8">
                 <p style="color: var(--bs-emphasis-color);text-align: center;transform: perspective(0px);margin-top: 19px;margin-left: 19px;margin-right: -1px;padding-left: 4px;font-size: 30px;">Somos el semillero de investigación IMACUNA, un grupo de ingenieros entusiastas por impulsar la innovación y la modernización de la agricultura, en beneficio de productores y consumidores.<br />“Somos el futuro agrícola”.</p>
             </div>
@@ -184,3 +198,33 @@ export default{
 
 
 </script>
+
+<style>
+    .mobile-background {
+
+        background-image: url("Presentacion.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: bottom;
+    }
+    .video-parallax-container {
+    height: 50vh;
+    overflow: hidden;
+    }
+    :root {
+        --bs-breakpoint-xs: 0;
+        --bs-breakpoint-sm: 576px;
+        --bs-breakpoint-md: 768px;
+        --bs-breakpoint-lg: 992px;
+        --bs-breakpoint-xl: 1200px;
+        --bs-breakpoint-xxl: 1400px;
+    }
+
+
+
+
+
+
+</style>
+

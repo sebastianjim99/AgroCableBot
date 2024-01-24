@@ -6,6 +6,7 @@ import Crear from '../views/CrearView.vue'
 import Editar from '../views/EditarView.vue'
 import LoginView from '../components/loginView.vue'
 import Signup from '../components/signup.vue'
+import monitoreo from '../views/Agrocablebot/monitoreoView.vue'
 
 const routes = [
   {path: '/', name: 'inicio', component: Inicio },
@@ -14,6 +15,9 @@ const routes = [
   {path: '/Admin', name: 'Admin', component: Admin},
   {path: '/crear',name: 'Crear', component: Crear },
   {path: '/editar/:id', name: 'Editar', component: Editar, props:true},
+
+  // rutas AgroCableBOt
+  {path: '/AgroCableBot', name: 'monitore', component: monitoreo },
 
 
   ]

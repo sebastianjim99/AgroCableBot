@@ -109,7 +109,7 @@ class integrante(models.Model):
 class videoProyectos(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     descripcion=models.TextField(blank=True)
-    archivo_video = models.FileField(upload_to='videosProyectos/')
+    archivo_video = models.FileField(upload_to='videosProyectos/', unique=True )
 
     def __str__(self):
         return self.nombre
@@ -124,7 +124,7 @@ class videoProyectos(models.Model):
 class imagenesProyectos(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     descripcion=models.TextField(blank=True)
-    imagen = models.ImageField(upload_to='imagenesProyectos/%Y/%m/%d', null=True, blank=True)
+    imagen = models.ImageField(upload_to='imagenesProyectos/',verbose_name='imagen', null=True, blank=True, unique=True )
 
     def __str__(self):
         return self.nombre
@@ -140,7 +140,7 @@ class proyectos(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     descripcion = models.TextField(blank=True, verbose_name='Descripción')
     integrante=models.ManyToManyField(integrante, verbose_name="Integrantes",blank=True)
-    videoProyectos=models.ManyToManyField(videoProyectos, verbose_name="Videos",blank=True)
+    videoProyectos=models.ManyToManyField(videoProyectos,verbose_name="Videos",blank=True)
     imagenesProyectos=models.ManyToManyField(imagenesProyectos, verbose_name="Imágenes",blank=True)
     
     def __str__(self):

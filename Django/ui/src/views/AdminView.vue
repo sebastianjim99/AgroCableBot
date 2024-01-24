@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Lineas from '../components/Lineas.vue'
+import Lineas from '../components/imacuna/Lineas.vue'
 import UsersList from '../components/UsersList.vue'
 
 
