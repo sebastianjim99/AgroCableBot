@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('list-create-Users/', ListCreateUsers.as_view(), name= 'list-create-Users'),
     path('loginView/', Login.as_view(), name='login'),
-    path('retrieve-update-destroy-usarios/<int:pk>/', RetrieveUpdateDestroyUsuarios.as_view(), name= 'retrieve-update-destroy')
+    path('retrieve-update-destroy-usarios/<int:pk>/', RetrieveUpdateDestroyUsuarios.as_view(), name= 'retrieve-update-destroy'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

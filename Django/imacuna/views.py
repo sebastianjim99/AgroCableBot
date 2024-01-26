@@ -8,6 +8,7 @@ from .serializers import Lineas_investigacionSerializer, ServiciosSerializer, Us
 
 from .models import Lineas_investigacion, Servicios, Usuarios, facultades, programa,tipoIntegrante, integrante, proyectos, imagenesProyectos, videoProyectos 
 # Create your views here.
+from django.shortcuts import render
 
 class Login(ObtainAuthToken):
     def post(self, request, *args, **kwargs):

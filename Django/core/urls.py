@@ -9,6 +9,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
 
     path('', include('imacuna.urls')),
+    
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
