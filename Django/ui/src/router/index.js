@@ -7,6 +7,10 @@ import Editar from '../views/EditarView.vue'
 import LoginView from '../components/loginView.vue'
 import Signup from '../components/signup.vue'
 import monitoreo from '../views/Agrocablebot/monitoreoView.vue'
+import control from '../views/Agrocablebot/controlView.vue'
+import calendario from '../views/Agrocablebot/calendarioView.vue'
+import estadisticas from '../views/Agrocablebot/estadisticasView.vue'
+import soporte from '../views/Agrocablebot/soporteView.vue'
 
 const routes = [
   {path: '/', name: 'inicio', component: Inicio },
@@ -18,6 +22,11 @@ const routes = [
 
   // rutas AgroCableBOt
   {path: '/AgroCableBot', name: 'monitore', component: monitoreo },
+  {path: '/control', name: 'control', component: control },
+  {path: '/calendario', name: 'calendario', component: calendario },
+  {path: '/estadisticas', name: 'estadisticas', component: estadisticas },
+  {path: '/soporte', name: 'soporte', component: soporte },
+
 
 
   ]
