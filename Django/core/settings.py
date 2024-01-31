@@ -1,7 +1,7 @@
 
 from pathlib import Path
 import os
-
+import r_agrocablebot
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'djoser',                   # Libreia implementada para todo lo que es la autenticacion del login 
     'rest_framework.authtoken', # Para crear tokens de identificacion
     'imacuna.apps.ImacunaConfig',
+    'r_agrocablebot',
+    
 ]
 
 MIDDLEWARE = [
@@ -75,9 +77,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bd_imacuna',
+        'NAME': 'db_prueba',
         'USER': 'root',
-        'PASSWORD': 'Imacuna2023.',
+        'PASSWORD': 'juanfe142228',
         'HOST': 'localhost',
         'PORT': '3306'
     }

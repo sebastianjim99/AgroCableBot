@@ -35,19 +35,24 @@
 
     </div>
 
+    <div>
+        <CultivoVue />
+    </div>
     
-
-
-
-    
+    <div>
+        <Calendar_resum />
+    </div>
 </template>
 
 <script>
 import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
+import CultivoVue from '/src/components/agrocablebot/monitoreo/cultivo.vue'
+import Calendar_resum  from '/src/components/agrocablebot/monitoreo/calendarResum.vue'
 export default{
     components:{
         navbar_monitoreo,
+        CultivoVue,
+        Calendar_resum,
     }
 }
-
 </script>
