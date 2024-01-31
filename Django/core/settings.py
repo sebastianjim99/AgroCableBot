@@ -1,4 +1,5 @@
 
+from operator import truediv
 from pathlib import Path
 import os
 import r_agrocablebot
