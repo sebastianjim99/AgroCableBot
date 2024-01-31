@@ -151,3 +151,6 @@ class proyectos(models.Model):
         verbose_name_plural = 'Proyectos'
         db_table = 'proyecto'
         ordering = ['id']
+
+
+        
