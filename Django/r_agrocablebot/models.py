@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings 
 from .choices import unidadMedida,estadoSalud, SioNO
-from imacuna import models
+#from imacuna import models
 # Create your models here.
 
 
@@ -23,7 +23,7 @@ class acciones(models.Model):
 
 class tipoSensor(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
-    unidadMedida = models.CharField(max_length=1, choices=unidadMedida, default='m')
+    unidadMedida = models.CharField(max_length=100, choices=unidadMedida, default='m')
     descripcion=models.TextField(blank=True)
 
     def __str__(self):
@@ -82,8 +82,8 @@ class cultivo(models.Model):
 
 class plantas(models.Model):
     numeroPlanta= models.PositiveSmallIntegerField(blank=True,verbose_name='Numero de Planta')
-    coordenadaX=models.DecimalField(blank=True,verbose_name='Coordenada en el eje X')
-    coordenadaY=models.DecimalField(blank=True,verbose_name='Coordenada en el eje Y')
+    coordenadaX=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
+    coordenadaY=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
     estadoSalud = models.CharField(max_length=1, choices=estadoSalud, default='S')
     cultivo=models.ForeignKey(cultivo, null=True,blank=True,on_delete=models.CASCADE)
 
@@ -97,11 +97,11 @@ class plantas(models.Model):
         ordering = ['id']
 
 class sensor(models.Model):
-    valorDecimal=models.DecimalField(blank=True,verbose_name='Valor del sensor decimal')
+    valorDecimal=models.DecimalField( max_digits=3,decimal_places=3,blank=True,verbose_name='Valor del sensor decimal')
     #valorSTR=models.CharField(max_length=50, verbose_name='Valor del sensor String')
-    coordenadaX=models.DecimalField(blank=True,verbose_name='Coordenada en el eje X')
-    coordenadaY=models.DecimalField(blank=True,verbose_name='Coordenada en el eje Y')
-    coordenadaZ=models.DecimalField(blank=True,verbose_name='Coordenada en el eje Z')
+    coordenadaX=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
+    coordenadaY=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
+    coordenadaZ=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Z')
     fecha_creado = models.DateTimeField(auto_now_add=True)
     fecha_actualizado = models.DateTimeField(auto_now=True)
     tipoSensor=models.ForeignKey(tipoSensor, null=True,blank=True,on_delete=models.CASCADE)
@@ -195,18 +195,18 @@ class calendarios(models.Model):
         db_table = 'calendarios'
         ordering = ['id']
 
-class mo_agroCableBot(models.Model):
-    descripcion=models.TextField(blank=True)
-    proyectos=models.ForeignKey(models.proyectos, null=True,blank=True,on_delete=models.CASCADE)
-    integrantes=models.ForeignKey(models.integrante, null=True,blank=True,on_delete=models.CASCADE)
-    estadisticas=models.ForeignKey(estadisticas, null=True,blank=True,on_delete=models.CASCADE)
+# class mo_agroCableBot(models.Model):
+#     descripcion=models.TextField(blank=True)
+#     proyectos=models.ForeignKey(models.proyectos, null=True,blank=True,on_delete=models.CASCADE)
+#     integrantes=models.ForeignKey(models.integrante, null=True,blank=True,on_delete=models.CASCADE)
+#     estadisticas=models.ForeignKey(estadisticas, null=True,blank=True,on_delete=models.CASCADE)
 
 
-    def __str__(self):
-        return self.nombre
+#     def __str__(self):
+#         return self.nombre
 
-    class Meta:
-        verbose_name = 'Tipo de sensor'
-        verbose_name_plural = 'Tipos de sensores'
-        db_table = 'tipos_sensores'
-        ordering = ['id']
+#     class Meta:
+#         verbose_name = 'Tipo de sensor'
+#         verbose_name_plural = 'Tipos de sensores'
+#         db_table = 'tipos_sensores'
+#         ordering = ['id']

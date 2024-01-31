@@ -14,6 +14,6 @@ admin.site.register(tablasEstadisticas)
 admin.site.register(graficos)  
 admin.site.register(estadisticas) 
 admin.site.register(calendarios)  
-admin.site.register(mo_agroCableBot)  
+#admin.site.register(mo_agroCableBot)  
 
 

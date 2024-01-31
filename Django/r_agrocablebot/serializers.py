@@ -57,7 +57,7 @@ class calendariosSerializer(serializers.ModelSerializer):
         model = calendarios
         fields = '__all__'
 
-class mo_agroCableBotSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = mo_agroCableBot
-        fields = '__all__'
+# class mo_agroCableBotSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = mo_agroCableBot
+#         fields = '__all__'
