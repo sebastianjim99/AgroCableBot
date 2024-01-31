@@ -1,15 +1,20 @@
 <template>
-    <nav class="navbar navbar-expand-md bg-body">
-    <div class="container-fluid"><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div id="navcol-1" class="collapse navbar-collapse text-center" style="width: initial;"><img class="img-fluid" src="@/assets/logos/imacuna.png" width="171" height="76" loading="auto" style="margin-left: 60px;" />
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link active" href="">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Quienes somos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">productos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contactanos</a></li>
-            </ul>
-            <a class="btn btn-primary" type="button" href="loginView" style="border-radius: 10;border-style: solid;margin-left: 2px;margin-right: 102px;">Ingresar</a>
-            
+    <nav class="navbar navbar-expand-md fixed-top bg-body shadow-none navbar-light">
+        <div class="container-fluid">
+            <div class="navbar-brand" href="#"><img class="img-fluid" src="@/assets/logos/imacuna.png" width="171" height="76" loading="auto" style="margin-left: 60px;" /></div>    
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-2">
+                <span class="visually-hidden"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-toggler btn btn-primary " data-bs-toggle="collapse" data-bs-target="#navcol-2" type="button" href="loginView" style="  border-radius: 10;border-style: solid;margin-left: 2px;margin-right: 102px;">Ingresar</a>
+            <div id="navcol-2" class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Quienes">Quienes somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="proyectos_imacuna">productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto">Contactanos</a></li>
+                </ul>
+                <a class="btn btn-primary" type="button" href="loginView" style="border-radius: 10;border-style: solid;margin-left: 2px;margin-right: 102px;">Ingresar</a>
             </div>
         </div>
     </nav>
@@ -29,7 +34,7 @@
 
  <!--  SECCION DE QUIENES  -->
 <section>
-    <h1 style="position: static;text-align: center ;margin: 70px;">¿Quiénes somos?</h1>
+    <h1 class="Quienes" style="position: static;text-align: center ;margin: 70px;">¿Quiénes somos?</h1>
     <div class="container">
         <div class="row" style="position: static; text-align: center; margin: 10px " >
             <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 10px;" /></div>
@@ -202,15 +207,15 @@ export default{
 <style>
     .mobile-background {
 
-        background-image: url("Presentacion.jpg");
+        background-image: url("/src/assets/logos/Presentacion.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
         background-position: bottom;
     }
     .video-parallax-container {
-    height: 50vh;
-    overflow: hidden;
+        height: 50vh;
+        overflow: hidden;
     }
     :root {
         --bs-breakpoint-xs: 0;
@@ -221,8 +226,17 @@ export default{
         --bs-breakpoint-xxl: 1400px;
     }
 
+    .navbar-light {
+    transition: 1000ms ease;
+    background: white
+    }
 
+    .navbar {
+    border: none;
+    background-color: white;
+}
 
+    
 
 
 

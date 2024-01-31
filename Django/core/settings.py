@@ -1,4 +1,5 @@
 
+from operator import truediv
 from pathlib import Path
 import os
 
@@ -12,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@bxqvdsoyto37o)m1773gjp6ucoqfv5in%)jtcv0_fbe36zcv%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
