@@ -4,7 +4,7 @@
         <div class="row mb-5">
           <div class="col-md-8 col-xl-6 text-center mx-auto" >
               <h2>PROYECTOS DEL SEMILLERO IMACUNA</h2>
-              <p class="w-lg-50"> EL MEJOR SEMILLERO DEL MUNDO </p>
+              <p class="w-lg-50"> Cosechando innovación </p>
           </div>
         </div>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"  >
