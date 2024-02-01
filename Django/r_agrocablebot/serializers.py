@@ -37,20 +37,20 @@ class imagenesxPlantaSerializer(serializers.ModelSerializer):
         model = imagenesxPlanta
         fields = '__all__'
 
-class tablasEstadisticasSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = tablasEstadisticas
-        fields = '__all__'
+# class tablasEstadisticasSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = tablasEstadisticas
+#         fields = '__all__'
 
-class graficosSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = graficos
-        fields = '__all__'
+# class graficosSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = graficos
+#         fields = '__all__'
 
-class estadisticasSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = estadisticas
-        fields = '__all__'
+# class estadisticasSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = estadisticas
+#         fields = '__all__'
 
 class calendariosSerializer(serializers.ModelSerializer):
     class Meta:

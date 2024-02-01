@@ -6,13 +6,18 @@ from .models import *
 admin.site.register(acciones)
 admin.site.register(tipoSensor)
 admin.site.register(tipoCultivo)
+
+class sensoresxCultivo(admin.ModelAdmin):
+    filter_horizontal=['integrante','videoProyectos','imagenesProyectos']   
+
+admin.site.register(cultivo,sensoresxCultivo)
 admin.site.register(cultivo)  
 admin.site.register(plantas)  
 admin.site.register(sensor)  
 admin.site.register(imagenesxPlanta)  
-admin.site.register(tablasEstadisticas)  
-admin.site.register(graficos)  
-admin.site.register(estadisticas) 
+# admin.site.register(tablasEstadisticas)  
+# admin.site.register(graficos)  
+# admin.site.register(estadisticas) 
 admin.site.register(calendarios)  
 #admin.site.register(mo_agroCableBot)  
 
