@@ -8,10 +8,9 @@ admin.site.register(tipoSensor)
 admin.site.register(tipoCultivo)
 
 class sensoresxCultivo(admin.ModelAdmin):
-    filter_horizontal=['integrante','videoProyectos','imagenesProyectos']   
+    filter_horizontal=['sensores',]   
 
-admin.site.register(cultivo,sensoresxCultivo)
-admin.site.register(cultivo)  
+admin.site.register(cultivo,sensoresxCultivo) 
 admin.site.register(plantas)  
 admin.site.register(sensor)  
 admin.site.register(imagenesxPlanta)  
