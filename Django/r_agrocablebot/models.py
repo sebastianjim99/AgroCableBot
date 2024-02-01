@@ -51,7 +51,7 @@ class tipoCultivo(models.Model):
     estimadoCosechaMax=models.PositiveIntegerField(blank=True,verbose_name='Estimado máximo para cosechar [días]')
     temperaturaOptimaMin=models.PositiveIntegerField(blank=True,verbose_name='Temperatura mínima [°C]')
     temperaturaOptimaMax=models.PositiveIntegerField(blank=True,verbose_name='Temperatura máxima [°C]')
-    profundidadSiembra=models.PositiveIntegerField(blank=True,verbose_name='Profundidad de siembra [cm]')
+    profundidadSiembra=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Profundidad de siembra')
 
     def __str__(self):
         return self.nombre
@@ -63,13 +63,14 @@ class tipoCultivo(models.Model):
         ordering = ['id']
 
 class sensor(models.Model):
-    valorDecimal=models.DecimalField( max_digits=3,decimal_places=3,blank=True,verbose_name='Valor del sensor decimal')
+    nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
+    valorDecimal=models.DecimalField( max_digits=10,decimal_places=3,blank=True,verbose_name='Valor del sensor decimal')
     #valorSTR=models.CharField(max_length=50, verbose_name='Valor del sensor String')
-    coordenadaX=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
-    coordenadaY=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
-    coordenadaZ=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Z')
+    coordenadaX=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
+    coordenadaY=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
+    coordenadaZ=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Z')
     fecha_creado = models.DateTimeField(auto_now_add=True)
-    tipoSensor=models.ForeignKey(tipoSensor, null=True,blank=True,on_delete=models.CASCADE)
+    tipoSensor=models.ForeignKey(tipoSensor, null=True,blank=True,on_delete=models.CASCADE,verbose_name='Tipo sensor')
 
     def __str__(self):
         return self.nombre
@@ -101,8 +102,8 @@ class cultivo(models.Model):
 
 class plantas(models.Model):
     numeroPlanta= models.PositiveSmallIntegerField(blank=True,verbose_name='Numero de Planta')
-    coordenadaX=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
-    coordenadaY=models.DecimalField(max_digits=3,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
+    coordenadaX=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
+    coordenadaY=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
     estadoSalud = models.CharField(max_length=1, choices=estadoSalud, default='S')
     cultivo=models.ForeignKey(cultivo, null=True,blank=True,on_delete=models.CASCADE)
 
@@ -118,7 +119,7 @@ class plantas(models.Model):
 
 
 class imagenesxPlanta(models.Model):
-    imagen = models.ImageField(upload_to='iconos/plantas/', verbose_name="imagen", null= True ,blank=True)
+    imagen = models.ImageField(upload_to='cultivo/plantas/', verbose_name="imagen", null= True ,blank=True)
     descripcion=models.TextField(blank=True)
     plantas=models.ForeignKey(plantas, null=True,blank=True,on_delete=models.CASCADE)
     
