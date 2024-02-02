@@ -121,9 +121,9 @@ class plantas(models.Model):
 
 class imagenesxPlanta(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre')
-    imagen = models.ImageField(upload_to='cultivo/plantas/', verbose_name="imagen", null= True ,blank=True)
-    descripcion=models.TextField(blank=True)
-    plantas=models.ForeignKey(plantas, null=True,blank=True,on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='cultivo/plantas/', verbose_name="Imagen", null= True ,blank=True)
+    descripcion=models.TextField(blank=True, verbose_name="Descripcion")
+    plantas=models.ForeignKey(plantas, null=True,blank=True,on_delete=models.CASCADE, verbose_name="Plantas")
     
     def __str__(self):
         return self.nombre
