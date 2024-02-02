@@ -101,6 +101,7 @@ class cultivo(models.Model):
         ordering = ['id']
 
 class plantas(models.Model):
+    nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
     numeroPlanta= models.PositiveSmallIntegerField(blank=True,verbose_name='Numero de Planta')
     coordenadaX=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
     coordenadaY=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
@@ -119,6 +120,7 @@ class plantas(models.Model):
 
 
 class imagenesxPlanta(models.Model):
+    nombre=models.CharField(max_length= 100, verbose_name='Nombre')
     imagen = models.ImageField(upload_to='cultivo/plantas/', verbose_name="imagen", null= True ,blank=True)
     descripcion=models.TextField(blank=True)
     plantas=models.ForeignKey(plantas, null=True,blank=True,on_delete=models.CASCADE)
@@ -182,7 +184,7 @@ class calendarios(models.Model):
     fecha=models.DateField()
     hora=models.TimeField()
     cultivo=models.ForeignKey(cultivo, null=True,blank=True,on_delete=models.CASCADE)
-    plantas=models.ForeignKey(plantas, null=True,blank=True,on_delete=models.CASCADE)
+    plantas=models.ManyToManyField(plantas, verbose_name="Plantas",blank=True)
     
 
 
