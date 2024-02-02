@@ -21,3 +21,9 @@ SioNO=(
     ('S','Si'),
     ('N','No')
 )
+
+repeticionChoices=(
+    ('D','Diaria'),
+    ('S','Semanal'),
+    ('M', 'Mensual')
+)

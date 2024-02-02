@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings 
-from .choices import unidadMedida,estadoSalud, SioNO
+from .choices import unidadMedida,estadoSalud, SioNO, repeticionChoices
 #from imacuna import models
 # Create your models here.
 
@@ -179,11 +179,16 @@ class imagenesxPlanta(models.Model):
 
 class calendarios(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
-    recuerrente= models.CharField(max_length=1, choices=SioNO, default='S')
+    acciones=models.ForeignKey(acciones, null=True,blank=True,on_delete=models.CASCADE,verbose_name='Acciones')
+    fecha_inicio = models.DateField(null=True, blank=True)
+    fecha_fin = models.DateField(null=True, blank=True)
+    repeticion= models.CharField(max_length=1, choices=repeticionChoices, default='D') # Ej: 'diaria', 'semanal', 'mensual'
+    intervalo = models.IntegerField(null=True, blank=True)  # Número de días, semanas o meses dependiendo de la repeticion
     todoCultivo= models.CharField(max_length=1, choices=SioNO, default='S')
-    fecha=models.DateField()
-    hora=models.TimeField()
-    cultivo=models.ForeignKey(cultivo, null=True,blank=True,on_delete=models.CASCADE)
+    hora_repeticion_1 = models.TimeField(null=True, blank=True)  # Hora de la primera repetición diaria
+    hora_repeticion_2 = models.TimeField(null=True, blank=True)  # Hora de la segunda repetición diaria
+    hora_repeticion_3 = models.TimeField(null=True, blank=True)
+    cultivo=models.ManyToManyField(cultivo, verbose_name="Cultivos",blank=True)
     plantas=models.ManyToManyField(plantas, verbose_name="Plantas",blank=True)
     
 
