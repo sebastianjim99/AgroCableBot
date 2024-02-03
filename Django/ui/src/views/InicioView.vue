@@ -19,6 +19,9 @@
         </div>
     </nav>
 
+    <br>
+    <br>
+    
 <section>
     <div id="videoContainer" class="mobile-background">
         <div class="container-fluid d-flex justify-content-center align-items-center align-content-center video-parallax-container">

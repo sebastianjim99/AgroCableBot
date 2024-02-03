@@ -5,6 +5,8 @@
         <a class="navbar-brand d-flex align-items-center" >
             <h1>AgroCableBot</h1>
         </a>
+        <img class="img-fluid" src="@/assets/iconos/cultivar.png" width="50" height="36" loading="auto" style="margin-left: 10px;" />
+
         <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"></span>
                 <div id="navcol-3" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">

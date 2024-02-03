@@ -1,14 +1,16 @@
 <template>
 
-
-
     <div class="">
         <navbar_monitoreo />
     </div>
 
     <div>
         <Section>
-            <h1> Seccion de controles </h1>
+            <div style="text-align: center;">
+                <h2 class="divider-style">
+                    <span>Control Manual </span>
+                </h2>
+            </div>
         </Section>
     </div>
 
@@ -149,3 +151,38 @@ export default{
     }
 }
 </script>
+
+<style>
+
+    .divider-style:before {
+    content: "";
+    display: block;
+    border-top: solid 1px black;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    }
+
+    .divider-style {
+    margin-top: 0px;
+    position: relative;
+    margin-right: 40px;
+    margin-left: 40px;
+    }
+
+    .divider-style span {
+    background: #fff;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+    }
+
+
+
+
+
+
+
+</style>
