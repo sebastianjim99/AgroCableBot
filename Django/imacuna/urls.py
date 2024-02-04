@@ -6,7 +6,19 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import static
 
 
-from .views import (Lineas_investigacionViewSet, ServiciosViewSet, ListCreateUsers, Login, RetrieveUpdateDestroyUsuarios, facultadesViewSet, programaViewSet, tipoIntegranteViewSet, integranteViewSet, proyectosViewSet, imagenesProyectosViewSet, videoProyectosViewSet)
+from .views import (
+    Lineas_investigacionViewSet, 
+    ServiciosViewSet, 
+    ListCreateUsers, 
+    Login, 
+    RetrieveUpdateDestroyUsuarios, 
+    facultadesViewSet, 
+    programaViewSet, 
+    tipoIntegranteViewSet, 
+    integranteViewSet, 
+    proyectosViewSet, 
+    imagenesProyectosViewSet, 
+    videoProyectosViewSet)
 
 
 router = DefaultRouter()
