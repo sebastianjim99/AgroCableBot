@@ -21,7 +21,7 @@ const routes = [
   {path: '/editar/:id', name: 'Editar', component: Editar, props:true},
 
   // rutas AgroCableBOt
-  {path: '/AgroCableBot', name: 'monitore', component: monitoreo },
+  {path: '/monitoreo', name: 'monitoreo', component: monitoreo },
   {path: '/control', name: 'control', component: control },
   {path: '/calendario', name: 'calendario', component: calendario },
   {path: '/estadisticas', name: 'estadisticas', component: estadisticas },
@@ -37,7 +37,12 @@ const router = createRouter({
 })
 
 const protecdRoutes= [
-  'Admin'
+  'Admin',
+  'monitoreo',
+  'control',
+  'calendario',
+  'estadisticas',
+  'soporte',
 ]
 
 router.beforeEach((to, from, next) => {

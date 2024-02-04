@@ -78,9 +78,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_prueba',
-        'USER': 'root',
-        'PASSWORD': 'juanfe142228',
+        'NAME': 'bd_imacuna',
+        'USER': 'root',''
+        'PASSWORD': 'Imacuna2023.',
         'HOST': 'localhost',
         'PORT': '3306'
     }
