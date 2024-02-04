@@ -10,11 +10,12 @@
         <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"></span>
                 <div id="navcol-3" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link active" href="/AgroCableBot">Monitoreo</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/monitoreo">Monitoreo</a></li>
                 <li class="nav-item"><a class="nav-link" href="/control">Control</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Calendario">Calendario</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Estadisticas">Estadísticas</a></li>
                 <li class="nav-item"><a class="nav-link" href="/soporte">Soporte</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
             </ul>
         </div>
         <span>Nombre de usuario</span>

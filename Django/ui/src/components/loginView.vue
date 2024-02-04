@@ -68,7 +68,7 @@ export default{
                     this.$store.commit('setToken', Response.data);
                     this.username = "";
                     this.password = "";
-                    this.$router.push('/Admin')
+                    this.$router.push('/monitoreo')
                 })
                 .catch(error  => { 
                     console.log(error)
