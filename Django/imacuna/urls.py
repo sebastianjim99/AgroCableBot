@@ -1,12 +1,33 @@
 from xml.etree.ElementInclude import include
 from django.urls import path, include
-from . import views
 from rest_framework.routers import DefaultRouter
 from django.conf import settings 
 from django.contrib.staticfiles.urls import static
 
+from r_agrocablebot.views import (
+    accionesViewSet,
+    tiposensorViewSet,
+    tipoCultivoViewSet,
+    sensorViewSet,
+    cultivoViewSet,
+    plantasViewSet,
+    imagenesxPlantaViewSet,
+    calendariosViewSet,
+)
 
-from .views import (Lineas_investigacionViewSet, ServiciosViewSet, ListCreateUsers, Login, RetrieveUpdateDestroyUsuarios, facultadesViewSet, programaViewSet, tipoIntegranteViewSet, integranteViewSet, proyectosViewSet, imagenesProyectosViewSet, videoProyectosViewSet)
+from .views import (
+    Lineas_investigacionViewSet, 
+    ServiciosViewSet, 
+    ListCreateUsers, 
+    Login, 
+    RetrieveUpdateDestroyUsuarios, 
+    facultadesViewSet, 
+    programaViewSet, 
+    tipoIntegranteViewSet, 
+    integranteViewSet, 
+    proyectosViewSet, 
+    imagenesProyectosViewSet, 
+    videoProyectosViewSet)
 
 
 router = DefaultRouter()
@@ -19,6 +40,16 @@ router.register('integrante', integranteViewSet, basename= 'integrante')
 router.register('imagenesProyectos', imagenesProyectosViewSet, basename= 'imagenesProyectos')
 router.register('proyectos', proyectosViewSet, basename= 'proyectos')
 router.register('videoProyectos', videoProyectosViewSet, basename= 'videoProyectos')
+#  ------------- AgroCableBot -----------
+
+router.register('acciones', accionesViewSet, basename= 'acciones')
+router.register('tiposensor', tiposensorViewSet, basename= 'tiposensor')
+router.register('tipoCultivo', tipoCultivoViewSet, basename= 'tipoCultivo')
+router.register('sensor', sensorViewSet, basename= 'sensor')
+router.register('cultivo', cultivoViewSet, basename= 'cultivo')
+router.register('plantas', plantasViewSet, basename= 'plantas')
+router.register('imagenesxPlanta', imagenesxPlantaViewSet, basename= 'imagenesxPlanta')
+router.register('calendarios', calendariosViewSet, basename= 'calendarios')
 
 urlpatterns = [
     path('api/', include(router.urls)),
