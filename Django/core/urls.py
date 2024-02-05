@@ -7,7 +7,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
 
     path('', include('imacuna.urls')),
-    path('', include('r_agrocablebot.urls')),
+    # path('', include('r_agrocablebot.urls')),
 
 ]
 
