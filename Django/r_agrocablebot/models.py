@@ -38,20 +38,20 @@ class tipoSensor(models.Model):
 
 class tipoCultivo(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
-    descripcion=models.TextField(blank=True,verbose_name='Descripción')
-    preparacionSuelo=models.TextField(blank=True,verbose_name='Preparación del suelo')
-    riego=models.TextField(blank=True,verbose_name='Riego')
-    controlMalezas=models.TextField(blank=True,verbose_name='Control de Malezas')
-    controlPlagasyEnfermedades=models.TextField(blank=True,verbose_name='Control de Plagas y Enfermedades')
-    fertilizacion=models.TextField(blank=True,verbose_name='Fertilización')
-    moniteroRegistro=models.TextField(blank=True,verbose_name='Monitoreo y Registro')
-    estimadoGerminacionMin=models.PositiveIntegerField(blank=True,verbose_name='Estimado mínimo para germinación [días]')
-    estimadoGerminacionMax=models.PositiveIntegerField(blank=True,verbose_name='Estimado máximo para germinación [días]')
-    estimadoCosechaMin=models.PositiveIntegerField(blank=True,verbose_name='Estimado mínimo para cosechar [días]')
-    estimadoCosechaMax=models.PositiveIntegerField(blank=True,verbose_name='Estimado máximo para cosechar [días]')
-    temperaturaOptimaMin=models.PositiveIntegerField(blank=True,verbose_name='Temperatura mínima [°C]')
-    temperaturaOptimaMax=models.PositiveIntegerField(blank=True,verbose_name='Temperatura máxima [°C]')
-    profundidadSiembra=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Profundidad de siembra')
+    descripcion=models.TextField(blank=True,verbose_name='Descripción', null= True)
+    preparacionSuelo=models.TextField(blank=True,verbose_name='Preparación del suelo', null= True)
+    riego=models.TextField(blank=True,verbose_name='Riego', null= True)
+    controlMalezas=models.TextField(blank=True,verbose_name='Control de Malezas', null= True)
+    controlPlagasyEnfermedades=models.TextField(blank=True,verbose_name='Control de Plagas y Enfermedades', null= True)
+    fertilizacion=models.TextField(blank=True,verbose_name='Fertilización', null= True)
+    moniteroRegistro=models.TextField(blank=True,verbose_name='Monitoreo y Registro', null= True)
+    estimadoGerminacionMin=models.PositiveIntegerField(blank=True,verbose_name='Estimado mínimo para germinación [días]', null= True)
+    estimadoGerminacionMax=models.PositiveIntegerField(blank=True,verbose_name='Estimado máximo para germinación [días]', null= True)
+    estimadoCosechaMin=models.PositiveIntegerField(blank=True,verbose_name='Estimado mínimo para cosechar [días]', null= True)
+    estimadoCosechaMax=models.PositiveIntegerField(blank=True,verbose_name='Estimado máximo para cosechar [días]', null= True)
+    temperaturaOptimaMin=models.PositiveIntegerField(blank=True,verbose_name='Temperatura mínima [°C]', null= True)
+    temperaturaOptimaMax=models.PositiveIntegerField(blank=True,verbose_name='Temperatura máxima [°C]', null= True)
+    profundidadSiembra=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Profundidad de siembra', null= True)
 
     def __str__(self):
         return self.nombre
@@ -85,6 +85,7 @@ class sensor(models.Model):
 class cultivo(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre')
     cantidad= models.PositiveSmallIntegerField(blank=True,verbose_name='Cantidad de plantas')
+    iconosPlantas=models.ImageField(upload_to='iconos/iconosPlantas/', verbose_name="Icono de la planta", null= True )
     responable= models.CharField(max_length=100)
     correo=models.CharField(max_length= 100, verbose_name='Correo Electrónico')
     fechaSiembra = models.DateField(verbose_name='Fecha de siembra')
@@ -102,7 +103,7 @@ class cultivo(models.Model):
 
 class plantas(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
-    numeroPlanta= models.PositiveSmallIntegerField(blank=True,verbose_name='Numero de Planta')
+    numeroPlanta= models.PositiveSmallIntegerField(blank=True,verbose_name='Numero de Planta',unique=True)
     coordenadaX=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
     coordenadaY=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
     estadoSalud = models.CharField(max_length=1, choices=estadoSalud, default='S')
@@ -121,9 +122,9 @@ class plantas(models.Model):
 
 class imagenesxPlanta(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre')
-    imagen = models.ImageField(upload_to='cultivo/plantas/', verbose_name="imagen", null= True ,blank=True)
-    descripcion=models.TextField(blank=True)
-    plantas=models.ForeignKey(plantas, null=True,blank=True,on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='cultivo/plantas/', verbose_name="Imagen", null= True ,blank=True)
+    descripcion=models.TextField(blank=True, verbose_name="Descripcion")
+    plantas=models.ForeignKey(plantas, null=True,blank=True,on_delete=models.CASCADE, verbose_name="Plantas")
     
     def __str__(self):
         return self.nombre
