@@ -18,7 +18,7 @@
                 <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
             </ul>
         </div>
-        <span>Nombre de usuario</span>
+        <button @click="logout" type="submit" class="btn btn-primary" >Cerrar Sesión</button>
     </div>
 </nav>
 
@@ -26,7 +26,17 @@
 
 <script>
 export default{
+
   name: "navbar_monitoreo",
+
+    methods: {
+
+        logout(){
+            this.$store.commit('removeToken');
+            this.$router.push('/')
+        },
+
+},
 }
 
 </script>

@@ -91,6 +91,7 @@ export default{
 </script>
 
 <style scoped>
+
     .login-card {
         max-width: 350px;
         padding: 40px 40px;

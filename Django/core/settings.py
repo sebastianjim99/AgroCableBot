@@ -2,7 +2,9 @@
 from operator import truediv
 from pathlib import Path
 import os
-import r_agrocablebot
+from dotenv import load_dotenv
+
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,10 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@bxqvdsoyto37o)m1773gjp6ucoqfv5in%)jtcv0_fbe36zcv%'
+SECRET_KEY = os.environ["secretkey"],
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ["debugguer"],
 
 ALLOWED_HOSTS = ['*']
 
@@ -78,15 +80,13 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_prueba',
-        'USER': 'root',''
-        'PASSWORD': 'juanfe142228',
+        'NAME': 'bd_imacuna',
+        'USER': os.environ["mariadb_user"],
+        'PASSWORD': os.environ["mariadb_password"],
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': os.environ["mariadb_port"],
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -106,18 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'es-co'
-
 TIME_ZONE = 'America/Bogota'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -145,3 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Directorio de Vue
 UI_DIR = os.path.join(BASE_DIR, 'ui/')
+
+
