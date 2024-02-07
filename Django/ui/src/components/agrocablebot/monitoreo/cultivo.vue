@@ -10,7 +10,7 @@
                             <table>
                               <tbody>
                                 <tr v-for="(fila, filaIndex) in matriz" :key="filaIndex">
-                                  <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="margin: auto;padding: initial;" width="100px" height="80px" @click="seleccionarPlanta(filaIndex, columnaIndex)" :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgba(255, 255, 0, 0.5)' : '' }">
+                                  <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="margin: auto;padding: initial;" width="100px" height="80px" @click="seleccionarPlanta(filaIndex, columnaIndex)" :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
                                     <div v-if="planta">
                                       <!-- Aquí puedes mostrar los datos de la planta, por ejemplo: -->
                                       <p>{{ planta.nombre }}</p>

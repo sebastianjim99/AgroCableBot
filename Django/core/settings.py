@@ -80,7 +80,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bd_imacuna',
+        'NAME': os.environ["mariadb_name"],
         'USER': os.environ["mariadb_user"],
         'PASSWORD': os.environ["mariadb_password"],
         'HOST': 'localhost',
