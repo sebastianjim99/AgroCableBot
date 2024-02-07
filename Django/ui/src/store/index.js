@@ -29,11 +29,12 @@ const store =  createStore({
             localStorage.setItem('user_id', data.user_id);
             state.IsAuthenticated = true
         },
-        revomeToken(state){
+        removeToken(state){
             state.token = '';
             state.user_id = '';
             localStorage.removeItem('token');
-            localStorage.setItem('user_id');
+            localStorage.removeItem('user_id');
+            state.IsAuthenticated = false; 
         }
 
     },

@@ -10,15 +10,15 @@
             </div>
             <div class="container py-4 py-xl-5">
                 <div class="row gy-4 row-cols-1 row-cols-md-2" style="margin-top: -23px;">
-                    <div class="col">
-                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" width="634" height="200" />
+                    <div class="col"  >
+                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="" :src="videoStreamUrl"  />
                             <div class="card-body p-4">
                                 <p class="card-text">Cámara Posicion</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col" style="padding-left: 46px;padding-right: 58px;">
-                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" width="634" height="200" />
+                    <div class="col" style="">
+                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="" :src="videoStreamUrl2"  />
                             <div class="card-body p-4">
                                 <p class="card-text">Cámara Efector final</p>
                             </div>
@@ -34,9 +34,35 @@
 
 
 <script>
+// import axios from 'axios';
+
 export default {
 
     name:"trasmisionVue", 
 
+    data(){
+        return {
+            videoStreamUrl: 'http://localhost:8000/aboveCam/',
+            videoStreamUrl2: 'http://localhost:8000/aboveCam2/'
+        };
+    },
+    mounted(){
+    console.log('DOM rendered')
+
+        setInterval(() => {
+        this.updateStreamUrl();
+        }, 1000);
+    
+    },
+
+    methods: {
+        updateStreamUrl() {
+        // Agregar un timestamp a la URL para evitar el almacenamiento en caché
+        this.videoStreamUrl = 'http://localhost:8000/aboveCam/' ;
+        this.videoStreamUrl2 = 'http://localhost:8000/aboveCam2/' ;
+        }
+
+
+    }
 }
 </script>

@@ -3,6 +3,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from django.conf import settings 
 from django.contrib.staticfiles.urls import static
+import views
 
 from r_agrocablebot.views import (
     accionesViewSet,
@@ -20,14 +21,18 @@ from .views import (
     ServiciosViewSet, 
     ListCreateUsers, 
     Login, 
-    RetrieveUpdateDestroyUsuarios, 
+    RetrieveUpdateDestroyUsuarios,
+    cameras, 
     facultadesViewSet, 
     programaViewSet, 
     tipoIntegranteViewSet, 
     integranteViewSet, 
     proyectosViewSet, 
     imagenesProyectosViewSet, 
-    videoProyectosViewSet)
+    videoProyectosViewSet,
+    cameras,
+    capturas, 
+    )
 
 
 router = DefaultRouter()
@@ -56,6 +61,11 @@ urlpatterns = [
     path('list-create-Users/', ListCreateUsers.as_view(), name= 'list-create-Users'),
     path('loginView/', Login.as_view(), name='login'),
     path('retrieve-update-destroy-usarios/<int:pk>/', RetrieveUpdateDestroyUsuarios.as_view(), name= 'retrieve-update-destroy'),
+    # ------------ camara -----------
+    path('aboveCam/', cameras , name='aboveCamera'),
+    path('aboveCam2/', cameras , name='aboveCamera2'),
+    path('captura/', capturas , name='captura')
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
