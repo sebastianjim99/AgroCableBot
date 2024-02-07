@@ -2,7 +2,6 @@
 from operator import truediv
 from pathlib import Path
 import os
-import r_agrocablebot
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,10 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@bxqvdsoyto37o)m1773gjp6ucoqfv5in%)jtcv0_fbe36zcv%'
+SECRET_KEY = os.environ["secretkey"],
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ["debugguer"],
 
 ALLOWED_HOSTS = ['*']
 
@@ -85,7 +84,7 @@ DATABASES = {
         'USER': os.environ["mariadb_user"],
         'PASSWORD': os.environ["mariadb_password"],
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': os.environ["mariadb_port"],
     }
 }
 
