@@ -18,6 +18,9 @@ class tipoCultivoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class cultivoSerializer(serializers.ModelSerializer):
+
+    tipoCultivo=tipoCultivoSerializer(read_only=True)
+
     class Meta:
         model = cultivo
         fields = '__all__'
@@ -25,6 +28,7 @@ class cultivoSerializer(serializers.ModelSerializer):
 class plantasSerializer(serializers.ModelSerializer):
 
     cultivo=cultivoSerializer(read_only=True)
+    
 
     class Meta:
         model = plantas
