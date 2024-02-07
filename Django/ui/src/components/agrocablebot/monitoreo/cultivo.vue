@@ -10,7 +10,7 @@
                             <table>
                               <tbody>
                                 <tr v-for="(fila, filaIndex) in matriz" :key="filaIndex">
-                                  <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="margin: auto;padding: initial;" width="100px" height="80px" @click="obtenerNombreCultivo(planta)">
+                                  <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="margin: auto;padding: initial;" width="100px" height="80px" @click="seleccionarPlanta(filaIndex, columnaIndex)" :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgba(255, 255, 0, 0.5)' : '' }">
                                     <div v-if="planta">
                                       <!-- Aquí puedes mostrar los datos de la planta, por ejemplo: -->
                                       <p>{{ planta.nombre }}</p>
@@ -69,12 +69,14 @@
         cultivos:[],
         plantas:[],
         matriz: [],
+        plantaSeleccionada: null,
         cultivoSeleccionado:null
         
       }
     },
 
     mounted(){
+      // Realizar las solicitudes HTTP para obtener datos
       //Lectura tipo de cultivo
       axios.get('http://localhost:8000/api/tipoCultivo')
       .then(response =>{
@@ -128,16 +130,12 @@
         // Calcula el contador de posición basado en los índices de fila y columna
         return filaIndex * this.matriz[0].length + columnaIndex + 1;
       },
-      
-      obtenerNombreCultivo(planta) {
-        if (planta) {
-          // const nombreCultivo = planta.cultivo.tipoCultivo.nombre;
-          // console.log("Nombre del cultivo:", nombreCultivo);
-          this.cultivoSeleccionado=planta.cultivo;
-          console.log("Nombre del cultivo:", this.cultivoSeleccionado);
-          // Aquí puedes hacer lo que quieras con el nombre del cultivo, como mostrarlo en una ventana modal o en algún otro lugar de tu interfaz
-        }
-      },
+      // Seleccion de la planta mediante click y despliegue de informacion
+      seleccionarPlanta(filaIndex, columnaIndex) {
+        this.plantaSeleccionada = { fila: filaIndex, columna: columnaIndex };
+        const planta = this.matriz[filaIndex][columnaIndex];
+        this.cultivoSeleccionado = planta ? planta.cultivo : null;
+      }
 
     }
     

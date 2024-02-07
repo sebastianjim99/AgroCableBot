@@ -103,7 +103,7 @@ class cultivo(models.Model):
 
 class plantas(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
-    numeroPlanta= models.PositiveSmallIntegerField(blank=True,verbose_name='Numero de Planta')
+    numeroPlanta= models.PositiveSmallIntegerField(blank=True,verbose_name='Numero de Planta',unique=True)
     coordenadaX=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje X')
     coordenadaY=models.DecimalField(max_digits=10,decimal_places=3,blank=True,verbose_name='Coordenada en el eje Y')
     estadoSalud = models.CharField(max_length=1, choices=estadoSalud, default='S')
