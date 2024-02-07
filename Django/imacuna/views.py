@@ -73,7 +73,7 @@ class videoProyectosViewSet(viewsets.ModelViewSet):
 
 #  ------------- vista de la camara ---------------
 
-video = {'/aboveCam/' : Camera(2,'inferior', [1280,720 ]), '/aboveCam2/' : Camera(0,'superior', [1280,720 ]),  }
+video = {'/aboveCam/' : Camera(0,'inferior', [1280,720 ]), '/aboveCam2/' : Camera(1,'superior', [1280,720 ]),  }
 
 def gen_frame(camera):
     camera.create_thread()
@@ -89,5 +89,6 @@ def capturas(request):
     if request.GET.get("camara") :
         print((request.GET.get("camara")))
         video[request.GET.get("camara")].save_frame()
+        print("Foto exitosamente capturada")
         return HttpResponse(f"{dir(request)}")
     return HttpResponse("es nesesario enviar una camara como argumento")

@@ -14,13 +14,15 @@
                         <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="" :src="videoStreamUrl"  />
                             <div class="card-body p-4">
                                 <p class="card-text">Cámara Posicion</p>
+                                <a name="captura" id="" class="btn btn-primary" @click="capturar()" role="button"> Capturar </a>
                             </div>
                         </div>
                     </div>
                     <div class="col" style="">
                         <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="" :src="videoStreamUrl2"  />
-                            <div class="card-body p-4">
-                                <p class="card-text">Cámara Efector final</p>
+                            <div class="card-body p-8">
+                                <p class="card-text">Cámara Efector final</p> 
+                                <a name="captura" id="" class="btn btn-primary" @click="capturar2()" role="button"> Capturar </a> 
                             </div>
                         </div>
                     </div>
@@ -34,7 +36,7 @@
 
 
 <script>
-// import axios from 'axios';
+ import axios from 'axios';
 
 export default {
 
@@ -42,6 +44,7 @@ export default {
 
     data(){
         return {
+            'api' : 'http://localhost:8000/api',
             videoStreamUrl: 'http://localhost:8000/aboveCam/',
             videoStreamUrl2: 'http://localhost:8000/aboveCam2/'
         };
@@ -60,9 +63,32 @@ export default {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
         this.videoStreamUrl = 'http://localhost:8000/aboveCam/' ;
         this.videoStreamUrl2 = 'http://localhost:8000/aboveCam2/' ;
-        }
+        },
 
+        capturar(){
+            axios.get('http://127.0.0.1:8000/captura/?camara=/aboveCam/')
+            .then(Response => {
+            // Manejar la respuesta si es necesario
+            console.log('Solicitud exitosa:', Response);
+            })
+            .catch(error => {
+            // Manejar el error si ocurre
+            console.error('Error al ejecutar la URL:', error);
+            });
 
+        },
+        capturar2(){
+            axios.get('http://127.0.0.1:8000/captura/?camara=/aboveCam2/')
+            .then(Response => {
+            // Manejar la respuesta si es necesario
+            console.log('Solicitud exitosa:', Response);
+            })
+            .catch(error => {
+            // Manejar el error si ocurre
+            console.error('Error al ejecutar la URL:', error);
+            });
+
+        },
     }
 }
 </script>

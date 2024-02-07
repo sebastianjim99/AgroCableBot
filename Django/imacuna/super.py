@@ -78,7 +78,6 @@ class Camera:
     
     def get_frame(self):
         self.last_access = time.time()
-
         self.event.wait()
         self.event.clear()
         return self.frame
