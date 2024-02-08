@@ -83,7 +83,8 @@ class Camera:
         return self.frame
 
     def save_frame(self, path=MEDIA_ROOT):
-        elementos = os.listdir(f"{path}/fotos/{self.cname}/")
+        
+        elementos = os.listdir(f"{path}/fotos/{self.cname}/") if os.path.exists(f"{path}/fotos/{self.cname}/") else []
         print (elementos)
         id = len(elementos) if elementos else 0
         os.makedirs(f"{path}/fotos/{self.cname}/", exist_ok=True)
