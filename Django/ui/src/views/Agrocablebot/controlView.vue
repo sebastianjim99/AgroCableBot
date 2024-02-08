@@ -134,6 +134,7 @@
                             <div style="text-align: center;">
                                 <h2 class="divider-style"><span>Sensores</span></h2>
                             </div>
+                            
                             <ul class="list-group">
                                 <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Planta #1</span></li>
                                 <li class="list-group-item"><span>Humedad: 50%</span></li>
@@ -157,76 +158,25 @@
                                 <li class="list-group-item" style="background: var(--bs-body-bg);"><span>yaw: 0°</span></li>
                             </ul>
                         </div>
-                        <div class="col-6 col-xl-6 col-xxl-6 text-start text-bg-light">
+                        <div class="col-6 col-xl-6 text-start text-bg-light">
                             <h1 style="text-align: center;padding: 12px;">Distribución del cultivo </h1>
-                            <ul class="text-primary-emphasis justify-content-center cbp-rfgrid">
-                                <li><a href="#"> </a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                                <li class="text-light"><a href="#"><img class="img-fluid border rounded-0 border-light-subtle focus-ring focus-ring-primary" src="@/assets/iconos/cilantro.png" style="margin: auto;padding: initial;" width="100px" height="100px" /></a></li>
-                        
-                            </ul>
+                            <table>
+                              <tbody>
+                                <tr v-for="(fila, filaIndex) in matriz" :key="filaIndex">
+                                  <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="margin: auto;padding: initial;" width="100px" height="80px" @click="seleccionarPlanta(filaIndex, columnaIndex)" :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
+                                    <div v-if="planta">
+                                      <!-- Aquí puedes mostrar los datos de la planta, por ejemplo: -->
+                                      <p>{{ planta.nombre }}</p>
+                                      <img  :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" style="margin: auto;padding: initial;" width="40px" height="40px">
+                                    </div>
+                                    <div v-else>
+                                      {{ obtenerContadorPosicion(filaIndex, columnaIndex) }}
+                                      <img  src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" style="margin: auto;padding: initial;" width="40px" height="40px">
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -248,6 +198,8 @@
 
 
 <script>
+import axios from 'axios'
+
 import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
 import trasmisionVue from '/src/components/agrocablebot/trasmision.vue'
 import listCultivo from '/src/components/agrocablebot/monitoreo/ListCultivo.vue'
@@ -259,12 +211,96 @@ export default{
         trasmisionVue, 
         listCultivo,
         footer_imacuna
+    },
+
+    data(){
+      return{
+        tipo_cultivo:[],
+        cultivos:[],
+        plantas:[],
+        matriz: [],
+        plantaSeleccionada: null,
+        cultivoSeleccionado:null
+        
+      }
+    },
+
+    mounted(){
+      // Realizar las solicitudes HTTP para obtener datos
+      //Lectura tipo de cultivo
+      axios.get('http://localhost:8000/api/tipoCultivo')
+      .then(response =>{
+        console.log("Tipo de cultivos")
+        console.log(response.data)
+        this.tipo_cultivo=response.data
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+      //Lectura de cultivo
+      axios.get('http://localhost:8000/api/cultivo')
+      .then(response =>{
+        console.log("Cultivos")
+        console.log(response.data)
+        this.cultivos=response.data
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+      //Lectura de plantas
+      axios.get('http://localhost:8000/api/plantas')
+      .then(response =>{
+        console.log("plantas")
+        console.log(response.data)
+        this.plantas=response.data
+        this.initializeMatriz()
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+      
+    },
+
+    methods: {
+      // Función para inicializar la matriz con los datos de las plantas
+      initializeMatriz() {
+        for (let i = 0; i < 8; i++) {
+          this.matriz.push(new Array(8).fill(null));
+        }
+
+        // Asignar las plantas a la matriz según el número de planta asignado
+        this.plantas.forEach(planta => {
+          const fila = Math.floor((planta.numeroPlanta - 1) / 8);
+          const columna = (planta.numeroPlanta - 1) % 8;
+          this.matriz[fila][columna] = planta;  
+        }); 
+      },
+
+      obtenerContadorPosicion(filaIndex, columnaIndex) {
+        // Calcula el contador de posición basado en los índices de fila y columna
+        return filaIndex * this.matriz[0].length + columnaIndex + 1;
+      },
+      // Seleccion de la planta mediante click y despliegue de informacion
+      seleccionarPlanta(filaIndex, columnaIndex) {
+        this.plantaSeleccionada = { fila: filaIndex, columna: columnaIndex };
+        const planta = this.matriz[filaIndex][columnaIndex];
+        this.cultivoSeleccionado = planta ? planta.cultivo : null;
+      }
 
     }
+
+
 }
 
 
 </script>
+
+
+
+
+
+
+
 
 <style>
 
