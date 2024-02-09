@@ -7,13 +7,13 @@
     </div>
 
     <div>   <!--   titulo control manual   -->
-        <Section>
+        <section>
             <div style="text-align: center;">
                 <h2 class="divider-style">
                     <span>Control Manual </span>
                 </h2>
             </div>
-        </Section>
+        </section>
     </div>
 
     <section>

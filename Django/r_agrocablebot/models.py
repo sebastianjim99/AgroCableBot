@@ -86,7 +86,7 @@ class cultivo(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre')
     cantidad= models.PositiveSmallIntegerField(blank=True,verbose_name='Cantidad de plantas')
     iconosPlantas=models.ImageField(upload_to='iconos/iconosPlantas/', verbose_name="Icono de la planta", null= True )
-    responable= models.CharField(max_length=100)
+    responsable= models.CharField(max_length=100)
     correo=models.CharField(max_length= 100, verbose_name='Correo Electrónico')
     fechaSiembra = models.DateField(verbose_name='Fecha de siembra')
     tipoCultivo=models.ForeignKey(tipoCultivo, null=True,blank=True,on_delete=models.CASCADE)

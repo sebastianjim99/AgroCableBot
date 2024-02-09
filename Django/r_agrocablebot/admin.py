@@ -5,6 +5,7 @@ from .models import *
 
 admin.site.register(acciones)
 admin.site.register(tipoSensor)
+admin.site.register(sensor)
 admin.site.register(tipoCultivo)
 
 class sensoresxCultivo(admin.ModelAdmin):
