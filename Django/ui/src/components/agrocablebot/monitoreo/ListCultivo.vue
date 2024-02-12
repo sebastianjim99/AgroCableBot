@@ -40,9 +40,18 @@
                 <td>
                   <button class="btn btn-warning" type="button" @click="editarCultivo(cultivo)">
                     <i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg>
                   </button>
-                  <button class="btn btn-danger" type="button" @click="eliminarCultivo(cultivo.id)">
+
+                  <button class="btn btn-danger" style="width: 30px ;height: 30px;" type="button" @click="eliminarCultivo(cultivo.id)">
                     <i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
                   </button>
                 </td>
               </tr>
@@ -60,10 +69,10 @@
         <input type="email" v-model="correo" placeholder="Correo Electrónico" required>
         <input type="date" v-model="fechaSiembra" placeholder="Fecha de siembra" required>
         <select v-model="selectedTipo" required>
-          <option v-for="tipo in listaDeTipos" :key="tipo.id" :value="tipo">{{ tipo.nombre }}</option>
+          <option v-for="tipo in listaDeTipos" :key="tipo.id" :value="tipo.id">{{ tipo.nombre }}</option>
         </select>
         <div v-for="sensor in listaDeSensores" :key="sensor.id">
-          <input type="checkbox" v-model="selectedSensores" :value="sensor.id" placeholder="Sensores">{{ sensor.nombre }}
+          <input type="checkbox" v-model="selectedSensores" :value="sensor.id" placeholder="Sensores" >{{ sensor.nombre }}
         </div>
         <button @click="cancelarFormulario" class="btn btn-danger">Cancelar</button>
         <button type="submit" class="btn btn-success">{{ editingCultivoId ? 'Actualizar' : 'Guardar' }}</button>
@@ -129,18 +138,53 @@ export default {
         });
     },
     onFileChange(e) {
-      this.tipoCultivo= e.target.files[0];
       this.iconosPlantas = e.target.files[0];
     },
+    
+   
     submitForm() {
+
+      // const requestData = {
+      // id : this.selectedTipo.id,
+      // nombre: this.selectedTipo.nombre,
+      // descripcion: this.selectedTipo.descripcion,
+      // preparacionSuelo: this.selectedTipo.preparacionSuelo,
+      // riego: this.selectedTipo.riego,
+      // controlMalezas: this.selectedTipo.controlMalezas,
+      // controlPlagasyEnfermedades: this.selectedTipo.controlPlagasyEnfermedades,
+      // fertilizacion: this.selectedTipo.fertilizacion,
+      // moniteroRegistro: this.selectedTipo.moniteroRegistro,
+      // estimadoGerminacionMin:this.selectedTipo.estimadoGerminacionMin,
+      // estimadoGerminacionMax:this.selectedTipo.estimadoGerminacionMax,
+      // estimadoCosechaMin:this.selectedTipo.estimadoCosechaMin,
+      // estimadoCosechaMax: this.selectedTipo.estimadoCosechaMax,
+      // temperaturaOptimaMin: this.selectedTipo.temperaturaOptimaMin,
+      // temperaturaOptimaMax: this.selectedTipo.temperaturaOptimaMax,
+      // profundidadSiembra : this.selectedTipo.profundidadSiembra,
+      // };
+
       let formData = new FormData();
       formData.append('nombre', this.nombre);
       formData.append('cantidad', this.cantidad);
       formData.append('responsable', this.responsable);
       formData.append('correo', this.correo);
       formData.append('fechaSiembra', this.fechaSiembra);
-      formData.append('tipoCultivo', this.selectedTipo); // Utiliza selectedTipo
-      formData.append('sensores', this.selectedSensores); // Utiliza selectedSensores
+      formData.append('tipoCultivo', this.selectedTipo); //requestData
+      
+
+      // Verifica si hay sensores seleccionados
+      if (this.selectedSensores.length > 0) {
+        // Convierte los IDs de los sensores seleccionados a una lista de strings
+        const selectedSensoresIds = this.selectedSensores.map(sensor => sensor.toString());
+
+        // Agrega los IDs de los sensores seleccionados al formData
+        for (const sensorId of selectedSensoresIds) {
+          formData.append('sensores', sensorId);
+        }
+      } else {
+        // Si no se seleccionó ningún sensor, establece el campo sensores en null
+        formData.append('sensores', null);
+      }
 
      
 
@@ -157,7 +201,7 @@ export default {
         responsable: this.responsable,
         correo: this.correo,
         fechaSiembra: this.fechaSiembra,
-        tipoCultivo: this.selectedTipo,
+        tipoCultivo: this.selectedTipo, // Convertir objeto a array
         sensor: this.selectedSensores,
         // Otros campos que desees imprimir
       });
@@ -189,10 +233,10 @@ export default {
       this.responsable = cultivo.responsable;
       this.correo = cultivo.correo;
       this.fechaSiembra = cultivo.fechaSiembra;
-
+      this.selectedTipo = cultivo.tipoCultivo; 
       // Asegúrate de que cultivo.sensor sea una lista (si es un ManyToManyField)
       if (Array.isArray(cultivo.sensor)) {
-        this.selectedSensores = cultivo.sensor;
+        this.selectedSensores = cultivo.sensor.map(sensor => sensor.toString());
       } else {
         this.selectedSensores = [];
       }

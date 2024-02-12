@@ -18,12 +18,21 @@ class tipoCultivoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class cultivoSerializer(serializers.ModelSerializer):
-
-    tipoCultivo=tipoCultivoSerializer(read_only=True)
-
+    # tipoCultivo=tipoCultivoSerializer()
+    tipoCultivo=serializers.PrimaryKeyRelatedField(queryset=tipoCultivo.objects.all())
+    sensores = serializers.PrimaryKeyRelatedField(queryset=sensor.objects.all(), required=False, many=True)
     class Meta:
         model = cultivo
         fields = '__all__'
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        tipo_cultivo_data = tipoCultivoSerializer(instance.tipoCultivo).data
+        representation['tipoCultivo'] = tipo_cultivo_data
+        return representation
+
+    
+
+    
 
 class plantasSerializer(serializers.ModelSerializer):
 

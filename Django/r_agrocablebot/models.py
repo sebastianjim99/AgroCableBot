@@ -90,7 +90,7 @@ class cultivo(models.Model):
     correo=models.CharField(max_length= 100, verbose_name='Correo Electrónico')
     fechaSiembra = models.DateField(verbose_name='Fecha de siembra')
     tipoCultivo=models.ForeignKey(tipoCultivo, null=True,blank=True,on_delete=models.CASCADE)
-    sensores=models.ManyToManyField(sensor, verbose_name="Sensores",blank=True)
+    sensores=models.ManyToManyField(sensor, verbose_name="Sensores",blank=True,null=True)
     
     def __str__(self):
         return self.nombre
