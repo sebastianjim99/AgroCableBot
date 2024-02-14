@@ -21,7 +21,7 @@
     </section>
 
      <!-- SECCION DE CRUD  -->
-    <!-- <section>
+    <section>
         <div class="container-fluid"> 
         <div class="row">
             <div class="col-md-7"> 
@@ -81,7 +81,7 @@
             </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
 
 </template>
