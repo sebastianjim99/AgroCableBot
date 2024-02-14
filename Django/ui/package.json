@@ -8,6 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.10",
+    "@fullcalendar/daygrid": "^6.1.10",
+    "@fullcalendar/vue3": "^6.1.10",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "bootstrap-icons-vue": "^1.11.3",
@@ -17,6 +20,7 @@
     "save": "^2.9.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.10.5",
+    "swiper": "^11.0.6",
     "vue": "^3.2.13",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0"
