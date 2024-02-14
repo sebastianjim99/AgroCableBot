@@ -49,6 +49,24 @@ class cultivoViewSet(viewsets.ModelViewSet):
     queryset = cultivo.objects.all()
     serializer_class =cultivoSerializer
 
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        # Verificar si se debe eliminar los sensores asociados al cultivo
+        if 'sensores' in request.data and request.data['sensores'] == 'eliminar_sensores':
+            instance.sensores.clear()  # Eliminar todos los sensores asociados
+
+        self.perform_update(serializer)
+
+        return Response(serializer.data)
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return self.update(request, *args, **kwargs)
+
 class plantasViewSet(viewsets.ModelViewSet):
     queryset = plantas.objects.all()
     serializer_class =plantasSerializer
