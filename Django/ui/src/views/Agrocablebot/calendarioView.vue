@@ -5,59 +5,10 @@
     </div>
       <!--   titulo control manual   -->
     <section>
-        <div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8" style="text-align: center;">
-                        <h2 class="divider-style">
-                            <span>Tareas programas </span>
-                        </h2>
-                    </div>
-                    <div class="col-md-4 d-flex justify-content-center align-items-center">
-                        <button class="btn btn-primary d-flex align-items-center align-self-center" type="button" style="height: 38px; background-color: rgb(21,221,4);">Agregar Tarea<svg class="bi bi-plus-circle-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 29px;">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"></path>
-                            </svg></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Recurrencia</th>
-                                    <th>hora</th>
-                                    <th>fecha</th>
-                                    <th>eliminar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td>Regar</td>
-                                    <td>Una vez</td>
-                                    <td>12:00</td>
-                                    <td>01/03/2024</td>
-                                    <td>
-                                        <button class="btn btn-danger" type="button"><svg class="bi bi-trash" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 20px; ">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
-                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
-                                        </svg>
-                                            
-                                            
-                                            <i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <listaTareasProgramadas/>
     </section>
 
-
+<!-- 
     <section>
         <div style="text-align: center;">
             <h2 class="divider-style">
@@ -195,7 +146,14 @@
                 </div>
             </div>
         </div>
+    </section> -->
+
+
+    <section>
+        <vistaCalendario/>
     </section>
+    
+
 
     <section>
         <footer_imacuna />
@@ -209,11 +167,15 @@
 <script>
 import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
 import footer_imacuna from '/src/components/footer.vue'
+import vistaCalendario from '/src/components/agrocablebot/calendario/vistaCalendario.vue'
+import listaTareasProgramadas from '/src/components/agrocablebot/calendario/listaTareasProgramadas.vue'
 
 export default{
     components:{
         navbar_monitoreo,
         footer_imacuna,
+        vistaCalendario,
+        listaTareasProgramadas,
        
     }
 }

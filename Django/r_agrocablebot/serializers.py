@@ -69,6 +69,9 @@ class imagenesxPlantaSerializer(serializers.ModelSerializer):
 #         fields = '__all__'
 
 class calendariosSerializer(serializers.ModelSerializer):
+    plantas = serializers.PrimaryKeyRelatedField(queryset=plantas.objects.all(), required=False, many=True)
+    cultivo = serializers.PrimaryKeyRelatedField(queryset=cultivo.objects.all(), required=False, many=True)
+    # repeticion=serializers.ReadOnlyField(source='get_repeticion_display')
     class Meta:
         model = calendarios
         fields = '__all__'
