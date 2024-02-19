@@ -1,10 +1,10 @@
+
 <script>
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import axios from 'axios'
-
 export default {
   components: {
     FullCalendar // Hace que la etiqueta <FullCalendar> esté disponible
@@ -51,39 +51,44 @@ export default {
       return tareas.flatMap(tarea => {
         const eventos = [];
         const intervalo = tarea.intervalo || 1;
+        const horasRepeticion = [tarea.hora_repeticion_1, tarea.hora_repeticion_2, tarea.hora_repeticion_3].filter(hora => hora !== "00:00:00");
+        
         let fechaInicio = new Date(tarea.fecha_inicio);
         let fechaFin = new Date(tarea.fecha_fin);
         let fecha = new Date(fechaInicio);
         switch (tarea.repeticion) {
           case 'D':
             while (fecha <= fechaFin) {
-              eventos.push({
-                title: tarea.nombre,
-                start: new Date(fecha),
-                end: new Date(fecha),
-                allDay: false
+              horasRepeticion.forEach(hora => {
+                eventos.push({
+                  title: tarea.nombre,
+                  start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
+                  allDay: false
+                });
               });
               fecha.setDate(fecha.getDate() + intervalo);
             }
             break;
           case 'S':
             while (fecha <= fechaFin) {
-              eventos.push({
-                title: tarea.nombre,
-                start: new Date(fecha),
-                end: new Date(fecha),
-                allDay: false
+              horasRepeticion.forEach(hora => {
+                eventos.push({
+                  title: tarea.nombre,
+                  start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
+                  allDay: false
+                });
               });
               fecha.setDate(fecha.getDate() + (intervalo * 7));
             }
             break;
           case 'M':
             while (fecha <= fechaFin) {
-              eventos.push({
-                title: tarea.nombre,
-                start: new Date(fecha),
-                end: new Date(fecha),
-                allDay: false
+              horasRepeticion.forEach(hora => {
+                eventos.push({
+                  title: tarea.nombre,
+                  start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
+                  allDay: false
+                });
               });
               fecha.setMonth(fecha.getMonth() + intervalo);
             }
@@ -95,15 +100,20 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .calendario-container {
-  margin: px; /* Ajusta el margen según tus preferencias */
+  margin: 60px ; /* Ajusta el margen según tus preferencias */
+  background-color: #f0f0f0; /* Cambia el color de fondo según tus preferencias */ 
+  
+}
+.fc-header-toolbar-title {
+  color: #000; /* Color del texto del título de la barra de herramientas */
+  /* Personaliza el fondo y el color del texto de la barra de herramientas del encabezado */
 }
 </style>
 
 <template>
-  <div class="calendario-container">
+  <div class="calendario-container fc-header-toolbar-title">
     <h1>Calendario de Tareas</h1>
     <FullCalendar :options='calendarOptions'>
       <template v-slot:eventContent='arg'>
