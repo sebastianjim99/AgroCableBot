@@ -51,15 +51,15 @@
                 <h4> SEMILLERO IMACUNA </h4>
             </div>
         </swiper-slide>
-        <swiper-slide class="swiper1-slide"> 
-            <h1 class="title-header" >  Innovando el futuro agricula  </h1> 
+
+        <!-- <swiper-slide class="swiper1-slide"> 
+            <h1 class="title-header" > </h1> 
+        </swiper-slide> -->
+        
+        <swiper-slide class="swiper2-slide">
+            
         </swiper-slide>
-        <swiper-slide class="swiper2-slide"> Los mejores ingenieros </swiper-slide>
-        <swiper-slide class="swiper3-slide">
-            <video id="bg-video" loop muted autoplay playsinline>
-                <source src="/src/assets/logos/moviento_robot.mp4" type="video/mp4">
-            </video>
-        </swiper-slide>
+        
         <!-- <swiper-slide class="swiper4-slide">Slide 5</swiper-slide> -->
     </swiper>
 </section>
@@ -250,10 +250,11 @@ export default{
     .swiper2-slide {
         text-align: center;
         font-size: 18px;
-        background-image: url("/src/assets/logos/Presentacion.jpg" );
         display: flex;
         justify-content: center;
         align-items: center;
+        background-image: url("/src/assets/logos/logo-imacuna.png" );
+        background-position: center;
     }
 
 

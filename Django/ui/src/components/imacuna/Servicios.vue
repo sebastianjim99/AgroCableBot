@@ -34,7 +34,7 @@ export default{
     return{
       Servicios:[],
       currentLineas: {},
-      'api' : 'http://localhost:8000/api',
+      'api': `${process.env.VUE_APP_API_URL}`,
       'servicios':{
           'nombre': '',
           'imagen': null,

@@ -81,7 +81,7 @@ export default {
       currentLineas: {},
       slidesPerView: 3,
       spaceBetween:90,
-      'api' : 'http://localhost:8000/api',
+      'api': `${process.env.VUE_APP_API_URL}`,
       'integrantes':{
           'primer_apellido': '',
           'segundo_apellido': '',

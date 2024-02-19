@@ -29,7 +29,7 @@ export default{
     name: 'loginView',
     data(){
         return{
-            'api' : 'http://localhost:8000',
+            'api' : `${process.env.VUE_APP_API_URL}`,
             username: "",
             password: "",
             errors:{

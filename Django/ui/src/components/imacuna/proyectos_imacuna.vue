@@ -56,7 +56,7 @@ export default {
       };
     },
   mounted() {
-    axios.get('http://localhost:8000/api/proyectos/')
+    axios.get(`${process.env.VUE_APP_API_URL}` + '/proyectos/')
       .then(response => {
         console.log("proyectos")
         console.log(response.data)

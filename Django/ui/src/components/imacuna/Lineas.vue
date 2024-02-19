@@ -22,16 +22,9 @@
         </div>
     </section>
 
-<<<<<<< HEAD
-
-
-
-<!-- SECCION DE CRUD  -->
-   <!-- <section>
-=======
      <!-- SECCION DE CRUD  -->
     <!-- <section>
->>>>>>> a94cb45fa2810d1783e7beaf084f48c3b61b742f
+
         <div class="container-fluid"> 
         <div class="row">
             <div class="col-md-7"> 
@@ -92,16 +85,12 @@
             </div>
         </div>
     </section> -->
-<<<<<<< HEAD
-=======
-
->>>>>>> a94cb45fa2810d1783e7beaf084f48c3b61b742f
 
 </template>
 
 
 <script>
-
+export const RUTA_SERVIDOR = process.env.VUE_APP_API_URL;
 import axios from 'axios';
 import FormData from 'form-data';
 
@@ -111,7 +100,7 @@ export default{
     return{
       Lineas_investigacion:[],
       currentLineas: {},
-      'api' : 'http://localhost:8000/api',
+      'api': `${process.env.VUE_APP_API_URL}`,
       'lineas_investigacion':{
           'nombre': '',
           'imagen': null,
@@ -130,7 +119,7 @@ export default{
 
   methods : {
     getLineas_investigacion(){
-      axios.get(this.api + /Lineas_investigacion/ ).then(
+      axios.get(this.api + '/Lineas_investigacion/' ).then(
         Response => {
           console.log(Response.data)
           this.Lineas_investigacion = Response.data;

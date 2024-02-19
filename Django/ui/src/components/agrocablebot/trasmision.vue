@@ -44,7 +44,7 @@ export default {
 
     data(){
         return {
-            'api' : 'http://localhost:8000/api',
+            'api' : `${process.env.VUE_APP_API_URL}`,
             videoStreamUrl: 'http://localhost:8000/aboveCam/',
             videoStreamUrl2: 'http://localhost:8000/aboveCam2/'
         };
