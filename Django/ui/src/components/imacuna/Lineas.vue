@@ -22,11 +22,16 @@
         </div>
     </section>
 
+<<<<<<< HEAD
 
 
 
 <!-- SECCION DE CRUD  -->
    <!-- <section>
+=======
+     <!-- SECCION DE CRUD  -->
+    <!-- <section>
+>>>>>>> a94cb45fa2810d1783e7beaf084f48c3b61b742f
         <div class="container-fluid"> 
         <div class="row">
             <div class="col-md-7"> 
@@ -87,6 +92,10 @@
             </div>
         </div>
     </section> -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> a94cb45fa2810d1783e7beaf084f48c3b61b742f
 
 </template>
 
