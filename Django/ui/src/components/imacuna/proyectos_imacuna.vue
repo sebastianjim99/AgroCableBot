@@ -1,27 +1,34 @@
 <template>    
   <section>
-      <div class="container py-4 py-xl-5">
+
+      <div class="container">
         <div class="row mb-5">
           <div class="col-md-8 col-xl-6 text-center mx-auto" >
               <h2>PROYECTOS DEL SEMILLERO IMACUNA</h2>
               <p class="w-lg-50"> Cosechando innovación </p>
           </div>
         </div>
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"  >
-          <div class="col" v-for="proyecto in proyectos" :key="proyecto.id" >
-            <div v-for="imagen in proyecto.imagenesProyectos" :key="imagen.id">
-            <img :src="imagen.imagen" alt="Imagen de proyecto" class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;">
-          </div>
-          <!-- <div v-for="video in proyecto.videoProyectos" :key="video.id">
-            <video :src="video.archivo_video" controls></video>
-          </div> -->
-          <div class="py-4">
-              <h2>{{ proyecto.nombre }}</h2>
-              <p>{{ proyecto.descripcion }}</p>
+        <div class="row gy-4 row-cols-1 row-cols-md-2"  >
+          <div class="col-md " style=" object-fit: cover;" v-for="proyecto in proyectos" :key="proyecto.id" >
+
+            <div class="cardcontent">
+              <div class="card-proyecto"  >
+               <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiperCards"  >
+                  <swiper-slide v-for="imagen in proyecto.imagenesProyectos" :key="imagen.id" >
+                    <img class="img-proyecto" :src="imagen.imagen" alt="img-proyecto" > 
+                  </swiper-slide> 
+               </swiper>
+                <div class="content-text">
+                    <h2 class="title-proyecto" > {{ proyecto.nombre }}    </h2>
+                    <p class="descripcion-proyecto " >  <span> {{ proyecto.descripcion }}  </span>  </p>
+                    <button class="btn btn-primary botton-vermas"  > Mostrar mas </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
 
   </section>
    
@@ -29,6 +36,9 @@
 
 <script>
 import axios from 'axios';
+import 'swiper/css/effect-cards';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { EffectCards } from 'swiper/modules';
 
 export default {
   data() {
@@ -36,6 +46,15 @@ export default {
       proyectos: []
     };
   },
+  components: {
+      Swiper,
+      SwiperSlide,
+    },
+    setup() {
+      return {
+        modules: [EffectCards],
+      };
+    },
   mounted() {
     axios.get('http://localhost:8000/api/proyectos/')
       .then(response => {

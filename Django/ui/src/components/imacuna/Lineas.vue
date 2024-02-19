@@ -2,16 +2,18 @@
      <!--  SECCION DE LINEAS DE INVESTIGACIÓN -->
     <section>
         <div>
-            <div class="container">
-            <h1>Líneas de investigación</h1>
+            <div class="container"   style=" padding-bottom: 20px; display: flex;" >
+            <h1 class="lineas-tittle" style="color: white;  ">Líneas de investigación</h1>
             </div>
             <div class="container py-4 py-xl-5">  
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xl-4">
-                <div class="col" v-for ="lineas_investigacion in Lineas_investigacion" :key="lineas_investigacion.id" >
-                <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
-                    <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg"><img :src="lineas_investigacion.imagen" height="200" width="200"  alt=""> </div>
-                    <div class="px-1">
-                    <h4 style="text-align:center; font-size: 25px;" > {{lineas_investigacion.nombre}} </h4>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xl-4" >
+                <div class="col " style="padding: 10px;"  v-for ="lineas_investigacion in Lineas_investigacion" :key="lineas_investigacion.id"  >
+                <div class="text-center d-flex flex-column align-items-center align-items-xl-center lineas-container">
+                    <div class="">
+                      <img class="imagen-zoom" :src="lineas_investigacion.imagen" height="200" width="200"  style="padding: 10px;"  alt=""> 
+                    </div>
+                    <div class="px-1" style="color: white; font-size: medium;">
+                      <h4 style="text-align:center; font-size: 25px;" > {{lineas_investigacion.nombre}} </h4>
                     </div>
                 </div>
             </div>
@@ -20,8 +22,11 @@
         </div>
     </section>
 
-     <!-- SECCION DE CRUD  -->
-    <section>
+
+
+
+<!-- SECCION DE CRUD  -->
+   <!-- <section>
         <div class="container-fluid"> 
         <div class="row">
             <div class="col-md-7"> 
@@ -81,8 +86,7 @@
             </div>
             </div>
         </div>
-    </section>
-
+    </section> -->
 
 </template>
 

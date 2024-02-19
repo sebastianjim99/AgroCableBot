@@ -1,0 +1,259 @@
+.somos-title{
+    width: 800px;
+    height: 0;
+    border-left: 0px solid #375E97;
+    border-right: 150px solid transparent;
+    border-bottom: 50px solid #375E97;/* Ajusta verticalmente el texto */
+    text-align: end;
+    padding-left: 20px;
+    display: flex;
+}
+
+.lineas-container{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #375E97 ;
+    box-decoration-break: slice;
+    border-radius: 10px;
+    height: 268px;
+}
+
+
+
+.content-servicios{
+    padding-left: 10px;
+    padding-right: 10px;
+    box-decoration-break: slice;
+    border-radius: 10px;
+    height: 268px;
+    border-radius: 20px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #FFBB00;
+    
+}
+
+
+.lineas-tittle{
+    width: 800px;
+    height: 0;
+    border-left: 0px solid #FB6542;
+    border-right: 150px solid transparent;
+    border-bottom: 60px solid #FB6542;/* Ajusta verticalmente el texto */
+    text-align: end;
+    padding-left: 20px;
+    display: flex;
+}
+
+.servicios-tittle{
+    width: 800px;
+    height: 0;
+    align-items: flex-end;
+    border-left: 150px solid transparent;
+    border-right: 0 solid #FFBB00;
+    border-bottom: 60px solid #FFBB00;/* Ajusta verticalmente el texto */
+    text-align: end;
+    padding-right: 200px;
+
+}
+  
+.mision-tittle{
+    width: 800px;
+    height: 0;
+    border-left: 0px solid #375E97;
+    border-right: 150px solid transparent;
+    border-bottom: 50px solid #375E97;/* Ajusta verticalmente el texto */
+    text-align: end;
+    padding-left: 70px;
+    display: flex;
+}
+
+.vision-tittle{
+    padding-top: 20px;
+    width: 800px;
+    height: 0;
+    align-items: flex-end;
+    border-left: 150px solid transparent;
+    border-right: 0 solid #3F681C;
+    border-bottom: 60px solid #3F681C;/* Ajusta verticalmente el texto */
+    text-align: end;
+    padding-right: 250px;
+    justify-content: center;
+
+}
+.text-somos{
+    font-size: 30px;
+}
+@media (max-width: 768px) {
+    .text-mis-vis {
+        font-size: 14px; /* Tamaño de letra más pequeño para dispositivos móviles */
+    }
+    .text-somos{
+        font-size: 15px;
+        text-align: justify;
+    }
+    .somos-title {
+        font-size: 25px; /* Tamaño de letra más pequeño para dispositivos móviles */
+        border-bottom: 70px solid #375E97;/* Ajusta verticalmente el texto */
+    
+    }
+    .lineas-tittle{
+        text-align: center;
+        padding: 0px;
+        font-size: 30px;
+        border-bottom: 80px solid #FB6542;/* Ajusta verticalmente el texto */
+
+    }
+    .servicios-tittle{
+        text-align: center;
+        padding: 0px;
+        font-size: 40px;
+    }
+    .mision-tittle{
+        text-align: center;
+        padding: 0px;
+        font-size: 40px;
+    }
+    .vision-tittle{
+        text-align: center;
+        padding: 0px;
+        font-size: 40px;
+    }
+    .img-imacuna{
+        margin: 0px 0px 0px 0px;
+        align-content: center;
+        width: 100px;
+        height: 60px;
+    }
+    .footer-imacuna{
+        font-size: 15px;
+    }
+    .social-media{
+        width: "1px";
+        height: "2px";
+        padding: 0px;
+    }
+}
+
+.text-mis-vis{
+    text-align: justify;
+    font-size: 25px;
+}
+
+.imagen-zoom {
+    transition: transform 0.3s; /* Transición suave */
+  }
+  
+  .imagen-zoom:hover {
+    transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor sobre la imagen */
+  }
+
+
+
+/* ESTILOS DE CARD PROYECTOS */
+
+.cardcontent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardcontent:hover{
+    cursor: pointer;
+} 
+
+.cardcontent:hover .descripcion-proyecto{
+    opacity: 1;
+    visibility: visible;
+}
+
+.cardcontent:hover .botton-vermas{
+    opacity: 1;
+    visibility: visible;
+}
+
+.cardcontent:hover .img-proyecto{
+    transform: scale(1.2) rotate(-3deg);
+}
+
+.cardcontent:hover .content-text{
+    height: 200px;
+    bottom: 50px;
+    background: black;
+}
+
+.card-proyecto {
+    height: 400px;
+    width: 400px ;
+    margin: 50px;
+    box-shadow: 5px 5px 20px black ;
+    overflow: hidden;
+}
+.img-proyecto{ 
+    width: 400px;
+    height: 400px;
+    border-radius: 3px;
+    transition: .3s;
+} 
+
+.content-text { 
+    height: 50px;
+    width: 400px ;
+    padding: 6px;
+    box-sizing: border-box;
+    position: absolute ;
+    background: rgb(27, 27, 27, .5);
+    color: white;
+    transition: .5s;
+    bottom: 50px;
+    z-index: 2; 
+}
+
+.title-proyecto{
+    margin: 10px;
+    font-size: 30px;
+}
+
+.descripcion-proyecto{
+    font-size: 20px;
+    margin: 20px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.botton-vermas{
+    visibility: hidden;
+    opacity: 0;
+    margin: 0;
+}
+
+/* SI ES UN CELULAR  */
+
+@media (max-width: 768px) {
+    
+    .card-proyecto {
+        width: 200px ;
+        height: 200px;
+    }
+
+    .img-proyecto{
+        width: 200px ;
+        height: 200px;
+    }
+
+    .content-text{
+        width: 200px ;
+    }
+    .title-proyecto{
+        margin: 30px;
+        font-size: 20px;
+    }
+    
+    .descripcion-proyecto{
+        font-size: 10px;
+        margin: 5px;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+}
