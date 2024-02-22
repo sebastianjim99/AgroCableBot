@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Usuarios, Lineas_investigacion, Servicios, facultades, programa,tipoIntegrante, integrante, proyectos, imagenesProyectos, videoProyectos 
+from .models import *
 
 admin.site.register(Usuarios)
 admin.site.register(Lineas_investigacion)

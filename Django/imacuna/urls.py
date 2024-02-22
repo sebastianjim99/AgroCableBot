@@ -15,7 +15,9 @@ from r_agrocablebot.views import (
     plantasViewSet,
     imagenesxPlantaViewSet,
     calendariosViewSet,
-    publish_message
+    publish_message,
+    MensajeViewSet,
+    Sensor_MQTTViewSet
 )
 
 from .views import (
@@ -58,6 +60,10 @@ router.register('cultivo', cultivoViewSet, basename= 'cultivo')
 router.register('plantas', plantasViewSet, basename= 'plantas')
 router.register('imagenesxPlanta', imagenesxPlantaViewSet, basename= 'imagenesxPlanta')
 router.register('calendarios', calendariosViewSet, basename= 'calendarios')
+router.register('mensaje', MensajeViewSet, basename= 'mensaje')
+router.register('Sensor_MQTT', Sensor_MQTTViewSet, basename= 'Sensor_MQTT')
+
+MensajeViewSet
 
 urlpatterns = [
     path('api/', include(router.urls)),

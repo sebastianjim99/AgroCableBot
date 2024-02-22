@@ -4,6 +4,11 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
+import json
+from django.http import JsonResponse
+from r_agrocablebot.mqtt import client as mqtt_client
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import (
     acciones,
     tipoSensor,
@@ -13,10 +18,12 @@ from .models import (
     plantas,
     imagenesxPlanta,
     calendarios,
-
+    Mensaje,
+    Sensor_MQTT
 )
 
 from .serializers import (
+    MensajeSerializer,
     accionesSerializer,
     tipoSensorSerializer,
     tipoCultivoSerializer,
@@ -25,9 +32,9 @@ from .serializers import (
     plantasSerializer,
     imagenesxPlantaSerializer,
     calendariosSerializer,
+    Sensor_MQTTSerializer
+
 )
-
-
 
 # Create your views here.
 class accionesViewSet(viewsets.ModelViewSet):
@@ -79,22 +86,24 @@ class calendariosViewSet(viewsets.ModelViewSet):
     queryset = calendarios.objects.all()
     serializer_class =calendariosSerializer
 
-
-import json
-from django.http import JsonResponse
-from r_agrocablebot.mqtt import client as mqtt_client
-
-from django.views.decorators.csrf import csrf_exempt
-
 @csrf_exempt 
 def publish_message(request):
     if request.body:
         try:
             request_data = json.loads(request.body)
             rc, mid = mqtt_client.publish(request_data['topic'], request_data['msg'])
+            # Guarda el mensaje en la base de datos
+            Mensaje.objects.create(topic=request_data['topic'], mensaje=request_data['msg'])
             return JsonResponse({'code': rc}) 
         except json.decoder.JSONDecodeError as e:
             return JsonResponse({'error': 'Invalid JSON format in request body'}, status=400)
     else:
         return JsonResponse({'error': 'Request body is empty'}, status=400)
 
+class MensajeViewSet(viewsets.ModelViewSet):
+    queryset = Mensaje.objects.all()
+    serializer_class = MensajeSerializer
+
+class Sensor_MQTTViewSet(viewsets.ModelViewSet):
+    queryset = Sensor_MQTT.objects.all()
+    serializer_class = Sensor_MQTTSerializer

@@ -38,4 +38,6 @@ admin.site.register(imagenesxPlanta)
 # admin.site.register(estadisticas) 
 #admin.site.register(mo_agroCableBot)  
 
+admin.site.register(Sensor_MQTT)
+
 

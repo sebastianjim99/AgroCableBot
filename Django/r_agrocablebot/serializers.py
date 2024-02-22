@@ -80,3 +80,16 @@ class calendariosSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = mo_agroCableBot
 #         fields = '__all__'
+
+
+class MensajeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mensaje
+        fields = '__all__'
+
+class Sensor_MQTTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sensor_MQTT
+        fields = '__all__'
+        
+

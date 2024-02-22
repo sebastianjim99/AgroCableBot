@@ -218,3 +218,27 @@ class calendarios(models.Model):
 #         verbose_name_plural = 'Tipos de sensores'
 #         db_table = 'tipos_sensores'
 #         ordering = ['id']
+
+class Mensaje (models.Model):
+    topic = models.CharField(max_length=100)
+    mensaje = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+
+class Sensor_MQTT(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    acelerometro_roll = models.FloatField()
+    acelerometro_pitch = models.FloatField()
+    acelerometro_yaw = models.FloatField()
+    giroscopio_roll = models.FloatField()
+    giroscopio_pitch = models.FloatField()
+    giroscopio_yaw = models.FloatField()
+    magnetometro_x = models.FloatField()
+    magnetometro_y = models.FloatField()
+    magnetometro_z = models.FloatField()
+    orientacion_roll = models.FloatField()
+    orientacion_pitch = models.FloatField()
+    orientacion_yaw = models.FloatField()
+    humedad = models.FloatField()
+    presion = models.FloatField()
+    temperatura = models.FloatField()

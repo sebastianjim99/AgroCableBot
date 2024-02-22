@@ -93,11 +93,11 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True 
 
 # --- Configuracion de servidor MQTT------b
-MQTT_SERVER = 'broker.emqx.io'
+MQTT_SERVER = '172.17.91.21'
 MQTT_PORT = 1883
 MQTT_KEEPALIVE = 60
-MQTT_USER = ''
-MQTT_PASSWORD = ''
+MQTT_USER = 'imacuna'
+MQTT_PASSWORD = 'pi'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
