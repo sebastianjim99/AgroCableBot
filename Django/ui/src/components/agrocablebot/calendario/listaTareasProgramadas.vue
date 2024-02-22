@@ -1,6 +1,7 @@
 <template>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
   <!-- Estructura del componente en HTML -->
-  <div>
     <div class="container">
       <div class="row">
          <!-- Encabezado de la página -->
@@ -11,123 +12,214 @@
         </div>
         <!-- Botón para abrir el modal de agregar tarea -->
         <div class="col-md-4 d-flex justify-content-center align-items-center">
-          <button class="btn btn-primary d-flex align-items-center align-self-center" type="button" style="height: 38px; background-color: rgb(21,221,4);" @click="abrirModal">Agregar Tarea
-            <!-- Icono de "más" -->
-            <svg class="bi bi-plus-circle-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 29px;">
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"></path>
-            </svg>
+          <button class="btn btn-primary d-flex align-items-center align-self-center" type="button" style="height: 38px;" @click="abrirModal">Agregar Tarea
+
           </button>
         </div>
       </div>
       <!-- Tabla para mostrar las tareas programadas -->
-      <div class="row">
-        <div class="col-md-12">
-          <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <!-- Cabeceras de la tabla -->
-              <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Recurrencia</th>
-                <th>Hora</th>
-                <th>Fecha</th>
-                <th>Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Filas de la tabla generadas dinámicamente con v-for -->
-              <tr v-for="(calendario, index) in calendarios" :key="index">
-                <td>{{ calendario.id }}</td>
-                <td>{{ calendario.nombre }}</td>
-                <td>{{ calendario.repeticion }}</td>
-                <td>{{ calendario.hora_repeticion_1 }}</td>
-                <td>{{ calendario.fecha_inicio }}</td>
-                <td>
-                  <!-- Botones para editar y eliminar tareas -->
-                  <button class="btn btn-warning" type="button" @click="editarCalendario(calendario)">
-                    <i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
-                    <!-- Icono de lápiz -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                    </svg>
-                  </button>
-                  <button class="btn btn-danger" type="button" @click="eliminarCalendario(calendario.id)">
-                    <i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
-                    <!-- Icono de papelera -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                    </svg>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="container" q> 
+        <div class="row">
+          <div class="col-md-12">
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <!-- Cabeceras de la tabla -->
+                <tr>
+                  <th>Id</th>
+                  <th>Nombre</th>
+                  <th>Acción</th>
+                  <th>Fecha de inicio</th>
+                  <th>Fecha de fin</th>
+                  <th>Repetición</th>
+                  <th>Intervalo</th>
+                  <th>Hora de repeticion 1</th>
+                  <th>Hora de repeticion 2</th>
+                  <th>Hora de repeticion 3</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Filas de la tabla generadas dinámicamente con v-for -->
+                <tr v-for="(calendario, index) in calendarios" :key="index">
+                  <td>{{ calendario.id }}</td>
+                  <td>{{ calendario.nombre }}</td>
+                  <td>{{ accionesNombres[index] }}</td>
+                  <td>{{ calendario.fecha_inicio }}</td>
+                  <td>{{ calendario.fecha_fin }}</td>
+                  <td>{{ obtenerNombreRecurrencia(calendario.repeticion) }}</td>
+                  <td>{{ calendario.intervalo }}</td>
+                  <td>{{ calendario.hora_repeticion_1 }}</td>
+                  <td>{{ calendario.hora_repeticion_2 }}</td>
+                  <td>{{ calendario.hora_repeticion_3 }}</td>
+                  <td>
+                    <!-- Botones para editar y eliminar tareas -->
+                    <button class="btn btn-warning btn-editar" type="button" @click="editarCalendario(calendario)" >
+                      <i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
+                      <!-- Icono de lápiz -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                      </svg>
+                    </button>
+                    <button class="btn btn-danger btn-eliminar " type="button" @click="eliminarCalendario(calendario.id)">
+                      <i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
+                      <!-- Icono de papelera -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        
       </div>
     </div>
 
     <!-- Ventana emergente para agregar tarea -->
     <div v-if="mostrarModal" class="modal">
-      <!-- Contenedor del modal -->
       <div class="modal-dialog">
-        <!-- Contenido del modal -->
         <div class="modal-content">
-          <!-- Botón para cerrar la ventana emergente -->
-          <span class="cerrar" @click="cerrarModal">&times;</span>
-          <!-- Título de la ventana emergente -->
-          <h2>Agregar Tarea</h2>
-          <!-- Formulario para agregar una nueva tarea -->
+          <span class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close" @click="cerrarModal">&times;</span>
+          <h2 cla> Agregar Tarea </h2>
           <form @submit.prevent="agregarTarea">
             <!-- Campos del formulario -->
-            <label for="nombre">Nombre:</label><br><input type="text" v-model="nombre" required><br>
-            <label for="acciones">Acciones:</label><br>
-            <!-- Campo para seleccionar accion relacionada con la tarea -->
-            <select v-model="selectedAcciones" multiple>
-              <option v-for="accion in acciones" :key="accion.id" :value="accion.id">{{ accion.nombre }}</option>
-            </select><br>
-            <label for="fecha_inicio">Fecha de inicio:</label><br><input type="date" v-model="fecha_inicio" required><br>
-            <label for="fecha_fin">Fecha de fin:</label><br><input type="date" v-model="fecha_fin" required><br>
-            <label for="repeticion">Repeticion:</label>
-            <!-- Campo para seleccionar repeticion relacionada con la tarea -->
-            <select v-model="repeticion" required>
-              <option value="D">Diaria</option>
-              <option value="S">Semanal</option>
-              <option value="M">Mensual</option>
-            </select><br>
-            <label for="intervalo">Intervalo:</label><input type="number" v-model="intervalo" required><br>
-            <label for="todoCultivo">Todo Cultivo:</label>
-            <select v-model="todoCultivo" required>
-              <option value="S">Sí</option>
-              <option value="N">No</option>
-            </select><br>
-            <label for="hora_repeticion_1">Hora de repetición 1:</label><br><input type="time" v-model="hora_repeticion_1" required><br>
-            <label for="hora_repeticion_2">Hora de repetición 2:</label><br><input type="time" v-model="hora_repeticion_2"><br>
-            <label for="hora_repeticion_3">Hora de repetición 3:</label><br><input type="time" v-model="hora_repeticion_3"><br>
-            <label for="cultivos">Cultivos:</label><br>
-            <!-- Campo para seleccionar el cultivo relacionado con la tarea -->
-            <select multiple v-model="selectedCultivos"  required @change="seleccionarPlantasPorCultivo">
-              <option v-for="cultivo in cultivos" :key="cultivo.id" :value="cultivo.id">{{ cultivo.nombre }}</option>
-            </select><br>
-            <label for="plantas">Plantas:</label><br>
-            <!-- Campo para seleccionar las plantas relacionadas con la tarea -->
-            <select multiple v-model="selectedPlantas" required>
-              <option v-for="planta in plantas" :key="planta.id" :value="planta.id" >{{ planta.nombre }}</option>
-            </select><br>
-            <!-- Botón para guardar la tarea -->
-            <button type="submit" >Guardar </button>
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-4 col-xxl-4 col-sm-4 col-auto">
+                  <div class="form-group mb-3">
+                    <input id="Nombre" class="form-control" type="Nombre" placeholder="Nombre" name= "Nombre" v-model="nombre" required />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="acciones" class="form-label">Acciones</label>
+                    <select  class="form-select" size="2" v-model="selectedAcciones"  multiple>
+                        <option v-for="accion in acciones" :key="accion.id" :value="accion.id">{{ accion.nombre }}</option>
+                    </select>  
+                  </div>
+                          
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-md-auto ">
+                        <label for="repeticion" class="col-form-label">Repeticion</label>
+                      </div>
+                      <div class="col">
+                        <select class="form-select" v-model="repeticion" style="margin:10px ;" required>
+                          <option value="D">Diaria</option>
+                          <option value="S">Semanal</option>
+                          <option value="M">Mensual</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-auto ">
+                        <label for="intervalo" class="col-form-label">Intervalo</label>
+                      </div>
+                      <div class="col">
+                        <input type="number" class="form-control" style="width: 113.95px; margin-left: 28px; margin-bottom:10px ;" v-model="intervalo" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-auto">
+                        <label for="todoCultivo" class="col-form-label">Todo Cultivo</label>
+                      </div>
+                      <div class="col">
+                        <select class="form-select"  v-model="todoCultivo" required>
+                          <option value="S">Sí</option>
+                          <option value="N">No</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6 col-xxl-6">
+                  <div class="row">
+                    <div class="col-sm-6 col-xxl-7">
+                      <div class="form-group mb-3">
+                        <label for="fecha_inicio" class="form-label">Fecha de inicio:</label>
+                        <input class="form-control" type="date" v-model="fecha_inicio" required />
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-xxl-7">
+                      <div class="form-group mb-3">
+                        <label for="fecha_fin" class="form-label">Fecha de fin:</label>
+                        <input class="form-control" type="date" v-model="fecha_fin" required />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" style="width: 400px; display:flex;">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col-md-auto">
+                          <label  for="hora_repeticion_1" class="col-form-label ">Hora de Repetición 1</label>
+                        </div>
+                        <div class="col">
+                          <input type="time" class="form-control"  v-model="hora_repeticion_1" required>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-auto">
+                          <label for="hora_repeticion_2" class="col-form-label">Hora de Repetición 2</label>
+                        </div>
+                        <div class="col">
+                          <input type="time" class="form-control"  v-model="hora_repeticion_2" >
+                        </div>
+                      </div>
+                        
+                      <div class="row">
+                        <div class="col-md-auto">
+                          <label for="hora_repeticion_3" class="col-form-label">Hora de Repetición 3</label></div>
+                        <div class="col">
+                          <input type="time" class="form-control" v-model="hora_repeticion_3" >
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-xl-6">
+                          <div class="col-md-auto" style="margin: 10px; ">
+                            <label  for="cultivos" class="form-label">Cultivos</label>
+                            <select id="dates-field-1" class="form-select "   size="2" multiple v-model="selectedCultivos"  required @change="seleccionarPlantasPorCultivo">
+                              <option v-for="cultivo in cultivos" :key="cultivo.id" :value="cultivo.id"> {{ cultivo.nombre }} </option>
+                            </select>           
+                          </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                          <div class="col-md-auto" style="margin: 10px;" >
+                            <label for="plantas"  class="form-label">Plantas</label>
+                            <select id="dates-field-2" class="form-select multiselect-ui form-control" size="2" multiple v-model="selectedPlantas" required >
+                              <option v-for="planta in plantas" :key="planta.id" :value="planta.id" > {{ planta.nombre }}</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="boton-guardar" >Guardar </button>
           </form>
         </div>
       </div>
     </div>
-  </div>
+
+  
+
 </template>
 
 <script>
+
 // Importación de librerías y configuraciones necesarias
 import axios from 'axios';
 import Swal from 'sweetalert2';
+
 
 export default {
   // Datos del componente
@@ -176,6 +268,16 @@ export default {
       }
     }
   },
+  // Método computado para obtener el nombre de la acción asociada a cada tarea
+  computed: {
+    accionesNombres() {
+      return this.calendarios.map(calendario => {
+        const accion = this.acciones.find(accion => accion.id === calendario.acciones);
+        return accion ? accion.nombre : '';
+      });
+    }
+  },
+
   // Métodos del componente
   methods: {
     // Método para abrir el modal de agregar tarea
@@ -207,6 +309,23 @@ export default {
           console.error(error);
         });
     },
+
+    obtenerNombreRecurrencia(letraRecurrencia) {
+      // Mapea la letra de recurrencia a su nombre completo correspondiente
+      switch (letraRecurrencia) {
+        case 'D':
+          return 'Diaria';
+        case 'S':
+          return 'Semanal';
+        case 'M':
+          return 'Mensual';
+        default:
+          return 'Desconocida';
+      }
+    },
+
+
+
     // Método para obtener los cultivos desde el servidor
     obtenerCultivos() {
       axios.get('http://localhost:8000/api/cultivo')

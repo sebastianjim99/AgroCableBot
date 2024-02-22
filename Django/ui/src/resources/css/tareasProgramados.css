@@ -1,0 +1,55 @@
+.modal-content{
+    width: 800px  ;
+    height: 500px ;
+}
+.modal-dialog{
+  width: 800px;
+}
+.close{
+    position: relative; /* Establece el contenedor como posición relativa */
+    align-items: flex-end;
+    align-self: flex-end;
+    width: 0px;
+    margin-right: 20px;
+    height: 20px;
+    background-color: lightblue;
+}
+
+.content-card{
+    align-content: center;
+    
+}
+
+.boton-guardar {
+    background-color: #007bff; /* Azul */
+    color: #ffffff; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .boton-guardar:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+  }
+  
+  /* Estilos para dispositivos móviles */
+  @media only screen and (max-width: 600px) {
+    .boton-guardar {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+
+    .modal-content{
+      height: 1150px ;
+      width: 300px ;
+    }
+    .modal-dialog{
+      width: 300px;
+    }
+    .form{
+      width: 300px;
+    }
+  }

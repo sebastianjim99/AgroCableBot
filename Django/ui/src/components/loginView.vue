@@ -29,7 +29,7 @@ export default{
     name: 'loginView',
     data(){
         return{
-            'api' : `${process.env.VUE_APP_API_URL}`,
+            // 'api' : `${process.env.VUE_APP_API_URL}`,
             username: "",
             password: "",
             errors:{
@@ -59,10 +59,10 @@ export default{
 
         },
         submitForm(){
-            //console.log(this.username, this.password);
+            console.log(this.username, this.password);
             if (this.isVaidForm()){
-                const url = '/loginView/';
-                axios.post(this.api + url, {username: this.username, password: this.password})
+                // const url = '/loginView/';
+                axios.post('http://localhost:8000' + '/loginView/', {username: this.username, password: this.password})
                 .then(Response=> {
                     //console.log(Response.data);
                     this.$store.commit('setToken', Response.data);

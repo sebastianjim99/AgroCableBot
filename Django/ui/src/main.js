@@ -12,10 +12,14 @@ import { BootstrapIconsPlugin } from "bootstrap-icons-vue";
 import '../src/resources/css/Bootstrap-Calendar.css' 
 import '../src/resources/css/integrantes.css' 
 import '../src/resources/css/imacuna_style.css' 
-import 'bootstrap'; // Importa el CSS de Bootstrap
+import '../src/resources/css/tareasProgramados.css' 
+import '../src/resources/css/listcultivo.css' 
+import 'bootstrap'; 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa el JavaScript de Bootstrap
 import 'swiper/css';
 import 'swiper/css/pagination';
+
+
 
 axios.defaults.baseURL = 'http://0.0.0.0:8000'
 
