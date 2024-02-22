@@ -84,8 +84,17 @@ import json
 from django.http import JsonResponse
 from r_agrocablebot.mqtt import client as mqtt_client
 
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt 
 def publish_message(request):
-    request_data = json.loads(request.body)
-    rc, mid = mqtt_client.publish(request_data['topic'], request_data['msg'])
-    return JsonResponse({'code': rc})
+    if request.body:
+        try:
+            request_data = json.loads(request.body)
+            rc, mid = mqtt_client.publish(request_data['topic'], request_data['msg'])
+            return JsonResponse({'code': rc}) 
+        except json.decoder.JSONDecodeError as e:
+            return JsonResponse({'error': 'Invalid JSON format in request body'}, status=400)
+    else:
+        return JsonResponse({'error': 'Request body is empty'}, status=400)
+

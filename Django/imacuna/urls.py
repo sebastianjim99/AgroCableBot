@@ -1,3 +1,4 @@
+from unicodedata import name
 from xml.etree.ElementInclude import include
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
@@ -14,6 +15,7 @@ from r_agrocablebot.views import (
     plantasViewSet,
     imagenesxPlantaViewSet,
     calendariosViewSet,
+    publish_message
 )
 
 from .views import (
@@ -32,6 +34,7 @@ from .views import (
     videoProyectosViewSet,
     cameras,
     capturas, 
+
     )
 
 
@@ -64,7 +67,8 @@ urlpatterns = [
     # ------------ camara -----------
     path('aboveCam/', cameras , name='aboveCamera'),
     path('aboveCam2/', cameras , name='aboveCamera2'),
-    path('captura/', capturas , name='captura')
+    path('captura/', capturas , name='captura'),
+    path('publish/', publish_message, name= 'publish' ),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -88,6 +88,10 @@ DATABASES = {
     }
 }
 
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True 
+
 # --- Configuracion de servidor MQTT------b
 MQTT_SERVER = 'broker.emqx.io'
 MQTT_PORT = 1883

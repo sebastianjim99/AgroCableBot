@@ -4,7 +4,7 @@ from django.conf import settings
 def on_connect(mqtt_client, userdata, flags, rc):
     if rc == 0:
         print('Connected successfully')
-        mqtt_client.subscribe('django/mqtt')
+        mqtt_client.subscribe('Agrocablebot')
     else:
         print('Bad connection. Code:', rc)
 
@@ -12,8 +12,9 @@ def on_connect(mqtt_client, userdata, flags, rc):
 def on_message(mqtt_client, userdata, msg):
    print(f'Received message on topic: {msg.topic} with payload: {msg.payload}')
 
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
    
-client = mqtt.Client()
+# client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 client.username_pw_set(settings.MQTT_USER, settings.MQTT_PASSWORD)
