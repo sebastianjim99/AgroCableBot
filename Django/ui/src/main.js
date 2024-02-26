@@ -6,6 +6,7 @@ import '../src/assets/vendor/swiper/swiper-bundle.min.css'
 
 import axios from 'axios'
 import store from './store'
+import VueNativeSock from 'vue-native-websocket';
 
 import { BootstrapIconsPlugin } from "bootstrap-icons-vue";
 
@@ -23,6 +24,11 @@ import 'swiper/css/pagination';
 
 axios.defaults.baseURL = 'http://0.0.0.0:8000'
 
+Vue.use(VueNativeSock, 'ws://localhost:8000/ws/sensor_data/', {
+  reconnection: true, // Reconexión automática
+  reconnectionAttempts: 5, // Número de intentos de reconexión
+  reconnectionDelay: 3000, // Retraso entre intentos de reconexión (en milisegundos)
+});
 
 const app = createApp(App);
 app.use(router).use(store);

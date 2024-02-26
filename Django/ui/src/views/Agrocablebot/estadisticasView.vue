@@ -41,8 +41,6 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default{
     extends: Bar,
-    // mixins: [mixins.reactiveData],
-
     components:{
         navbar_monitoreo,
         footer_imacuna,

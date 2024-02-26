@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # Para crear tokens de identificacion
     'imacuna.apps.ImacunaConfig',
     'r_agrocablebot',
+    'channels',
     
 ]
 
@@ -52,6 +53,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+
+# Configuración de Channels
+ASGI_APPLICATION = 'tu_proyecto.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Usando una capa en memoria para desarrollo
+    },
+}
 
 TEMPLATES = [
     {
@@ -72,7 +82,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

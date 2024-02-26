@@ -145,17 +145,17 @@
                                 <h2 class="divider-style"><span>Ambiente</span></h2>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Humedad: 50%</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Temperatura: 30°C</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Presión: 130 Pa</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Humedad: {{this.humedad}}</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Temperatura: {{this.temperatura}}</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Presión: {{this.presion}}</span></li>
                             </ul>
                             <div style="text-align: center;">
                                 <h2 class="divider-style"><span>Giroscopio efector</span></h2>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>roll: 1.5°</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Pitch: 0°</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>yaw: 0°</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>roll: {{this.giroscopio_pitch}}</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Pitch: {{this.giroscopio_roll}}</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>yaw: {{this.giroscopio_yaw}}</span></li>
                             </ul>
                         </div>
                         <div class="col-6 col-xl-6 text-start text-bg-light">
@@ -199,7 +199,6 @@
 
 <script>
 import axios from 'axios'
-
 import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
 import trasmisionVue from '/src/components/agrocablebot/trasmision.vue'
 import listCultivo from '/src/components/agrocablebot/monitoreo/ListCultivo.vue'
@@ -215,17 +214,26 @@ export default{
 
     data(){
       return{
+        'api': `${process.env.VUE_APP_API_URL}`,
         tipo_cultivo:[],
         cultivos:[],
         plantas:[],
         matriz: [],
+        Datos_sensores: [],
         plantaSeleccionada: null,
-        cultivoSeleccionado:null
+        cultivoSeleccionado:null, 
         
       }
     },
 
+    created() {
+        setInterval(() => {
+            this.obtenerDatosSensores(); // Llama a obtenerDatosSensores() cada cierto intervalo
+        }, 5000); // Por ejemplo, cada 5 segundos
+    },
+
     mounted(){
+        this.obtenerDatosSensores();
       // Realizar las solicitudes HTTP para obtener datos
       //Lectura tipo de cultivo
       axios.get('http://localhost:8000/api/tipoCultivo')
@@ -285,20 +293,48 @@ export default{
         this.plantaSeleccionada = { fila: filaIndex, columna: columnaIndex };
         const planta = this.matriz[filaIndex][columnaIndex];
         this.cultivoSeleccionado = planta ? planta.cultivo : null;
-      }
+      },
 
-    }
+    //  ---------- metodos de sensores----------------
 
+
+        obtenerDatosSensores() {
+            axios.get(this.api + '/Sensor_MQTT/')
+            .then(response => {
+                this.Datos_sensores=response.data
+                this.obtenerUltimaActualizacion();
+                console.log(this.Datos_sensores)
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos de los sensores:', error);
+            });
+        },
+        obtenerUltimaActualizacion() {
+            // Ordenar los datos por timestamp de forma descendente para obtener la última actualización primero
+            const ultimaActualizacion = this.Datos_sensores.sort((a, b) => b.id - a.id)[0];
+            
+            // Actualizar las variables de la interfaz de usuario con los datos de la última actualización
+            this.acelerometro_roll = ultimaActualizacion.acelerometro_roll;
+            this.acelerometro_pitch = ultimaActualizacion.acelerometro_pitch;
+            this.acelerometro_yaw = ultimaActualizacion.acelerometro_yaw;
+            
+            this.giroscopio_pitch = ultimaActualizacion.giroscopio_pitch;
+            this.giroscopio_roll = ultimaActualizacion.giroscopio_roll;
+            this.giroscopio_yaw = ultimaActualizacion.giroscopio_yaw;
+
+            this.humedad = ultimaActualizacion.humedad;
+            this.presion = ultimaActualizacion.presion;
+            this.temperatura = ultimaActualizacion.temperatura;
+
+        }
+    },
+
+    
 
 }
 
 
 </script>
-
-
-
-
-
 
 
 

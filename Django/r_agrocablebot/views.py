@@ -107,3 +107,4 @@ class MensajeViewSet(viewsets.ModelViewSet):
 class Sensor_MQTTViewSet(viewsets.ModelViewSet):
     queryset = Sensor_MQTT.objects.all()
     serializer_class = Sensor_MQTTSerializer
+

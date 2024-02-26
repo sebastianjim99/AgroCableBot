@@ -17,7 +17,7 @@ from r_agrocablebot.views import (
     calendariosViewSet,
     publish_message,
     MensajeViewSet,
-    Sensor_MQTTViewSet
+    Sensor_MQTTViewSet,
 )
 
 from .views import (
