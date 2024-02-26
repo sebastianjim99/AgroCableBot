@@ -19,16 +19,17 @@
         <footer_imacuna />
       </section>
     </div>
-  </template>
+</template>
  
- <script>
- import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
- import footer_imacuna from '/src/components/footer.vue'
- import axios from 'axios';
- import { Chart as ChartJS, Title, Tooltip, Legend, LineController, LinearScale, PointElement, LineElement, TimeScale } from 'chart.js'; // Agrega TimeScale a la lista de elementos importados
- import 'chartjs-adapter-moment'; 
- import moment from 'moment'; 
- 
+<script>
+
+import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
+import footer_imacuna from '/src/components/footer.vue'
+import axios from 'axios';
+import { Chart as ChartJS, Title, Tooltip, Legend, LineController, LinearScale, PointElement, LineElement, TimeScale } from 'chart.js'; // Agrega TimeScale a la lista de elementos importados
+import 'chartjs-adapter-moment'; 
+import moment from 'moment'; 
+
  ChartJS.register(Title, Tooltip, Legend, LineController, LinearScale, PointElement, LineElement, TimeScale); // Agrega TimeScale al registro de elementos
  
  ChartJS.defaults.plugins.tooltip.callbacks.label = function(context) {
@@ -107,12 +108,7 @@
  </script>
  
  
-
- 
-
   
-  
-  <style scoped>
-  /* Estilos específicos si los necesitas */
-  </style>
-  
+<style scoped>
+/* Estilos específicos si los necesitas */
+</style>
