@@ -1,111 +1,118 @@
 <template>
-    
-    <div class="">
+    <div>
+      <div class="">
         <navbar_monitoreo />
-    </div>
-
-
-    <div class="row mt-3" >
+      </div>
+  
+      <div class="row mt-3">
         <div class="col-md-6 offset-3">
-            <div class="card border border-dark">
-                <div class="card-header bg-dark">
-
-                </div>
-                <div class="card-body">
-                    <Bar :data="chartData" :options="chartOptions" />
-                </div>
-
+          <div class="card border border-dark">
+            <div class="card-header bg-dark"></div>
+            <div class="card-body">
+              <canvas id="temperatureChart"></canvas>
             </div>
-
+          </div>
         </div>
-
-    </div>
-
-
-    <section>
+      </div>
+  
+      <section>
         <footer_imacuna />
-    </section>
-
-
-</template>
-
-
-<script>
-import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
-import footer_imacuna from '/src/components/footer.vue'
-import axios from 'axios';
-import { Bar,  } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-
-export default{
-    extends: Bar,
-    // mixins: [mixins.reactiveData],
-
-    components:{
-        navbar_monitoreo,
-        footer_imacuna,
-        Bar,
-       
-    },
-    data(){
-       return{
-           'api': `${process.env.VUE_APP_API_URL}`,
-            chartData: { 
-                labels: [],
-                datasets: [{
-                    label: 'Valores de Sensores',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1,
-                    data: [],
-                }],
-            },
-            chartOptions:{
-                responsive:true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
-                },
-            }
+      </section>
+    </div>
+  </template>
+ 
+ <script>
+ import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
+ import footer_imacuna from '/src/components/footer.vue'
+ import axios from 'axios';
+ import { Chart as ChartJS, Title, Tooltip, Legend, LineController, LinearScale, PointElement, LineElement, TimeScale } from 'chart.js'; // Agrega TimeScale a la lista de elementos importados
+ import 'chartjs-adapter-moment'; 
+ import moment from 'moment'; 
+ 
+ ChartJS.register(Title, Tooltip, Legend, LineController, LinearScale, PointElement, LineElement, TimeScale); // Agrega TimeScale al registro de elementos
+ 
+ ChartJS.defaults.plugins.tooltip.callbacks.label = function(context) {
+   return context.dataset.label + ': ' + context.parsed.y + ' °C';
+ };
+ ChartJS.defaults.plugins.tooltip.displayColors = false;
+ 
+ moment.updateLocale('en', {
+   week: { dow: 1 } 
+ });
+ 
+ export default {
+   components: {
+     navbar_monitoreo,
+     footer_imacuna,
+   },
+ 
+   data() {
+     return {
+       'api': `${process.env.VUE_APP_API_URL}`,
+       temperaturaData: []
+     }
+   },
+   async mounted() {
+     await this.getTemperaturaData();
+   },
+   methods: {
+     async getTemperaturaData() {
+       try {
+         const response = await axios.get(this.api + '/Sensor_MQTT/');
+         if (response.data && Array.isArray(response.data)) {
+           this.temperaturaData = response.data;
+ 
+           const times = this.temperaturaData.map(data => moment(data.timestamp).format('HH:mm')); 
+           const temperatures = this.temperaturaData.map(data => data.temperatura);
+ 
+           const ctx = document.getElementById('temperatureChart').getContext('2d');
+           new ChartJS(ctx, {
+             type: 'line',
+             data: {
+               labels: times,
+               datasets: [{
+                 label: 'Temperatura vs Hora',
+                 data: temperatures,
+                 borderColor: 'rgb(75, 192, 192)',
+                 borderWidth: 1
+               }]
+             },
+             options: {
+               scales: {
+                 x: {
+                   type: 'time',
+                   time: {
+                     parser: 'HH:mm', 
+                     unit: 'hour',
+                     displayFormats: {
+                       hour: 'HH:mm'
+                     }
+                   }
+                 },
+                 y: {
+                   beginAtZero: true
+                 }
+               }
+             }
+           });
+         } else {
+           console.error('Data format is incorrect:', response.data);
+         }
+       } catch (error) {
+         console.error('Error fetching temperatura data:', error);
        }
-    },
-     mounted() {
-        this.obtenerDatosSensores();
-    },
-    methods: {
-        obtenerDatosSensores() {
-            axios.get(this.api + '/Sensor_MQTT/')
-            .then(response => {
-                    this.procesarDatos(response.data);
-                    console.log(response.data)
-            })
-            .catch(error => {
-                console.error('Error al obtener los datos de los sensores:', error);
-            });
-        },
-        procesarDatos(datosSensores) {
-            console.log('Datos de sensores recibidos:', datosSensores);
+     }
+   }
+ }
+ </script>
+ 
+ 
 
-            // Filtrar solo los registros que contienen el campo "temperatura"
-            const datosTemperatura = datosSensores.filter(sensor => typeof sensor.temperatura !== 'undefined');
+ 
 
-            // Obtener todos los valores de temperatura en un array
-            const valoresTemperatura = datosTemperatura.map(sensor => sensor.temperatura);
-
-            console.log('Valores de temperatura:', valoresTemperatura);
-
-            // Actualizar los datos del gráfico para mostrar los valores de temperatura
-            this.chartData.labels = datosTemperatura.map(sensor => sensor.timestamp);
-            this.chartData.datasets[0].label = 'Temperatura'; // Cambia la etiqueta del conjunto de datos
-            this.chartData.datasets[0].data = valoresTemperatura; // Usar los valores de temperatura
-        },
-
-
-
-    }
-}
-</script>
+  
+  
+  <style scoped>
+  /* Estilos específicos si los necesitas */
+  </style>
+  
