@@ -242,3 +242,12 @@ class Sensor_MQTT(models.Model):
     humedad = models.FloatField()
     presion = models.FloatField()
     temperatura = models.FloatField()
+
+    # def __str__(self):
+    #     return self.temperatura
+
+    # class Meta:
+    #     verbose_name = 'Sensor'
+    #     verbose_name_plural = 'Sensores'
+    #     db_table = 'Sensores'
+    #     ordering = ['id']

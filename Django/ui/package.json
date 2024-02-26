@@ -17,6 +17,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons-vue": "^1.11.3",
     "bootstrap-vue": "^2.23.1",
+    "chart.js": "^4.4.1",
     "core-js": "^3.8.3",
     "form-data": "^4.0.0",
     "save": "^2.9.0",
@@ -24,6 +25,7 @@
     "sweetalert2": "^11.10.5",
     "swiper": "^11.0.6",
     "vue": "^3.4.19",
+    "vue-chartjs": "^5.3.0",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0"
   },
