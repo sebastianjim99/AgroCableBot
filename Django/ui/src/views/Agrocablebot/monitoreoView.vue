@@ -39,6 +39,7 @@ export default{
         CultivoVue,
         Calendar_resum,
         footer_imacuna,
-    }
+    },
+    
 }
 </script>

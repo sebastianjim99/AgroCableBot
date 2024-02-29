@@ -2,8 +2,8 @@
     <!--  SECCION DE SERVICIOS -->
     <section>
         <div>
-            <div class="container" style="padding-bottom: 1px; justify-content: flex-end; display: flex;">
-                <h1 class="servicios-tittle" style="text-align: end; color: white;" >Servicios</h1>
+            <div class="container" style="padding-bottom: 1px; justify-content: center; display: flex;">
+                <h1 class="servicios-tittle" style=" color: white;" >Servicios</h1>
             </div>
             <div class="container py-4 py-xl-5">  
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xl-4" >
@@ -53,7 +53,7 @@ export default{
 
   methods : {
     getServicios(){
-      axios.get(this.api + /Servicios/ ).then(
+      axios.get(this.api + '/api/Servicios/ ').then(
         Response => {
           console.log(Response.data)
           this.Servicios = Response.data;
@@ -78,7 +78,7 @@ export default{
       var formData = this.toFormData(requestData)
 
       // Enviar el formulario al backend
-      axios.post(this.api + /Servicios/, formData, {"content-type": "multipart/form-data"})
+      axios.post( this.api + '/api/Servicios/', formData, {"content-type": "multipart/form-data"})
         .then(response => {
           console.log("Datos subidos exitosamente", response.data);
           this.getServicios()
@@ -104,7 +104,7 @@ export default{
     },
 
     deleteData(id) {
-      axios.delete(this.api + `/Servicios/${id}/`).then(
+      axios.delete(this.api + `/api/Servicios/${id}/`).then(
         response => {
           console.log('Datos eliminados exitosamente', response.data);
           this.getServicios(); // Actualiza la lista después de la eliminación

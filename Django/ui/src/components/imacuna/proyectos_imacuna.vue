@@ -8,9 +8,9 @@
               <p class="w-lg-50"> Cosechando innovación </p>
           </div>
         </div>
+        
         <div class="row gy-4 row-cols-1 row-cols-md-2"  >
           <div class="col-md " style=" object-fit: cover;" v-for="proyecto in proyectos" :key="proyecto.id" >
-
             <div class="cardcontent">
               <div class="card-proyecto"  >
                <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiperCards"  >
@@ -38,7 +38,7 @@
 import axios from 'axios';
 import 'swiper/css/effect-cards';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { EffectCards } from 'swiper/modules';
+import { EffectCards } from 'swiper/modules'; 
 
 export default {
   data() {
@@ -53,10 +53,11 @@ export default {
     setup() {
       return {
         modules: [EffectCards],
+        'api': `${process.env.VUE_APP_API_URL}`,
       };
     },
   mounted() {
-    axios.get(`${process.env.VUE_APP_API_URL}` + '/proyectos/')
+    axios.get(this.api + '/api/proyectos/')
       .then(response => {
         console.log("proyectos")
         console.log(response.data)

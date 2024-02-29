@@ -14,7 +14,7 @@
                 <li class="nav-item"><a class="nav-link" href="/Calendario">Calendario</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Estadisticas">Estadísticas</a></li>
                 <li class="nav-item"><a class="nav-link" href="/soporte">Soporte</a></li>
-                <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" :href="this.api + '/admin/' " >Admin</a></li>
             </ul>
         </div>
         <button @click="logout" type="submit" class="btn btn-primary" >Cerrar Sesión</button>
@@ -27,6 +27,11 @@
 export default{
 
   name: "navbar_monitoreo",
+  data(){
+        return{
+            'api' : `${process.env.VUE_APP_API_URL}`,
+        }
+    },
 
     methods: {
 
