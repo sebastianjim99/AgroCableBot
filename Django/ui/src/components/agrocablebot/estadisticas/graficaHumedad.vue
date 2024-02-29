@@ -1,7 +1,10 @@
 <template>
-  <div class="container">
-    <Bar :data="chartData" :options="chartOptions" v-if="loaded" />
-    <div v-else>Cargando...</div>
+  <div> 
+    <div id="container5" class="container">
+      <Bar :data="chartData" :options="chartOptions" v-if="loaded" />
+      <div v-else>Cargando...</div>
+    </div>
+    <button @click="downloadChart">Descargar Gráfico</button>
   </div>
 </template>
 
@@ -9,6 +12,7 @@
 import { Bar } from 'vue-chartjs';
 import axios from 'axios';
 import moment from 'moment';
+import html2canvas from 'html2canvas';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,7 +29,7 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
-  BarElement,
+  BarElement, // Corrección: Registrar BarElement en lugar de Bar
   Title,
   Tooltip,
   Legend,
@@ -102,6 +106,26 @@ export default {
 
       // Actualizar los datos de la gráfica
       this.chartData = chartData;
+    },
+    async downloadChart() {
+      try {
+        await this.$nextTick(); // Espera a que el componente se haya renderizado completamente
+        const chartContainer = document.getElementById('container5');
+        if (chartContainer) {
+          const canvas = await html2canvas(chartContainer);
+          const imageData = canvas.toDataURL('image/png');
+
+          // Para descargar la imagen en el dispositivo del cliente
+          const downloadLink = document.createElement('a');
+          downloadLink.href = imageData;
+          downloadLink.download = 'grafico_historico_humedad.png';
+          downloadLink.click();
+        } else {
+          console.error('El contenedor del gráfico no existe.');
+        }
+      } catch (error) {
+        console.error('Error al descargar el gráfico:', error);
+      }
     }
   }
 };
