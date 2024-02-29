@@ -1,12 +1,11 @@
 .somos-title{
-    width: 800px;
-    height: 0;
-    border-left: 0px solid #375E97;
-    border-right: 150px solid transparent;
-    border-bottom: 50px solid #375E97;/* Ajusta verticalmente el texto */
+    width: auto;
+    height: auto;
+    background-color: #375E97 ;
     text-align: end;
-    padding-left: 20px;
+    padding: 10px;
     display: flex;
+    border-radius: 10px;
 }
 
 .lineas-container{
@@ -35,55 +34,68 @@
 
 
 .lineas-tittle{
-    width: 800px;
-    height: 0;
-    border-left: 0px solid #FB6542;
-    border-right: 150px solid transparent;
-    border-bottom: 60px solid #FB6542;/* Ajusta verticalmente el texto */
-    text-align: end;
-    padding-left: 20px;
+    width: 650px;
+    height: auto;
+    background-color: #FB6542; 
     display: flex;
+    border-radius: 10px;
+    justify-content: end;
+    
 }
 
+.lineas{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+}
+
+
 .servicios-tittle{
-    width: 800px;
+    width: 600px;
     height: 0;
     align-items: flex-end;
-    border-left: 150px solid transparent;
+    border-left: 150px solid #FFBB00;;
     border-right: 0 solid #FFBB00;
     border-bottom: 60px solid #FFBB00;/* Ajusta verticalmente el texto */
     text-align: end;
     padding-right: 200px;
+    border-radius: 10px;
 
 }
   
 .mision-tittle{
-    width: 800px;
+    width: 600px;
     height: 0;
     border-left: 0px solid #375E97;
-    border-right: 150px solid transparent;
+    border-right: 150px solid #375E97;
     border-bottom: 50px solid #375E97;/* Ajusta verticalmente el texto */
     text-align: end;
     padding-left: 70px;
     display: flex;
+    border-radius: 10px;
+    justify-content: center;
 }
 
 .vision-tittle{
-    padding-top: 20px;
-    width: 800px;
+    
+    width: 600px;
     height: 0;
     align-items: flex-end;
-    border-left: 150px solid transparent;
+    border-left: 150px solid #3F681C;
     border-right: 0 solid #3F681C;
     border-bottom: 60px solid #3F681C;/* Ajusta verticalmente el texto */
     text-align: end;
     padding-right: 250px;
     justify-content: center;
+    border-radius: 10px;
 
 }
 .text-somos{
-    font-size: 30px;
+    font-size: 20px;
+    margin-top: 20px;
 }
+
 @media (max-width: 768px) {
     .text-mis-vis {
         font-size: 14px; /* Tamaño de letra más pequeño para dispositivos móviles */
@@ -137,7 +149,7 @@
 
 .text-mis-vis{
     text-align: justify;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .imagen-zoom {
@@ -159,6 +171,8 @@
 }
 
 .cardcontent:hover{
+    bottom: 0px;
+    position: relative;
     cursor: pointer;
 } 
 
@@ -173,16 +187,18 @@
 }
 
 .cardcontent:hover .img-proyecto{
-    transform: scale(1.2) rotate(-3deg);
+    transform: scale(1.1) ;
 }
+
 
 .cardcontent:hover .content-text{
     height: 200px;
-    bottom: 50px;
-    background: black;
+    bottom: 0px;
+    background-image: linear-gradient(to top, rgb(170, 17, 51), rgba(255, 255, 255, 0));
 }
 
 .card-proyecto {
+    position: relative;
     height: 400px;
     width: 400px ;
     margin: 50px;
@@ -205,8 +221,10 @@
     background: rgb(27, 27, 27, .5);
     color: white;
     transition: .5s;
-    bottom: 50px;
+    bottom: 0px;
     z-index: 2; 
+
+    
 }
 
 .title-proyecto{
@@ -227,6 +245,9 @@
     margin: 0;
 }
 
+
+
+
 /* SI ES UN CELULAR  */
 
 @media (max-width: 768px) {
@@ -242,6 +263,7 @@
     }
 
     .content-text{
+        
         width: 200px ;
     }
     .title-proyecto{

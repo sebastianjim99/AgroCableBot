@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: center;
     background-color: #efefef;
+    border-top: 25px;
 }
 .slider-container{
     max-width: 1120px;
@@ -44,10 +45,8 @@
 .image-integrante{
     position: relative;
     row-gap: 5px;
-    
+
 }
-
-
 
 .overlay{
     position: absolute;
@@ -67,20 +66,22 @@
     height: 40px;
     width: 40px;
     background-color: #4070f4;
+    
 }
 
 .overlay::after{
     border-radius: 0 25px 0 0;
     background-color: #fff;
+    border-color: transparent;
    
 }
 
 
 .card-image{
-    margin: 30px;
+    margin: 10px;
     position: relative;
-    height: 150px;
-    width: 150px;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     background: white;
     padding: 3px;    
@@ -104,6 +105,31 @@
     font-size: 14px;
     color: #707070;
     text-align: center;
+    margin: 5px;
+
+}
+
+.iconos {
+    text-align: center;
+}
+
+.icon-link {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.icon-link svg {
+    width: 20px;
+    height: 20px;
+    color: #333; /* Cambia esto al color deseado para los iconos */
+}
+
+.icon-link:hover svg {
+    color: #007bff; /* Cambia esto al color deseado para los iconos al pasar el ratón por encima */
+}
+
+.swiper-pagination{
+    position: relative;
 }
 
 @media screen and (max-width: 768px) {
@@ -119,19 +145,3 @@
     }
     
   }
-
-
-.button{
-   border: none;
-   font-size: 16px;
-   color: #fff;
-   padding: 8px 16px;
-   background-color: #4070f4;
-   border-radius: 6px;
-   margin: 14px;
-   cursor: pointer;
-   transition: all 0.3s ease;
-}
-.button:hover{
-    background-color: #265df2;
-}

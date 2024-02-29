@@ -1,13 +1,22 @@
 <template>
     <!-- CSS de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!-- <div id="app">
+       
+        <video v-if="showIntroVideo" autoplay muted @ended="hideIntroVideo" class="intro-video">
+            <source src="@/assets/logos/moviento_robot.mp4" type="video/mp4">
+            Tu navegador no admite la reproducción de video.
+        </video>
+
+        <div v-else class="content">
+        
+        </div>
+    </div> -->
 
     <nav class="navbar navbar-expand-md bg-body py-3">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <span></span>
-        </a>
-        <img src="@/assets/logos/imacuna.png" width="168" height="72" style="text-align: left;position: static;display: flex;" />
+        <img src="@/assets/logos/imacuna.png" width="140" height="60" style="text-align: left;position: static;display: flex;" />
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-3">
             <span class="visually-hidden">Toggle navigation</span>
             <span class="navbar-toggler-icon"> 
@@ -23,45 +32,16 @@
             <a class="btn" type="button" href="loginView" style="background-color: #FB6542; color: white">Ingresar</a>
         </div>
     </div>
-</nav>
+    </nav>
 
     <!-- Seccion presentacion de la pagina web -->
 <section>
-    <div class="header" >
-
-    </div>
-
-
-    <swiper class="swiper2"
-    :spaceBetween="30"
-    :centeredSlides="true"
-    :autoplay="{
-      delay: 3000,
-      disableOnInteraction: false,
-    }"
-    :pagination="{
-      clickable: true,
-    }"
-    :navigation="true"
-    :modules="modules"
-    >
-        <swiper-slide class="swiper1-slide"> 
-            <div>
-                <h1 class="title-header"> PRESENTAMOS</h1>
-                <h4> SEMILLERO IMACUNA </h4>
+    <div id="videoContainer" class="mobile-background">
+        <div class="container-fluid d-flex justify-content-center align-items-center align-content-center video-parallax-container">
+            <div class="row">
             </div>
-        </swiper-slide>
-
-        <!-- <swiper-slide class="swiper1-slide"> 
-            <h1 class="title-header" > </h1> 
-        </swiper-slide> -->
-        
-        <swiper-slide class="swiper2-slide">
-            
-        </swiper-slide>
-        
-        <!-- <swiper-slide class="swiper4-slide">Slide 5</swiper-slide> -->
-    </swiper>
+        </div>
+    </div>
 </section>
 
 
@@ -70,14 +50,14 @@
  <!--  SECCION DE QUIENES  -->
 <section>
     <div class="container" style=" padding: 20px; display: flex;" >
-        <h1 class="somos-title" style="color:white; text-align: center; display: flex;"> ¿Quiénes somos?</h1>
+        <h1 class="somos-title" style="color:white; "> ¿Quiénes somos?</h1>
     </div> 
     
     <div class="container">
         <div class="row" style="position: static; text-align: center; margin: 10px " >
-            <div class="col-md-6 col-xl-3"><img width="214" height="202" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 10px;" /></div>
+            <div class="col-md-6 col-xl-3"><img width="150" height="150" src="@/assets/logos/Introduccion_robot.png" style="width: 200 px;padding-top: 0px;margin-top: 10px;" /></div>
             <div class="col-md-6 col-xl-8">
-                <p class="text-somos" style="font-size: 30px; ">Somos el semillero de investigación IMACUNA, un grupo de ingenieros entusiastas por impulsar la innovación y la modernización de la agricultura, en beneficio de productores y consumidores.<br /><strong>“Somos el futuro agrícola”</strong>.</p>
+                <p class="text-somos" >Somos el semillero de investigación IMACUNA, un grupo de ingenieros entusiastas por impulsar la innovación y la modernización de la agricultura, en beneficio de productores y consumidores.<br /><strong>“Somos el futuro agrícola”</strong>.</p>
             </div>
         </div>
     </div>
@@ -202,8 +182,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import Lineas from '../components/imacuna/Lineas.vue'
 import Servicios from '../components/imacuna/Servicios.vue'
@@ -220,19 +198,54 @@ export default{
         proyectos_imacuna,
         Integrantes,
         footer_imacuna,
-        Swiper,
-        SwiperSlide,
     },
-    setup() {
-      return {
-        modules: [Autoplay, Pagination, Navigation],
-      };
+
+    data() {
+        return {
+            showIntroVideo: true
+        };
     },
+    methods: {
+        hideIntroVideo() {
+            this.showIntroVideo = false;
+        }
+    },
+
 
 }
 </script>
 
 <style>
+
+    .intro-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 9999; /* Asegúrate de que el video esté en la parte superior */
+    }
+
+    .content {
+        display: none; /* Oculta el contenido principal mientras se reproduce el video */
+    }
+
+
+
+    .mobile-background {
+
+        background-image: url("/src/assets/logos/semillero.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: bottom;
+    }
+    .video-parallax-container {
+        height: 50vh;
+        overflow: hidden;
+    }
+
     .swiper2 {
         width: 100%;
         height: 400px;

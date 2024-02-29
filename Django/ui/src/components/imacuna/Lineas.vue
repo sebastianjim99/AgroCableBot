@@ -2,8 +2,10 @@
      <!--  SECCION DE LINEAS DE INVESTIGACIÓN -->
     <section>
         <div>
-            <div class="container"   style=" padding-bottom: 20px; display: flex;" >
-            <h1 class="lineas-tittle" style="color: white;  ">Líneas de investigación</h1>
+            <div class="container"   style=" padding-bottom: 5px; display: flex; justify-content: center; " >
+            <div class="lineas-tittle" >
+              <h1 class="lineas">Líneas de investigación</h1>   
+            </div> 
             </div>
             <div class="container py-4 py-xl-5">  
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xl-4" >

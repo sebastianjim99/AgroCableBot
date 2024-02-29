@@ -8,6 +8,8 @@ import json
 from django.http import JsonResponse
 from r_agrocablebot.mqtt import client as mqtt_client
 from django.views.decorators.csrf import csrf_exempt
+import paho.mqtt.publish as publish
+import os 
 
 from .models import (
     acciones,
@@ -104,7 +106,21 @@ class MensajeViewSet(viewsets.ModelViewSet):
     queryset = Mensaje.objects.all()
     serializer_class = MensajeSerializer
 
+
 class Sensor_MQTTViewSet(viewsets.ModelViewSet):
     queryset = Sensor_MQTT.objects.all()
     serializer_class = Sensor_MQTTSerializer
 
+
+@csrf_exempt
+def enviar_mensaje_mqtt(request):
+    if request.method == 'POST':
+        message = {
+            'interface': 'send_aio'
+        }
+        try:
+            # Publicar el mensaje MQTT
+            publish.single('comandos', json.dumps(message), hostname=os.environ['MQTT_SERVER'])
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})

@@ -10,6 +10,7 @@ def on_connect(mqtt_client, userdata, flags, rc):
     if rc == 0:
         print('Connected successfully')
         mqtt_client.subscribe('sensores')
+        mqtt_client.subscribe('comandos')
     else:
         print('Bad connection. Code:', rc)
 

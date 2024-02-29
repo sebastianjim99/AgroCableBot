@@ -92,6 +92,8 @@ class integrante(models.Model):
     facultades=models.ForeignKey(facultades,to_field='nombre' ,null=True,blank=True,on_delete=models.CASCADE)
     programa=models.ForeignKey(programa,to_field='nombre', null=True,blank=True,on_delete=models.CASCADE)
     tipoIntegrante=models.ForeignKey(tipoIntegrante,to_field='nombre',null=True,blank=True,on_delete=models.CASCADE)
+    linkedin = models.CharField(max_length=100, verbose_name='urllinkedin', null=True)
+    resechgate = models.CharField(max_length=100, verbose_name='urlresechgate', null=True)
 
     def nombre_completo(self):
         return "{} {}, {}".format(self.primer_apellido, self.segundo_apellido, self.nombres)

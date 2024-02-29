@@ -1,7 +1,5 @@
 <template>
 
-
-
     <div class="">
         <navbar_monitoreo />
     </div>
@@ -33,7 +31,6 @@
                                     <svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;padding: 0%;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
                                     </svg>
-                                    
                                 </div>
                                 <div class="col-md-2">
                                     <svg class="bi bi-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;margin: 5px;">
@@ -108,10 +105,19 @@
                                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
                                 </svg></a></li>
                         <li class="nav-item"><a class="nav-link active" href="#" style="margin-top: 11px;">Censar</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#"><svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                                </svg></a></li>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                               <button @click="enviarMensajeMQTT">Enviar Mensaje MQTT</button> 
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -184,7 +190,6 @@
         </div>
     </section>
 
-
     <div>
         <listCultivo />
     </div>
@@ -213,6 +218,7 @@ export default{
     },
 
     data(){
+
       return{
         'api': `${process.env.VUE_APP_API_URL}`,
         tipo_cultivo:[],
@@ -226,77 +232,84 @@ export default{
       }
     },
 
-    created() {
-        setInterval(() => {
-            this.obtenerDatosSensores(); // Llama a obtenerDatosSensores() cada cierto intervalo
-        }, 5000); // Por ejemplo, cada 5 segundos
-    },
-
     mounted(){
         this.obtenerDatosSensores();
-      // Realizar las solicitudes HTTP para obtener datos
-      //Lectura tipo de cultivo
-      axios.get('http://localhost:8000/api/tipoCultivo')
-      .then(response =>{
-        console.log("Tipo de cultivos")
-        console.log(response.data)
-        this.tipo_cultivo=response.data
-      })
-      .catch(error =>{
-        console.log(error)
-      })
-      //Lectura de cultivo
-      axios.get('http://localhost:8000/api/cultivo')
-      .then(response =>{
-        console.log("Cultivos")
-        console.log(response.data)
-        this.cultivos=response.data
-      })
-      .catch(error =>{
-        console.log(error)
-      })
-      //Lectura de plantas
-      axios.get('http://localhost:8000/api/plantas')
-      .then(response =>{
-        console.log("plantas")
-        console.log(response.data)
-        this.plantas=response.data
-        this.initializeMatriz()
-      })
-      .catch(error =>{
-        console.log(error)
-      })
+        // Realizar las solicitudes HTTP para obtener datos
+        //Lectura tipo de cultivo
+        axios.get('http://localhost:8000/api/tipoCultivo')
+        .then(response =>{
+            console.log("Tipo de cultivos")
+            console.log(response.data)
+            this.tipo_cultivo=response.data
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+        //Lectura de cultivo
+        axios.get('http://localhost:8000/api/cultivo')
+        .then(response =>{
+            console.log("Cultivos")
+            console.log(response.data)
+            this.cultivos=response.data
+            this.initializeMatriz()
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+        //Lectura de plantas
+        axios.get('http://localhost:8000/api/plantas')
+        .then(response =>{
+            console.log("plantas")
+            console.log(response.data)
+            this.plantas=response.data
+        })
+        .catch(error =>{
+            console.log(error)
+        })
       
     },
 
     methods: {
-      // Función para inicializar la matriz con los datos de las plantas
-      initializeMatriz() {
-        for (let i = 0; i < 8; i++) {
-          this.matriz.push(new Array(8).fill(null));
-        }
+        // Función para inicializar la matriz con los datos de las plantas
+        initializeMatriz() {
+            // Limpia la matriz para evitar duplicados si la función se llama varias veces
+            this.matriz = [];
+            // Crea una nueva matriz basada en la cantidad de plantas del cultivo seleccionado
+            const cantidadDePlantas = this.cultivos.reduce((total, cultivo) => total + cultivo.cantidad, 0);
+            const filas = Math.ceil(cantidadDePlantas / 9);
 
-        // Asignar las plantas a la matriz según el número de planta asignado
-        this.plantas.forEach(planta => {
-          const fila = Math.floor((planta.numeroPlanta - 1) / 8);
-          const columna = (planta.numeroPlanta - 1) % 8;
-          this.matriz[fila][columna] = planta;  
-        }); 
-      },
+            for (let i = 0; i < filas; i++) {
+            this.matriz.push(new Array(8).fill(null));
+            }
 
-      obtenerContadorPosicion(filaIndex, columnaIndex) {
-        // Calcula el contador de posición basado en los índices de fila y columna
-        return filaIndex * this.matriz[0].length + columnaIndex + 1;
-      },
-      // Seleccion de la planta mediante click y despliegue de informacion
-      seleccionarPlanta(filaIndex, columnaIndex) {
-        this.plantaSeleccionada = { fila: filaIndex, columna: columnaIndex };
-        const planta = this.matriz[filaIndex][columnaIndex];
-        this.cultivoSeleccionado = planta ? planta.cultivo : null;
-      },
+            // Asignar las plantas a la matriz según el número de planta asignado
+            let contadorPlanta = 0;
+            this.cultivos.forEach(cultivo => {
+            for (let i = 0; i < cultivo.cantidad; i++) {
+                const fila = Math.floor(contadorPlanta / 9);
+                const columna = contadorPlanta % 9;
+                this.matriz[fila][columna] = {
+                // nombre: cultivo.nombre,
+                icono: cultivo.iconosPlantas,
+                cultivo: cultivo
+                };
+                contadorPlanta++;
+                }
+            });
+        },
 
-    //  ---------- metodos de sensores----------------
+        obtenerContadorPosicion(filaIndex, columnaIndex) {
+            // Calcula el contador de posición basado en los índices de fila y columna
+            return filaIndex * this.matriz[0].length + columnaIndex + 1;
+        },
+        // Seleccion de la planta mediante click y despliegue de informacion
+        seleccionarPlanta(filaIndex, columnaIndex) {
+            this.plantaSeleccionada = { fila: filaIndex, columna: columnaIndex };
+            const planta = this.matriz[filaIndex][columnaIndex];
+            this.cultivoSeleccionado = planta ? planta.cultivo : null;
+        },
 
+        //  ---------- metodos de sensores----------------
 
         obtenerDatosSensores() {
             axios.get(this.api + '/Sensor_MQTT/')
@@ -326,13 +339,33 @@ export default{
             this.presion = ultimaActualizacion.presion;
             this.temperatura = ultimaActualizacion.temperatura;
 
-        }
-    },
+        },
+        enviarMensajeMQTT() {
+            const csrfToken = window.csrfToken;
 
-    
+            const message = {
+                interface: 'send_aio'
+            };
+            // Enviar una solicitud POST al servidor Django
+            axios.post('http://127.0.0.1:8000/sensar-mqtt/', message, {
+                headers: {
+                    'X-CSRFToken': csrfToken // Incluye el token CSRF en la cabecera de la solicitud
+                }
+            })
+            .then(() => {
+                console.log('Mensaje MQTT enviado correctamente');
+                this.obtenerDatosSensores()
+                this.obtenerUltimaActualizacion();
+            })
+            .catch(error => {
+                console.error('Error al enviar mensaje MQTT:', error);
+            });
+
+        },
+        
+    },  
 
 }
-
 
 </script>
 

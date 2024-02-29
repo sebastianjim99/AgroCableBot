@@ -238,7 +238,8 @@ export default {
             this.cerrarModal();
             this.editingCultivoId = null;
             this.getCultivos();
-            this.resetForm();     
+            this.resetForm();   
+            this.initializeMatriz();
           });
         })
         .catch(error => {
@@ -299,6 +300,7 @@ export default {
               ).then(() => {
                 // Actualiza la lista de cultivos mostrada en la interfaz de usuario después de eliminar el cultivo
                 this.getCultivos();
+                this.initializeMatriz();
               });
             })
             .catch(error => {
@@ -323,6 +325,32 @@ export default {
       this.fechaSiembra = "";
       this.selectedTipo = null;
       this.selectedSensores = [];
+    },
+    initializeMatriz() {
+        // Limpia la matriz para evitar duplicados si la función se llama varias veces
+        this.matriz = [];
+        // Crea una nueva matriz basada en la cantidad de plantas del cultivo seleccionado
+        const cantidadDePlantas = this.cultivos.reduce((total, cultivo) => total + cultivo.cantidad, 0);
+        const filas = Math.ceil(cantidadDePlantas / 9);
+
+        for (let i = 0; i < filas; i++) {
+        this.matriz.push(new Array(8).fill(null));
+        }
+
+        // Asignar las plantas a la matriz según el número de planta asignado
+        let contadorPlanta = 0;
+        this.cultivos.forEach(cultivo => {
+        for (let i = 0; i < cultivo.cantidad; i++) {
+            const fila = Math.floor(contadorPlanta / 9);
+            const columna = contadorPlanta % 9;
+            this.matriz[fila][columna] = {
+            // nombre: cultivo.nombre,
+            icono: cultivo.iconosPlantas,
+            cultivo: cultivo
+            };
+            contadorPlanta++;
+            }
+        });
     },
   }
 };

@@ -18,6 +18,7 @@ from r_agrocablebot.views import (
     publish_message,
     MensajeViewSet,
     Sensor_MQTTViewSet,
+    enviar_mensaje_mqtt,
 )
 
 from .views import (
@@ -63,7 +64,6 @@ router.register('calendarios', calendariosViewSet, basename= 'calendarios')
 router.register('mensaje', MensajeViewSet, basename= 'mensaje')
 router.register('Sensor_MQTT', Sensor_MQTTViewSet, basename= 'Sensor_MQTT')
 
-MensajeViewSet
 
 urlpatterns = [
     path('api/', include(router.urls)),
@@ -75,6 +75,7 @@ urlpatterns = [
     path('aboveCam2/', cameras , name='aboveCamera2'),
     path('captura/', capturas , name='captura'),
     path('publish/', publish_message, name= 'publish' ),
+    path('sensar-mqtt/', enviar_mensaje_mqtt, name='sensar-mqtt'),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
