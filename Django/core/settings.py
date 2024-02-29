@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # Para crear tokens de identificacion
     'imacuna.apps.ImacunaConfig',
     'r_agrocablebot',
-    'channels',
+    # 'channels',
     
 ]
 
@@ -57,11 +57,11 @@ ROOT_URLCONF = 'core.urls'
 # Configuración de Channels
 ASGI_APPLICATION = 'tu_proyecto.asgi.application'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Usando una capa en memoria para desarrollo
-    },
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Usando una capa en memoria para desarrollo
+#     },
+# }
 
 TEMPLATES = [
     {
