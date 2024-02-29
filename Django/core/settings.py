@@ -4,18 +4,21 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["secretkey"],
+SECRET_KEY = os.environ.get("secretkey"),
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ["debugguer"],
+DEBUG = os.environ.get("debugguer"),
 
 ALLOWED_HOSTS = ['*']
 
@@ -83,9 +86,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
-CSRF_ALLOWED_ORIGINS = ["http://localhost:8080"]
-CORS_ORIGINS_WHITELIST = ["http://localhost:8080"]
+CSRF_TRUSTED_ORIGINS =   ["http://localhost:8080", "http://imacuna.com:8080"]
+CSRF_ALLOWED_ORIGINS =   ["http://localhost:8080", "http://imacuna.com:8080"]
+CORS_ORIGINS_WHITELIST = ["http://localhost:8080", "http://imacuna.com:8080"]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -93,11 +96,11 @@ CORS_ORIGINS_WHITELIST = ["http://localhost:8080"]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ["mariadb_name"],
-        'USER': os.environ["mariadb_user"],
-        'PASSWORD': os.environ["mariadb_password"],
+        'NAME': os.environ.get("mariadb_name"),
+        'USER': os.environ.get("mariadb_user"),
+        'PASSWORD': os.environ.get("mariadb_password"),
         'HOST': 'localhost',
-        'PORT': os.environ["mariadb_port"],
+        'PORT': os.environ.get("mariadb_port"),
     }
 }
 
@@ -106,11 +109,11 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True 
 
 # --- Configuracion de servidor MQTT------b
-MQTT_SERVER = os.environ['MQTT_SERVER'],
-MQTT_PORT = os.environ['MQTT_PORT'],
-MQTT_KEEPALIVE = os.environ['MQTT_KEEPALIVE'],
-MQTT_USER = os.environ['MQTT_USER'],
-MQTT_PASSWORD = os.environ['MQTT_PASSWORD'],
+MQTT_SERVER = os.environ.get("MQTT_SERVER"),
+MQTT_PORT = os.environ.get("MQTT_PORT"),
+MQTT_KEEPALIVE = os.environ.get("MQTT_KEEPALIVE"),
+MQTT_USER = os.environ.get("MQTT_USER"),
+MQTT_PASSWORD = os.environ.get("MQTT_PASSWORD"),
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
