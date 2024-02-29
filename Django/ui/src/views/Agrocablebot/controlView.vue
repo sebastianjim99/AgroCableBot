@@ -236,7 +236,7 @@ export default{
         this.obtenerDatosSensores();
         // Realizar las solicitudes HTTP para obtener datos
         //Lectura tipo de cultivo
-        axios.get('http://localhost:8000/api/tipoCultivo')
+        axios.get(this.api + 'api/tipoCultivo')
         .then(response =>{
             console.log("Tipo de cultivos")
             console.log(response.data)
@@ -246,7 +246,7 @@ export default{
             console.log(error)
         })
         //Lectura de cultivo
-        axios.get('http://localhost:8000/api/cultivo')
+        axios.get( this.api + '/api/cultivo')
         .then(response =>{
             console.log("Cultivos")
             console.log(response.data)
@@ -257,7 +257,7 @@ export default{
             console.log(error)
         })
         //Lectura de plantas
-        axios.get('http://localhost:8000/api/plantas')
+        axios.get( this.api + '/api/plantas')
         .then(response =>{
             console.log("plantas")
             console.log(response.data)
@@ -312,7 +312,7 @@ export default{
         //  ---------- metodos de sensores----------------
 
         obtenerDatosSensores() {
-            axios.get(this.api + '/Sensor_MQTT/')
+            axios.get(this.api + '/api/Sensor_MQTT/')
             .then(response => {
                 this.Datos_sensores=response.data
                 this.obtenerUltimaActualizacion();

@@ -41,8 +41,8 @@ export default {
     data(){
         return {
             'api' : `${process.env.VUE_APP_API_URL}`,
-            videoStreamUrl: 'http://localhost:8000/aboveCam/',
-            videoStreamUrl2: 'http://localhost:8000/aboveCam2/'
+            videoStreamUrl: (this.api + '/aboveCam/' ),
+            videoStreamUrl2: (this.api + '/aboveCam2/'),
         };
     },
     mounted(){
@@ -57,12 +57,12 @@ export default {
     methods: {
         updateStreamUrl() {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
-        this.videoStreamUrl = 'http://localhost:8000/aboveCam/' ;
-        this.videoStreamUrl2 = 'http://localhost:8000/aboveCam2/' ;
+        this.videoStreamUrl = (this.api + '/aboveCam/' ) ;
+        this.videoStreamUrl2 =(this.api + '/aboveCam2/') ;
         },
 
         capturar(){
-            axios.get('http://127.0.0.1:8000/captura/?camara=/aboveCam/')
+            axios.get(this.api + '/captura/?camara=/aboveCam/')
             .then(Response => {
             // Manejar la respuesta si es necesario
             console.log('Solicitud exitosa:', Response);
@@ -74,7 +74,7 @@ export default {
 
         },
         capturar2(){
-            axios.get('http://127.0.0.1:8000/captura/?camara=/aboveCam2/')
+            axios.get(this.api +  '/captura/?camara=/aboveCam2/')
             .then(Response => {
             // Manejar la respuesta si es necesario
             console.log('Solicitud exitosa:', Response);

@@ -76,7 +76,7 @@ export default {
     methods:{
 
         obtenerDatosSensores() {
-            axios.get(this.api + '/Sensor_MQTT/')
+            axios.get(this.api + '/api/Sensor_MQTT/')
             .then(response => {
                 this.Datos_sensores=response.data
                 this.obtenerUltimaActualizacion();

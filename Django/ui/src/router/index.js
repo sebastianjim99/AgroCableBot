@@ -55,7 +55,7 @@ router.beforeEach((to, from, next) => {
   }else{
     if (!isProtected && localStorage.getItem('token') && (to.name == 'loginview' || to.name == 'Signup')){
       next({
-        path: '/Admin'
+        path: '/monitoreo'
       })
     }else{
       next();

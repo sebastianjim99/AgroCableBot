@@ -56,6 +56,7 @@
     name: "CultivoVue",
     data(){
       return{
+        'api': `${process.env.VUE_APP_API_URL}`,
         tipo_cultivo:[],
         cultivos:[],
         plantas:[],
@@ -69,7 +70,7 @@
     mounted(){
       // Realizar las solicitudes HTTP para obtener datos
       //Lectura tipo de cultivo
-      axios.get('http://localhost:8000/api/tipoCultivo')
+      axios.get(this.api + '/api/tipoCultivo')
       .then(response =>{
         console.log("Tipo de cultivos")
         console.log(response.data)
@@ -79,7 +80,7 @@
         console.log(error)
       })
       //Lectura de cultivo
-      axios.get('http://localhost:8000/api/cultivo')
+      axios.get(this.api + '/api/cultivo')
       .then(response =>{
         console.log("Cultivos")
         console.log(response.data)
@@ -89,7 +90,7 @@
         console.log(error)
       })
       //Lectura de plantas
-      axios.get('http://localhost:8000/api/plantas')
+      axios.get(this.api +  '/api/plantas')
       .then(response =>{
         console.log("plantas")
         console.log(response.data)
