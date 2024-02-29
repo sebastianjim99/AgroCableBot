@@ -81,7 +81,7 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const response = await axios.get(`${this.api}/Sensor_MQTT/`);
+        const response = await axios.get(`${this.api}/api/Sensor_MQTT/`);
         this.processData(response.data);
         this.loaded = true;
       } catch (error) {
