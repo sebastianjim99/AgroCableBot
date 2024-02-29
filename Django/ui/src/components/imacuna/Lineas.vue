@@ -121,7 +121,7 @@ export default{
 
   methods : {
     getLineas_investigacion(){
-      axios.get(this.api + '/Lineas_investigacion/' ).then(
+      axios.get(this.api + '/api/Lineas_investigacion/' ).then(
         Response => {
           console.log(Response.data)
           this.Lineas_investigacion = Response.data;
@@ -144,7 +144,7 @@ export default{
       var formData = this.toFormData(requestData)
 
       // Enviar el formulario al backend
-      axios.post(this.api + /Lineas_investigacion/, formData, {"content-type": "multipart/form-data"})
+      axios.post(this.api + '/api/Lineas_investigacion/', formData, {"content-type": "multipart/form-data"})
         .then(response => {
           console.log("Datos subidos exitosamente", response.data);
           this.getLineas_investigacion()
@@ -167,7 +167,7 @@ export default{
       this.$router.push(`/editar/${id}`);
     },
     deleteData(id) {
-      axios.delete(this.api + `/Lineas_investigacion/${id}/`).then(
+      axios.delete(this.api + `/api/Lineas_investigacion/${id}/`).then(
         response => {
           console.log('Datos eliminados exitosamente', response.data);
           this.getLineas_investigacion(); // Actualiza la lista después de la eliminación

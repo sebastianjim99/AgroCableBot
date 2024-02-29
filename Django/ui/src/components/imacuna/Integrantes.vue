@@ -10,7 +10,7 @@
     <!--  SECCION DE INTEGRANTES  -->
     <section class="py-4 py-xl-5">
       <div class="container">
-        <div>
+        <div >
             <h1>INTEGRANTES</h1>
         </div>
       </div>
@@ -136,7 +136,7 @@ export default {
 
   methods : {
     getIntegrantes(){
-      axios.get(this.api + /integrante/ ).then(
+      axios.get(this.api + '/api/integrante/' ).then(
         Response => {
           this.Integrantes= Response.data;
           console.log(Response.data)

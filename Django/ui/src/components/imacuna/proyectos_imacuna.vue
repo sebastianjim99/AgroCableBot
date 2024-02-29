@@ -53,10 +53,11 @@ export default {
     setup() {
       return {
         modules: [EffectCards],
+        'api': `${process.env.VUE_APP_API_URL}`,
       };
     },
   mounted() {
-    axios.get(`${process.env.VUE_APP_API_URL}` + '/proyectos/')
+    axios.get(this.api + '/api/proyectos/')
       .then(response => {
         console.log("proyectos")
         console.log(response.data)

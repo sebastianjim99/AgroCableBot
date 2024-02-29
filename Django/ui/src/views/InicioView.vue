@@ -99,7 +99,7 @@
  <!--  SECCION DE VISIÓN  -->
 <section>
     <div class="container" style="padding-bottom: 20px; justify-content: flex-end; display: flex;">
-        <h1 class="vision-tittle" style="text-align: end; color: white;" >Visión</h1>
+        <h1 class="vision-tittle" style=" color: white;" >Visión</h1>
     </div>
     
     <div class="container" >

@@ -52,26 +52,20 @@
 
 
 .servicios-tittle{
-    width: 600px;
-    height: 0;
-    align-items: flex-end;
-    border-left: 150px solid #FFBB00;;
-    border-right: 0 solid #FFBB00;
-    border-bottom: 60px solid #FFBB00;/* Ajusta verticalmente el texto */
-    text-align: end;
-    padding-right: 200px;
+    width: 400px;
+    height: auto;
+    background-color: #FFBB00;
+    text-align: center;
     border-radius: 10px;
+    justify-content: center;
 
 }
   
 .mision-tittle{
-    width: 600px;
-    height: 0;
-    border-left: 0px solid #375E97;
-    border-right: 150px solid #375E97;
-    border-bottom: 50px solid #375E97;/* Ajusta verticalmente el texto */
+    width: 400px;
+    height: auto;
+    background-color: #375E97;
     text-align: end;
-    padding-left: 70px;
     display: flex;
     border-radius: 10px;
     justify-content: center;
@@ -79,15 +73,12 @@
 
 .vision-tittle{
     
-    width: 600px;
-    height: 0;
+    width: 400px;
+    height: auto;
     align-items: flex-end;
-    border-left: 150px solid #3F681C;
-    border-right: 0 solid #3F681C;
-    border-bottom: 60px solid #3F681C;/* Ajusta verticalmente el texto */
-    text-align: end;
-    padding-right: 250px;
-    justify-content: center;
+    background-color: #3F681C;
+    text-align: center;
+    justify-content: flex-end;
     border-radius: 10px;
 
 }
@@ -105,15 +96,15 @@
         text-align: justify;
     }
     .somos-title {
-        font-size: 25px; /* Tamaño de letra más pequeño para dispositivos móviles */
-        border-bottom: 70px solid #375E97;/* Ajusta verticalmente el texto */
+        font-size: 25px; 
+        height: auto;
+        border-bottom: auto solid #375E97;/* Ajusta verticalmente el texto */
     
     }
     .lineas-tittle{
         text-align: center;
         padding: 0px;
         font-size: 30px;
-        border-bottom: 80px solid #FB6542;/* Ajusta verticalmente el texto */
 
     }
     .servicios-tittle{
@@ -130,6 +121,7 @@
         text-align: center;
         padding: 0px;
         font-size: 40px;
+        justify-content: center;
     }
     .img-imacuna{
         margin: 0px 0px 0px 0px;
@@ -244,7 +236,7 @@
     opacity: 0;
     margin: 0;
 }
-
+ 
 
 
 
@@ -252,6 +244,11 @@
 
 @media (max-width: 768px) {
     
+    /* Proyectos */
+    
+    
+    
+    /* Integrantes */
     .card-proyecto {
         width: 200px ;
         height: 200px;
@@ -263,11 +260,10 @@
     }
 
     .content-text{
-        
         width: 200px ;
     }
     .title-proyecto{
-        margin: 30px;
+        margin: 5px;
         font-size: 20px;
     }
     
