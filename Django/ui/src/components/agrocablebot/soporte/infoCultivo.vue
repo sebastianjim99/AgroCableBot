@@ -102,6 +102,7 @@
   export default {
     data() {
       return {
+        'api' : `${process.env.VUE_APP_API_URL}`,
         listaDeCultivos: [],
         tipoDeCultivoSeleccionado: null
       };
@@ -111,7 +112,7 @@
     },
     methods: {
       obtenerListaDeCultivos() {
-        axios.get('http://localhost:8000/api/tipoCultivo')
+        axios.get(this.api + '/api/tipoCultivo')
           .then(response => {
             this.listaDeCultivos = response.data;
           })
@@ -120,7 +121,7 @@
           });
       },
       seleccionarCultivo(cultivo) {
-        axios.get(`http://localhost:8000/api/tipoCultivo/${cultivo.id}`)
+        axios.get(this.api + `/api/tipoCultivo/${cultivo.id}`)
           .then(response => {
             this.tipoDeCultivoSeleccionado = response.data;
           })
