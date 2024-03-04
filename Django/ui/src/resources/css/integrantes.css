@@ -15,7 +15,7 @@
     border-top: 25px;
 }
 .slider-container{
-    max-width: 1120px;
+    /* max-width: 1120px; */
     width: 100%;
     background-color: rgb(128, 128, 128, 0.2);
     padding: 40px;

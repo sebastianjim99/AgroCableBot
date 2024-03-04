@@ -2,10 +2,10 @@
   <section>
 
       <div class="container">
-        <div class="row mb-5">
+        <div class="row mb-2">
           <div class="col-md-8 col-xl-6 text-center mx-auto" >
-              <h2>PROYECTOS DEL SEMILLERO IMACUNA</h2>
-              <p class="w-lg-50"> Cosechando innovación </p>
+              <h2 class="" >Proyectos del semillero Imacuna</h2>
+              <p class="" style="font-style: italic; font-size: 25px;" > Cosechando innovación </p>
           </div>
         </div>
         
