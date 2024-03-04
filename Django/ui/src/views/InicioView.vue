@@ -49,8 +49,8 @@
 
  <!--  SECCION DE QUIENES  -->
 <section id="Quienes_somos" >
-    <div class="container" style=" padding: 20px; display: flex;" >
-        <h1 class="somos-title" style="color:white; " > ¿Quiénes somos?</h1>
+    <div class="container" style=" padding: 10px; justify-content: center; display: flex; " >
+        <h1 class="somos-title"  > ¿Quiénes somos?</h1>
     </div> 
     
     <div class="container">
@@ -79,12 +79,12 @@
 
  <!--  SECCION DE MISION  -->
 <section>
-    <div class="container" style=" padding-bottom: 20px; display: flex;"  >
-        <h1 class="mision-tittle" style="color:white" > Misión</h1>
+    <div class="container" style=" padding-bottom: 20px; display: flex; justify-content: center; "  >
+        <h1 class="mision-tittle" > Misión</h1>
     </div>
     
     <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-around ">
             <div class="col-md-6 col-xl-3"> 
                 <img width="170" height="170" src="@/assets/logos/mision.png" style="height: 100vh,  " />
             </div>
@@ -98,12 +98,12 @@
 
  <!--  SECCION DE VISIÓN  -->
 <section>
-    <div class="container" style="padding-bottom: 20px; justify-content: flex-end; display: flex;">
-        <h1 class="vision-tittle" style=" color: white;" >Visión</h1>
+    <div class="container" style="padding-bottom: 20px; justify-content: center; display: flex;">
+        <h1 class="vision-tittle" >Visión</h1>
     </div>
     
     <div class="container" >
-        <div class="row" style="justify-content: center;" >
+        <div class="row d-flex justify-content-around " >
             <div class="col-md-6 col-xl-6">
                 <p class="text-mis-vis" >Ser un semillero líder en el campo del diseño mecatrónico, reconocido a nivel regional, nacional e internacional por la calidad de sus proyectos de investigación, su constante aporte a la investigación de la universidad y al aporte al conocimiento de sus integrantes.</p>
             </div>

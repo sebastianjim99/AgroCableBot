@@ -37,7 +37,6 @@ from .views import (
     videoProyectosViewSet,
     cameras,
     capturas, 
-
     )
 
 
