@@ -3,7 +3,7 @@
     <section>
         <div>
             <div class="container" style="padding-bottom: 1px; justify-content: center; display: flex;">
-                <h1 class="servicios-tittle" style=" color: white;" >Servicios</h1>
+                <h1 class="servicios-tittle"  >Servicios</h1>
             </div>
             <div class="container py-4 py-xl-5">  
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xl-4" >

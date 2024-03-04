@@ -1,7 +1,7 @@
 <template>
     <div class="container position-relative">
         <div class="col-md-8 col-xl-6 text-center mx-auto">
-            <h2>Contáctanos</h2>
+          <h2 class="divider-style"><span>Contáctanos</span></h2>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 col-lg-4 col-xl-4">
@@ -12,7 +12,7 @@
                             </svg></div>
                         <div class="px-2">
                             <h6 class="mb-0">Celular</h6>
-                            <p class="mb-0">+57 310 698 9372 </p>
+                            <p class="mb-0">+57 </p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center p-3">
