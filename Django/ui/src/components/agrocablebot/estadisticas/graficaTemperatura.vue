@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <input type="date" v-model="selectedDay" @change="fetchData" />
+    <input type="date" v-model="selectedDay" @change="fetchData" class="custom-input" />
     <div v-if="!selectedDay">Seleccionar fecha para graficar temperatura de un día en especifico</div>
     <div v-else id="chart-container">
       <div v-if="loaded" >
@@ -8,7 +8,7 @@
       </div>
       <div v-else>Cargando...</div>
     </div>
-    <button @click="downloadChart" v-if="loaded">Descargar Gráfico</button>
+    <button  @click="downloadChart" class="btn btn-primary" v-if="loaded">Descargar Gráfico</button>
   </div>
 </template>
 

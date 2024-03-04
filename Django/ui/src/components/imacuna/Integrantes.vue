@@ -9,10 +9,8 @@
 
     <!--  SECCION DE INTEGRANTES  -->
     <section class="py-4 py-xl-5">
-      <div class="container">
-        <div >
-            <h1>INTEGRANTES</h1>
-        </div>
+      <div class="container">    
+        <h1 class="container">Integrantes</h1>
       </div>
       <div class="container">
         <div class="slider-container">

@@ -4,7 +4,7 @@
       <Bar :data="chartData" :options="chartOptions" v-if="loaded" />
       <div v-else>Cargando...</div>
     </div>
-    <button @click="downloadChart">Descargar Gráfico</button>
+    <button class="btn btn-primary" @click="downloadChart">Descargar Gráfico</button>
   </div>
 </template>
 

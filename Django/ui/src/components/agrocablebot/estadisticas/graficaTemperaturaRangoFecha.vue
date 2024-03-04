@@ -1,15 +1,21 @@
 <template>
   <div>
     <div class="container" id="chart-container5">
-      <input type="date" v-model="startDate" @change="fetchData" />
-      <input type="date" v-model="endDate" @change="fetchData" />
+      <div class="row justify-content-between">
+        <div class="col-md-5">
+          <input class="form-control" type="date" v-model="startDate" @change="fetchData" />
+        </div>
+        <div class="col-md-5 mt-3 mt-md-0">
+          <input class="form-control" type="date" v-model="endDate" @change="fetchData" />
+        </div>
+      </div>
       <div v-if="!startDate || !endDate">Seleccionar rango de fechas para graficar temperatura</div>
       <div v-else>
         <Line :data="chartData" :options="options" v-if="loaded" />
         <div v-else>Cargando...</div>
       </div>
     </div>
-    <button @click="downloadChart">Descargar Gráfico</button>
+    <button class="btn btn-primary" @click="downloadChart">Descargar Gráfico</button>
   </div>
 </template>
 

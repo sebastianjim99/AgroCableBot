@@ -1,18 +1,18 @@
 <template>
-    <div>
-      <div class="container">
-        <input type="date" v-model="selectedDay" @change="fetchData" />
-        <div v-if="!selectedDay">Seleccionar fecha para graficar Humedad de un día en especifico</div>
-        <div v-else id="chart-container1">
-          <Line :data="chartData" :options="options" v-if="loaded" />
-          <div v-else>Cargando...</div>
-        </div>
+  <div>
+    <div class="container">
+      <input type="date" v-model="selectedDay" @change="fetchData" class="custom-input">
+      <div v-if="!selectedDay">Seleccionar fecha para graficar Humedad de un día en especifico</div>
+      <div v-else id="chart-container1">
+        <Line :data="chartData" :options="options" v-if="loaded" />
+        <div v-else>Cargando...</div>
       </div>
-      <button @click="downloadChart">Descargar Gráfico</button>
     </div>
-  </template>
+    <button @click="downloadChart" class="btn btn-primary">Descargar Gráfico</button>
+  </div>
+</template>
   
-  <script>
+<script>
   import { Line } from 'vue-chartjs';
   import axios from 'axios';
   import moment from 'moment';
@@ -105,5 +105,19 @@
       }
     }
   }
-  </script>
-  
+</script>
+
+<style>
+
+.custom-input {
+  width: 30%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+
+</style>

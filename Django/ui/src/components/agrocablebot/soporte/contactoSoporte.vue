@@ -29,9 +29,9 @@
             <div class="col-md-6 col-lg-5 col-xl-4">
                 <div>
                     <form class="p-3 p-xl-4" ref="form" @submit.prevent="sendEmail">
-                        <div class="mb-3"><input id="name-1" class="form-control" type="text" name="user_name" placeholder="Nombre" /></div>
-                        <div class="mb-3"><input id="email-1" class="form-control" type="email" name="user_email" placeholder="Correo" /></div>
-                        <div class="mb-3"><textarea id="message-1" class="form-control" name="message" rows="2" placeholder="Mensaje"></textarea></div>
+                        <div class="mb-3"><input id="name-1" class="form-control" type="text" name="user_name"  v-model="user_name"  placeholder="Nombre" /></div>
+                        <div class="mb-3"><input id="email-1" class="form-control" type="email" name="user_email" v-model="user_email"  placeholder="Correo" /></div>
+                        <div class="mb-3"><textarea id="message-1" class="form-control" name="message" v-model="message"  rows="2" placeholder="Mensaje"></textarea></div>
                         <div><button class="btn btn-primary d-block w-100" type="submit" value="Send"> Enviar </button></div>
                     </form>
                 </div>
@@ -43,8 +43,17 @@
   
 <script>
   import emailjs from '@emailjs/browser';
+  import Swal from 'sweetalert2';
   
   export default {
+    data() {
+      return{
+        user_name: null,
+        user_email: null,
+        message: null,
+      }
+    },
+
     methods: {
       sendEmail() {
         emailjs
@@ -54,12 +63,26 @@
           .then(
             () => {
               console.log('SUCCESS!');
+              Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text:  'Mensaje enviado',
+              });
+              this.user_name = null
+              this.user_email = null
+              this.message= null
+
             },
             (error) => {
               console.log('FAILED...', error.text);
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un error al enviar el mensaje',
+              })
             },
           );
       },
     },
   };
-</script>
+</script> 
