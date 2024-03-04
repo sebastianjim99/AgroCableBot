@@ -21,7 +21,7 @@
                             </svg></div>
                         <div class="px-2">
                             <h6 class="mb-0">Correo</h6>
-                            <p class="mb-0">info@example.com</p>
+                            <p class="mb-0">semillero.imacuna@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -57,8 +57,8 @@
     methods: {
       sendEmail() {
         emailjs
-          .sendForm('service_i66v847', 'template_mp0x49b', this.$refs.form, {
-            publicKey: 'jW0Osb7fip12uyn4j',
+          .sendForm('service_a55fwll', 'template_lb9cizl', this.$refs.form, {
+            publicKey: 'GjhpitIS-gZLY99SE',
           })
           .then(
             () => {

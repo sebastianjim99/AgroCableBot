@@ -106,14 +106,14 @@
     methods: {
       // Función para inicializar la matriz con los datos de las plantas
       initializeMatriz() {
-        for (let i = 0; i < 8; i++) {
-          this.matriz.push(new Array(8).fill(null));
+        for (let i = 0; i < 9; i++) {
+          this.matriz.push(new Array(9).fill(null));
         }
 
         // Asignar las plantas a la matriz según el número de planta asignado
         this.plantas.forEach(planta => {
-          const fila = Math.floor((planta.numeroPlanta - 1) / 8);
-          const columna = (planta.numeroPlanta - 1) % 8;
+          const fila = Math.floor((planta.numeroPlanta - 1) / 9);
+          const columna = (planta.numeroPlanta - 1) % 9;
           this.matriz[fila][columna] = planta;  
         }); 
       },

@@ -142,7 +142,7 @@
                             </div>
                             
                             <ul class="list-group">
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Planta #1</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Planta # {{ this.posicionPlanta }}</span></li>
                                 <li class="list-group-item"><span>Humedad: 50%</span></li>
                                 <li class="list-group-item"><span>Temperatura: 25°C</span></li>
                                 <li class="list-group-item"><span>Otro dato</span></li>
@@ -151,37 +151,34 @@
                                 <h2 class="divider-style"><span>Ambiente</span></h2>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Humedad: {{this.humedad}}</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Temperatura: {{this.temperatura}}</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Humedad: {{this.humedad}}%</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Temperatura: {{this.temperatura}}°C</span></li>
                                 <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Presión: {{this.presion}}</span></li>
                             </ul>
                             <div style="text-align: center;">
                                 <h2 class="divider-style"><span>Giroscopio efector</span></h2>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>roll: {{this.giroscopio_pitch}}</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Pitch: {{this.giroscopio_roll}}</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>yaw: {{this.giroscopio_yaw}}</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>roll: {{this.giroscopio_pitch}}°</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Pitch: {{this.giroscopio_roll}}°</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>yaw: {{this.giroscopio_yaw}}°</span></li>
                             </ul>
                         </div>
-                        <div class="col-6 col-xl-6 text-start text-bg-light">
-                            <h1 style="text-align: center;padding: 12px;">Distribución del cultivo </h1>
-                            <table>
-                              <tbody>
-                                <tr v-for="(fila, filaIndex) in matriz" :key="filaIndex">
-                                  <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="margin: auto;padding: initial;" width="100px" height="80px" @click="seleccionarPlanta(filaIndex, columnaIndex)" :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
-                                    <div v-if="planta">
-                                      <!-- Aquí puedes mostrar los datos de la planta, por ejemplo: -->
-                                      <p>{{ planta.nombre }}</p>
-                                      <img  :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" style="margin: auto;padding: initial;" width="40px" height="40px">
-                                    </div>
-                                    <div v-else>
-                                      {{ obtenerContadorPosicion(filaIndex, columnaIndex) }}
-                                      <img  src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" style="margin: auto;padding: initial;" width="40px" height="40px">
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
+                        <div class="col-12 col-xl-6">
+                            <h1 class="text-center mb-4">Distribución del cultivo</h1>
+                            <table class="table">
+                                <tbody>
+                                    <tr v-for="(fila, filaIndex) in matriz" :key="filaIndex">
+                                        <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" class="position-relative" @click="seleccionarPlanta(filaIndex, columnaIndex)"  :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
+                                            <div class="text-center">
+                                                <p v-if="planta">{{ planta.nombre }}</p>
+                                                <img v-if="planta" :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" width="40" height="40">
+                                                <p v-else>{{ obtenerContadorPosicion(filaIndex, columnaIndex) }}
+                                                <img src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" width="40" height="40"></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -232,6 +229,7 @@ export default{
         Datos_sensores: [],
         plantaSeleccionada: null,
         cultivoSeleccionado:null, 
+        posicionPlanta:null,
         
       }
     },
@@ -242,8 +240,8 @@ export default{
         //Lectura tipo de cultivo
         axios.get(this.api + 'api/tipoCultivo')
         .then(response =>{
-            console.log("Tipo de cultivos")
-            console.log(response.data)
+            // console.log("Tipo de cultivos")
+            // console.log(response.data)
             this.tipo_cultivo=response.data
         })
         .catch(error =>{
@@ -252,10 +250,10 @@ export default{
         //Lectura de cultivo
         axios.get( this.api + '/api/cultivo')
         .then(response =>{
-            console.log("Cultivos")
-            console.log(response.data)
+            // console.log("Cultivos")
+            // console.log(response.data)
             this.cultivos=response.data
-            this.initializeMatriz()
+            
         })
         .catch(error =>{
             console.log(error)
@@ -263,9 +261,10 @@ export default{
         //Lectura de plantas
         axios.get( this.api + '/api/plantas')
         .then(response =>{
-            console.log("plantas")
-            console.log(response.data)
+            // console.log("plantas")
+            // console.log(response.data)
             this.plantas=response.data
+            this.initializeMatriz()
         })
         .catch(error =>{
             console.log(error)
@@ -276,31 +275,18 @@ export default{
     methods: {
         // Función para inicializar la matriz con los datos de las plantas
         initializeMatriz() {
-            // Limpia la matriz para evitar duplicados si la función se llama varias veces
-            this.matriz = [];
-            // Crea una nueva matriz basada en la cantidad de plantas del cultivo seleccionado
-            const cantidadDePlantas = this.cultivos.reduce((total, cultivo) => total + cultivo.cantidad, 0);
-            const filas = Math.ceil(cantidadDePlantas / 9);
-
-            for (let i = 0; i < filas; i++) {
-            this.matriz.push(new Array(8).fill(null));
+            for (let i = 0; i < 9; i++) {
+            this.matriz.push(new Array(9).fill(null));
             }
 
             // Asignar las plantas a la matriz según el número de planta asignado
-            let contadorPlanta = 0;
-            this.cultivos.forEach(cultivo => {
-            for (let i = 0; i < cultivo.cantidad; i++) {
-                const fila = Math.floor(contadorPlanta / 9);
-                const columna = contadorPlanta % 9;
-                this.matriz[fila][columna] = {
-                // nombre: cultivo.nombre,
-                icono: cultivo.iconosPlantas,
-                cultivo: cultivo
-                };
-                contadorPlanta++;
-                }
-            });
+            this.plantas.forEach(planta => {
+            const fila = Math.floor((planta.numeroPlanta - 1) / 9);
+            const columna = (planta.numeroPlanta - 1) % 9;
+            this.matriz[fila][columna] = planta;  
+            }); 
         },
+        
 
         obtenerContadorPosicion(filaIndex, columnaIndex) {
             // Calcula el contador de posición basado en los índices de fila y columna
@@ -309,8 +295,11 @@ export default{
         // Seleccion de la planta mediante click y despliegue de informacion
         seleccionarPlanta(filaIndex, columnaIndex) {
             this.plantaSeleccionada = { fila: filaIndex, columna: columnaIndex };
+            //console.log("Planta seleccionada", this.plantaSeleccionada)
             const planta = this.matriz[filaIndex][columnaIndex];
             this.cultivoSeleccionado = planta ? planta.cultivo : null;
+            this.posicionPlanta =filaIndex * this.matriz[0].length + columnaIndex + 1;
+            //console.log("posicion", posicion)
         },
 
         //  ---------- metodos de sensores----------------
@@ -320,7 +309,7 @@ export default{
             .then(response => {
                 this.Datos_sensores=response.data
                 this.obtenerUltimaActualizacion();
-                console.log(this.Datos_sensores)
+                // console.log(this.Datos_sensores)
             })
             .catch(error => {
                 console.error('Error al obtener los datos de los sensores:', error);
