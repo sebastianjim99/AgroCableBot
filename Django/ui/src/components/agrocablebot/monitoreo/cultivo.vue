@@ -13,8 +13,8 @@
                                 <div class="text-center">
                                     <p v-if="planta">{{ planta.nombre }}</p>
                                     <img v-if="planta" :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" width="40" height="40">
-                                    <p v-else>{{ obtenerContadorPosicion(filaIndex, columnaIndex) }}</p>
-                                    <img src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" width="40" height="40">
+                                    <p v-else>{{ obtenerContadorPosicion(filaIndex, columnaIndex) }}
+                                    <img src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" width="40" height="40"></p>
                                 </div>
                             </td>
                         </tr>

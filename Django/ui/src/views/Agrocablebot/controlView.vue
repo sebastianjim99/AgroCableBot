@@ -193,10 +193,12 @@
     <div>
         <listCultivo />
     </div>
+    
 
     <section>
         <footer_imacuna />
     </section>
+   
 
 </template>
 
@@ -209,12 +211,14 @@ import trasmisionVue from '/src/components/agrocablebot/trasmision.vue'
 import listCultivo from '/src/components/agrocablebot/monitoreo/ListCultivo.vue'
 import footer_imacuna from '/src/components/footer.vue'
 
+
 export default{
     components:{
         navbar_monitoreo,
         trasmisionVue, 
         listCultivo,
-        footer_imacuna
+        footer_imacuna,
+        
     },
 
     data(){
