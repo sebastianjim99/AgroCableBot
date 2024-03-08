@@ -73,12 +73,12 @@ class videoProyectosViewSet(viewsets.ModelViewSet):
 
 #  ------------- vista de la camara ---------------
 
-video = {'/aboveCam/' : Camera(0,'inferior', [1280,720 ]), '/aboveCam2/' : Camera(1,'superior', [1280,720 ]),  }
+# video = {'/aboveCam/' : Camera(0,'inferior', [1280,720 ]), '/aboveCam2/' : Camera(1,'superior', [1280,720 ]),  }
 
-# video = {
-#     '/aboveCam/': Camera('rtsp://172.17.91.30:8090', 'inferior', [1280, 720]),
-#     '/aboveCam2/': Camera('rtsp://raspberry_pi_ip:554', 'superior', [1280, 720])
-# }
+video = {
+    '/aboveCam/': Camera('0', 'inferior', [1280, 720]),
+    # '/aboveCam2/': Camera('rtsp://raspberry_pi_ip:554', 'superior', [1280, 720])
+}
 
 def gen_frame(camera):
     camera.create_thread()

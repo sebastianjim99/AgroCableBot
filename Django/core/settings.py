@@ -168,4 +168,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Directorio de Vue
 UI_DIR = os.path.join(BASE_DIR, 'ui/')
 
+DATA_PATH = f'{Path.home()}/AgroCableBot/data'
 
