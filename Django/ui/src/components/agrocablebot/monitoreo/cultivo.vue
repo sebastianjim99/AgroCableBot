@@ -13,8 +13,8 @@
                                 <div class="text-center">
                                     <p v-if="planta">{{ planta.nombre }}</p>
                                     <img v-if="planta" :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" width="40" height="40">
-                                    <p v-else>{{ obtenerContadorPosicion(filaIndex, columnaIndex) }}</p>
-                                    <img src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" width="40" height="40">
+                                    <p v-else>{{ obtenerContadorPosicion(filaIndex, columnaIndex) }}
+                                    <img src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" width="40" height="40"></p>
                                 </div>
                             </td>
                         </tr>
@@ -106,14 +106,14 @@
     methods: {
       // Función para inicializar la matriz con los datos de las plantas
       initializeMatriz() {
-        for (let i = 0; i < 8; i++) {
-          this.matriz.push(new Array(8).fill(null));
+        for (let i = 0; i < 9; i++) {
+          this.matriz.push(new Array(9).fill(null));
         }
 
         // Asignar las plantas a la matriz según el número de planta asignado
         this.plantas.forEach(planta => {
-          const fila = Math.floor((planta.numeroPlanta - 1) / 8);
-          const columna = (planta.numeroPlanta - 1) % 8;
+          const fila = Math.floor((planta.numeroPlanta - 1) / 9);
+          const columna = (planta.numeroPlanta - 1) % 9;
           this.matriz[fila][columna] = planta;  
         }); 
       },
