@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # Para crear tokens de identificacion
     'imacuna.apps.ImacunaConfig',
     'r_agrocablebot',
-    'rtsp',   # probando libreria de stream 
-    # 'channels',
     
 ]
 
@@ -87,9 +85,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-CSRF_TRUSTED_ORIGINS =   ["http://localhost:8080", "http://imacuna.com:8080"]
-CSRF_ALLOWED_ORIGINS =   ["http://localhost:8080", "http://imacuna.com:8080"]
-CORS_ORIGINS_WHITELIST = ["http://localhost:8080", "http://imacuna.com:8080"]
+CSRF_TRUSTED_ORIGINS =   ["http://localhost:8080" , "http://imacuna.com:8080"]
+CSRF_ALLOWED_ORIGINS =   ["http://localhost:8080" , "http://imacuna.com:8080"]
+CORS_ORIGINS_WHITELIST = ["http://localhost:8080" , "http://imacuna.com:8080"]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
