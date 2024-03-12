@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+
 import '../src/assets/vendor/swiper/swiper-bundle.min.css'
 import '../src/assets/vendor/bootstrap/css/bootstrap.min.css'
 
@@ -20,12 +21,16 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa el JavaScript de 
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 
 
 axios.defaults.baseURL = 'http://0.0.0.0:8000'
 
 
 const app = createApp(App);
+app.use(ElementPlus)
 app.use(router).use(store);
 // app.use(BootstrapIconsPlugin);
 

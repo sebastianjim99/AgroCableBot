@@ -12,7 +12,8 @@
                         <img class="card-img-top" :src="videoStreamUrl" alt="Cámara Posicion">
                         <div class="card-body text-center">
                             <p class="card-text">Cámara Posicion</p>
-                            <a href="#" class="btn btn-primary" @click="capturar()">Capturar</a>
+                            <a class="btn btn-primary"  type="submit" @click="captureImage(videoStreamUrl)">Capturar</a>
+                            <p v-if="imageUrl" class="mt-3"><a :href="imageUrl" download="captura.png">Haz clic aquí</a> para descargar la imagen</p>
                         </div>
                     </div>
                 </div>
@@ -21,7 +22,8 @@
                         <img class="card-img-top" :src="videoStreamUrl2" alt="Cámara Efector final">
                         <div class="card-body text-center">
                             <p class="card-text">Cámara Efector final</p>
-                            <a href="#" class="btn btn-primary" @click="capturar2()">Capturar</a>
+                            <a class="btn btn-primary" type="submit" @click="captureImage(videoStreamUrl2)">Capturar</a>
+                            <p v-if="imageUrl" class="mt-3"><a :href="imageUrl" download="captura.png">Haz clic aquí</a> para descargar la imagen</p>
                         </div>
                     </div>
                 </div>
@@ -32,8 +34,6 @@
 
 
 <script>
- import axios from 'axios';
-
 export default {
 
     name:"trasmisionVue", 
@@ -41,50 +41,66 @@ export default {
     data(){
         return {
             'api' : `${process.env.VUE_APP_API_URL}`,
-            videoStreamUrl: (this.api + '/aboveCam/' ),
-            videoStreamUrl2: (this.api + '/aboveCam2/'),
+            videoStreamUrl: 'http://172.17.91.30:7001/aboveCam/',
+            videoStreamUrl2: 'http://172.17.91.30:7001/belowCam/',
+            imageUrl: ''
         };
     },
     mounted(){
-    console.log('DOM rendered')
-
+        console.log('DOM rendered')
         setInterval(() => {
         this.updateStreamUrl();
-        }, 1000);
-    
+        }, 1000); 
     },
+    
 
     methods: {
         updateStreamUrl() {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
-        this.videoStreamUrl = (this.api + '/aboveCam/' ) ;
-        this.videoStreamUrl2 =(this.api + '/aboveCam2/') ;
-        },
-
-        capturar(){
-            axios.get(this.api + '/captura/?camara=/aboveCam/')
-            .then(Response => {
-            // Manejar la respuesta si es necesario
-            console.log('Solicitud exitosa:', Response);
-            })
-            .catch(error => {
-            // Manejar el error si ocurre
-            console.error('Error al ejecutar la URL:', error);
-            });
+        this.videoStreamUrl = 'http://172.17.91.30:7001/aboveCam/';
+        this.videoStreamUrl2 ='http://172.17.91.30:7001/belowCam/';
 
         },
-        capturar2(){
-            axios.get(this.api +  '/captura/?camara=/aboveCam2/')
-            .then(Response => {
-            // Manejar la respuesta si es necesario
-            console.log('Solicitud exitosa:', Response);
-            })
-            .catch(error => {
-            // Manejar el error si ocurre
-            console.error('Error al ejecutar la URL:', error);
-            });
 
+        captureImage(imageUrl) {
+            console.log("Capturando imagen");
+
+            // Crear un nuevo objeto de imagen
+            const image = new Image();
+            image.crossOrigin = 'anonymous';
+            image.src = imageUrl;
+
+            // Esperar a que la imagen se cargue
+            image.onload = () => {
+                console.log("Imagen cargada");
+
+                // Crear un canvas para dibujar la imagen
+                const canvas = document.createElement('canvas');
+                canvas.width = image.width;
+                canvas.height = image.height;
+
+                // Dibujar la imagen en el canvas
+                const context = canvas.getContext('2d');
+                context.drawImage(image, 0, 0);
+
+                // Obtener la URL de la imagen del canvas
+                const capturedImageUrl = canvas.toDataURL('image/png');
+                // Guardar la imagen automáticamente
+                this.saveImage(capturedImageUrl);
+            };
         },
+
+        // Método para guardar la imagen automáticamente
+        saveImage(imageUrl) {
+            // Crear un enlace temporal para descargar la imagen
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = 'captura.png'; // Nombre del archivo a descargar
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
     }
 }
 </script>
