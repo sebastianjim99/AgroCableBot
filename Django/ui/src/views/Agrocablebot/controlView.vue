@@ -70,12 +70,16 @@
                                 </svg></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3"><svg class="bi bi-arrow-left-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
+                            <div class="col-md-3">
+                                <svg class="bi bi-arrow-left-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
-                                </svg></div>
-                            <div class="col-md-3"><svg class="bi bi-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                </svg></div>
+                                </svg>
+                            </div>
+                            <div class="col-md-3">
+                                <svg class="bi bi-house-door" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"  fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
+                                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                                </svg>
+                            </div>
                             <div class="col-md-3"><svg class="bi bi-arrow-right-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
                                 </svg></div>
@@ -122,7 +126,8 @@
                 </div>
             </div>
         </nav>
-    </section>
+    </section> 
+
 
 
     <div>
@@ -195,7 +200,10 @@
     <section>
         <footer_imacuna />
     </section>
-   
+
+    <section>
+        <mqtt_pagina/>
+    </section>
 
 </template>
 
@@ -207,7 +215,7 @@ import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
 import trasmisionVue from '/src/components/agrocablebot/trasmision.vue'
 import listCultivo from '/src/components/agrocablebot/monitoreo/ListCultivo.vue'
 import footer_imacuna from '/src/components/footer.vue'
-
+import mqtt_pagina from '/src/components/mqtt/mqtt_server.vue'
 
 export default{
     components:{
@@ -215,60 +223,86 @@ export default{
         trasmisionVue, 
         listCultivo,
         footer_imacuna,
+        mqtt_pagina
         
     },
 
     data(){
 
-      return{
-        'api': `${process.env.VUE_APP_API_URL}`,
-        tipo_cultivo:[],
-        cultivos:[],
-        plantas:[],
-        matriz: [],
-        Datos_sensores: [],
-        plantaSeleccionada: null,
-        cultivoSeleccionado:null, 
-        posicionPlanta:null,
-        
-      }
+        return{
+            'api': `${process.env.VUE_APP_API_URL}`,
+            tipo_cultivo:[],
+            cultivos:[],
+            plantas:[],
+            matriz: [],
+            Datos_sensores: [],
+            plantaSeleccionada: null,
+            cultivoSeleccionado:null, 
+            posicionPlanta:null,
+            
+            connection: {
+                protocol: "ws",
+                host: "172.17.91.30",
+                port: 8083,
+                endpoint: "/mqtt",
+                clean: true,
+                connectTimeout: 60 * 1000, // ms
+                reconnectPeriod: 4000, // ms
+                clientId: "emqx_vue_" + Math.random().toString(16).substring(2, 8),
+                // auth
+                username: "imacuna",
+                password: "pi",
+            },
+            subscription: {
+                topic: "sensores",
+                qos: 0,
+            },
+            publish: {
+                topic: "comandos",
+                qos: 0,
+                payload: '{ "msg": "Hello, I am browser." }',
+            },
+            receiveNews: "",
+            qosList: [0, 1, 2],
+            client: {
+                connected: false,
+            },
+            subscribeSuccess: false,
+            connecting: false,
+            retryTimes: 0,        
+        }
     },
 
     mounted(){
         this.obtenerDatosSensores();
-        // Realizar las solicitudes HTTP para obtener datos
         //Lectura tipo de cultivo
-        axios.get(this.api + 'api/tipoCultivo')
-        .then(response =>{
-            // console.log("Tipo de cultivos")
-            // console.log(response.data)
-            this.tipo_cultivo=response.data
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+        
+        axios.get(this.api + 'api/tipoCultivo').then(
+            response =>{
+                this.tipo_cultivo=response.data
+            }).catch(
+                error =>{
+                    console.log(error)
+                })
+
         //Lectura de cultivo
-        axios.get( this.api + '/api/cultivo')
-        .then(response =>{
-            // console.log("Cultivos")
-            // console.log(response.data)
-            this.cultivos=response.data
-            
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+        axios.get( this.api + '/api/cultivo').then(
+            response =>{
+                this.cultivos=response.data
+            }).catch(
+                error =>{
+                    console.log(error)
+            })
+        
         //Lectura de plantas
-        axios.get( this.api + '/api/plantas')
-        .then(response =>{
-            // console.log("plantas")
-            // console.log(response.data)
-            this.plantas=response.data
-            this.initializeMatriz()
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+        axios.get( this.api + '/api/plantas').then(
+            response =>{
+                this.plantas=response.data
+                this.initializeMatriz()
+            }).catch(
+                error =>{
+                    console.log(error)
+            })
       
     },
 
@@ -287,7 +321,6 @@ export default{
             }); 
         },
         
-
         obtenerContadorPosicion(filaIndex, columnaIndex) {
             // Calcula el contador de posición basado en los índices de fila y columna
             return filaIndex * this.matriz[0].length + columnaIndex + 1;
@@ -301,9 +334,7 @@ export default{
             this.posicionPlanta =filaIndex * this.matriz[0].length + columnaIndex + 1;
             //console.log("posicion", posicion)
         },
-
         //  ---------- metodos de sensores----------------
-
         obtenerDatosSensores() {
             axios.get(this.api + '/api/Sensor_MQTT/')
             .then(response => {
@@ -333,35 +364,12 @@ export default{
             this.temperatura = ultimaActualizacion.temperatura;
 
         },
-        enviarMensajeMQTT() {
-            const csrfToken = window.csrfToken;
 
-            const message = {
-                interface: 'send_aio'
-            };
-            // Enviar una solicitud POST al servidor Django
-            axios.post('http://127.0.0.1:8000/sensar-mqtt/', message, {
-                headers: {
-                    'X-CSRFToken': csrfToken // Incluye el token CSRF en la cabecera de la solicitud
-                }
-            })
-            .then(() => {
-                console.log('Mensaje MQTT enviado correctamente');
-                this.obtenerDatosSensores()
-                this.obtenerUltimaActualizacion();
-            })
-            .catch(error => {
-                console.error('Error al enviar mensaje MQTT:', error);
-            });
-
-        },
-        
-    },  
+    },
 
 }
 
 </script>
-
 
 
 <style>

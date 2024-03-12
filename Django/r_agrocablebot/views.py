@@ -126,20 +126,3 @@ def enviar_mensaje_mqtt(request):
             return JsonResponse({'success': False, 'error': str(e)})
 
 
-from r_agrocablebot.cameras import *
-from django.http import StreamingHttpResponse
-
-def cameras(request):
-    """
-    Vista para el streaming de las cámaras.
-
-    Esta vista devuelve una respuesta de transmisión multipart/x-mixed-replace que contiene los fotogramas de la cámara solicitada.
-
-    Parámetros:
-    request (HttpRequest): La solicitud HTTP recibida.
-
-    Returns:
-    StreamingHttpResponse: Una respuesta de transmisión multipart/x-mixed-replace que contiene los fotogramas de la cámara.
-    """
-    camera = AboveCamera() if request.path == '/aboveCam/' else BelowCamera() if request.path == '/belowCam/' else None
-    return StreamingHttpResponse(gen_frame(camera),content_type='multipart/x-mixed-replace; boundary=frame')

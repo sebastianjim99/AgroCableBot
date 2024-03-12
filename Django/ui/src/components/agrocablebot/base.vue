@@ -13,7 +13,8 @@
                 <li class="nav-item"><a class="nav-link" href="/control">Control</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Calendario">Calendario</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Estadisticas">Estadísticas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/soporte">Soporte</a></li>
+                <li class="nav-item"><a class="nav-link" href="/soporte"> Soporte </a></li>
+                <li class="nav-item"><a class="nav-link" href="/Mqtt">Mqtt</a></li>
                 <li class="nav-item"><a class="nav-link" :href="this.api + '/admin/' " >Admin</a></li>
             </ul>
         </div>

@@ -11,6 +11,7 @@ import control from '../views/Agrocablebot/controlView.vue'
 import calendario from '../views/Agrocablebot/calendarioView.vue'
 import estadisticas from '../views/Agrocablebot/estadisticasView.vue'
 import soporte from '../views/Agrocablebot/soporteView.vue'
+import mqtt from '../views/Agrocablebot/Mqtt_View.vue'
 
 const routes = [
   {path: '/', name: 'inicio', component: Inicio },
@@ -26,8 +27,7 @@ const routes = [
   {path: '/calendario', name: 'calendario', component: calendario },
   {path: '/estadisticas', name: 'estadisticas', component: estadisticas },
   {path: '/soporte', name: 'soporte', component: soporte },
-
-
+  {path: '/mqtt', name: 'mqtt', component: mqtt },
 
   ]
 
@@ -43,6 +43,7 @@ const protecdRoutes= [
   'calendario',
   'estadisticas',
   'soporte',
+  'mqtt',
 ]
 
 router.beforeEach((to, from, next) => {
