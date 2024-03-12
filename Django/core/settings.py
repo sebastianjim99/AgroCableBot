@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # Para crear tokens de identificacion
     'imacuna.apps.ImacunaConfig',
     'r_agrocablebot',
-    'rtsp',   # probando libreria de stream 
+    # 'rtsp',   # probando libreria de stream 
+    'django_celery_results', #celery
+    'django_celery_beat',
     # 'channels',
     
 ]
@@ -168,4 +170,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Directorio de Vue
 UI_DIR = os.path.join(BASE_DIR, 'ui/')
 
+# Celery settings
 
+CELERY_BROKER_URL = 'amqp://{}:{}@{}:{}'.format(
+    'JuanFelipe',
+    'Juanfe142228.',
+    'localhost',
+    '5672'
+)
+#: Only add pickle to this list if your broker is secured
+#: from unwanted access (see userguide/security.html)
+CELERY_ACCEPT_CONTENT = ['json', 'pickle']
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_TASK_SERIALIZER = 'json'
