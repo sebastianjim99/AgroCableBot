@@ -13,6 +13,7 @@
     mounted() {
       this.obtenerTareas(); // Llama a la función para obtener las tareas al montar el componente
       this.eventCheckInterval = setInterval(this.ejecutarEventos, this.intervalDuration); // Iniciar intervalo de comprobación de eventos
+      
     },
 
     beforeUnmount() {
@@ -20,22 +21,58 @@
     },
 
     methods: {
-      obtenerTareas() {
-        axios.get('http://localhost:8000/api/calendarios') // Endpoint para obtener las tareas
+       // Método para eliminar todos los eventos antiguos del modelo eventosCalendarios
+       eliminarEventosAntiguos() {
+        return axios.get('http://localhost:8000/api/eventosCalendarios/')
           .then(response => {
-            const eventos = this.parsearEventos(response.data);
-            //this.calendarOptions.events = eventos; // Actualiza la lista de eventos del calendario
-            this.events = eventos; // Almacena los eventos obtenidos
-            // console.log("Eventos", eventos)
-            //this.ejecutarEventos(); // Ejecuta los eventos después de obtenerlos
+            const eventos = response.data;
+            const deletePromises = eventos.map(evento => {
+              return axios.delete(`http://localhost:8000/api/eventosCalendarios/${evento.id}`);
+            });
+            // Ejecutar todas las solicitudes DELETE en paralelo
+            return Promise.all(deletePromises);
+          })
+          .then(() => {
+            console.log('Todos los eventos antiguos han sido eliminados exitosamente.');
           })
           .catch(error => {
-            console.error(error);
+            console.error('Error al eliminar eventos antiguos:', error);
+            throw error; // Lanzar error para que pueda ser manejado en la promesa encadenada
           });
       },
+      guardarEvento(evento) {
+        axios.post('http://localhost:8000/api/eventosCalendarios/', evento)
+          .then(response => {
+            console.log('Evento guardado exitosamente:', response.data);
+          })
+          .catch(error => {
+            console.error('Error al guardar evento:', error);
+          });
+      },
+
+
+      obtenerTareas() {
+        this.eliminarEventosAntiguos() // Llama al método para eliminar eventos antiguos
+          .then(() => {
+            axios.get('http://localhost:8000/api/calendarios') // Endpoint para obtener las tareas
+              .then(response => {
+                const eventos = this.parsearEventos(response.data);
+                this.events = eventos; // Almacena los eventos obtenidos
+                console.log("Eventos", eventos);
+              })
+              .catch(error => {
+                console.error('Error al obtener tareas:', error);
+              });
+          })
+          .catch(error => {
+            console.error('Error al eliminar eventos antiguos:', error);
+          });
+      },
+
       // ParsearEventos -> lo que hace es tomar una Lista de tareas con una logica repeticion e intervalo y
       // lo lleva a un array de eventos donde se secciona todos los eventos que quieren ejecutar 
       parsearEventos(tareas) {
+        
         return tareas.flatMap(tarea => {
           const eventos = [];
           const intervalo = tarea.intervalo || 1;
@@ -53,6 +90,13 @@
                     start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
                     allDay: false
                   });
+                  const evento = {
+                    title: tarea.nombre,
+                    start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
+                    calendario: tarea.id,
+                    allDay: false
+                  };
+                  this.guardarEvento(evento);
                 });
                 fecha.setDate(fecha.getDate() + intervalo);
               }
@@ -65,6 +109,13 @@
                     start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
                     allDay: false
                   });
+                  const evento = {
+                    title: tarea.nombre,
+                    start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
+                    calendario: tarea.id,
+                    allDay: false
+                  };
+                  this.guardarEvento(evento);
                 });
                 fecha.setDate(fecha.getDate() + (intervalo * 7));
               }
@@ -77,6 +128,13 @@
                     start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
                     allDay: false
                   });
+                  const evento = {
+                    title: tarea.nombre,
+                    start: new Date(fecha.setHours(hora.substring(0, 2), hora.substring(3, 5))),
+                    calendario: tarea.id,
+                    allDay: false
+                  };
+                  this.guardarEvento(evento);
                 });
                 fecha.setMonth(fecha.getMonth() + intervalo);
               }

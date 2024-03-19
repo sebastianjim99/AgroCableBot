@@ -92,4 +92,7 @@ class Sensor_MQTTSerializer(serializers.ModelSerializer):
         model = Sensor_MQTT
         fields = '__all__'
         
-
+class eventosCalendariosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = eventosCalendarios
+        fields = '__all__'

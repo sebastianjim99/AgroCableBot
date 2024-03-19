@@ -209,6 +209,9 @@
         </div>
       </div>
     </div>
+    <section>
+        <ejecucionTareas ref="ejecucionTareas"/>
+    </section>
 
   
 
@@ -219,9 +222,13 @@
 // Importación de librerías y configuraciones necesarias
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import ejecucionTareas from './/ejecucionTareas.vue'
 
 
 export default {
+  components:{
+        ejecucionTareas,
+    },
   // Datos del componente
   data() {
     return {
@@ -240,6 +247,7 @@ export default {
       cultivos: [],
       selectedPlantas: [],
       calendarios: [],
+      eventosCalendarios:[],
       acciones: [],
       selectedCultivos: [],
       editingCalendarioId: null,
@@ -294,6 +302,16 @@ export default {
       axios.get('http://localhost:8000/api/calendarios')
         .then(response => {
           this.calendarios = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    // Método para obtener las tareas programadas desde el servidor
+    obtenerEventosCalendarios() {
+      axios.get('http://localhost:8000/api/eventosCalendarios')
+        .then(response => {
+          this.eventosCalendarios = response.data;
         })
         .catch(error => {
           console.error(error);
@@ -418,10 +436,13 @@ export default {
             icon: 'success',
             title: '¡Éxito!',
             text: this.editingCalendarioId ? 'Tarea actualizada correctamente' : 'Tarea creada correctamente',
-          });
-          this.editingCalendarioId = null;  // Restablece el ID de edición
-          this.obtenerCalendarios();        // Actualiza la lista de tareas
-          this.resetForm();                 // Restablece el formulario
+          }).then(()=>{
+            this.editingCalendarioId = null;  // Restablece el ID de edición
+            this.obtenerCalendarios();        // Actualiza la lista de tareas
+            this.resetForm();                 // Restablece el formulario
+          }).then(()=>{
+            this.$refs.ejecucionTareas.obtenerTareas();
+          })
         })
         .catch(error => {
           // Si hay un error en la solicitud, muestra un mensaje de error y oculta el modal

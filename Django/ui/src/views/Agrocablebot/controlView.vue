@@ -148,6 +148,7 @@
                             
                             <ul class="list-group">
                                 <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Planta # {{ this.posicionPlanta }}</span></li>
+                                <li class="list-group-item"><span>Coordenada (x,y): ({{ this.coordenadaX }},{{ this.coordenadaY }})</span></li>
                                 <li class="list-group-item"><span>Humedad: 50%</span></li>
                                 <li class="list-group-item"><span>Temperatura: 25°C</span></li>
                                 <li class="list-group-item"><span>Otro dato</span></li>
@@ -239,6 +240,8 @@ export default{
             plantaSeleccionada: null,
             cultivoSeleccionado:null, 
             posicionPlanta:null,
+            coordenadaX:null,
+            coordenadaY:null,
             
             connection: {
                 protocol: "ws",
@@ -332,6 +335,8 @@ export default{
             const planta = this.matriz[filaIndex][columnaIndex];
             this.cultivoSeleccionado = planta ? planta.cultivo : null;
             this.posicionPlanta =filaIndex * this.matriz[0].length + columnaIndex + 1;
+            this.coordenadaX= planta.coordenadaX
+            this.coordenadaY= planta.coordenadaY
             //console.log("posicion", posicion)
         },
         //  ---------- metodos de sensores----------------

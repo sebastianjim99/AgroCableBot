@@ -39,5 +39,6 @@ admin.site.register(imagenesxPlanta)
 #admin.site.register(mo_agroCableBot)  
 
 admin.site.register(Sensor_MQTT)
+admin.site.register(eventosCalendarios)
 
 
