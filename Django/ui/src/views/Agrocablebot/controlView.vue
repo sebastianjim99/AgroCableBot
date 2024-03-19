@@ -4,11 +4,17 @@
         <navbar_monitoreo />
     </div>
 
-    <div>   <!--   titulo control manual   -->
+    <div>   <!--   titulo control manual  y boton para sacar la informacion del control -->
         <section>
             <div style="text-align: center;">
                 <h2 class="divider-style">
-                    <span>Control Manual </span>
+                    <span>
+                        Control Manual     
+                        <svg  @click = "abrirModal"  style="cursor: pointer;"   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                        </svg>             
+                    </span>
                 </h2>
             </div>
         </section>
@@ -18,16 +24,17 @@
         <nav class="navbar navbar-expand-md bg-body py-3">
             <div class="container">
                     <div class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-5" >
+                        <!-- Yoystik  para el control del robot -->
                         <div class="container">
-                            <div class="row bg-body py-3">
-                                <div class="col-md-10" style="padding: 0px 0px;">
+                            <div class="row ">
+                                <div class="col-md-10" >
                                     <svg class="bi bi-arrow-left-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;margin: 5px;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
                                     </svg>      
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;padding: 0%;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
                                     </svg>
@@ -40,8 +47,7 @@
                                 <div class="col-md-2">
                                     <svg class="bi bi-arrow-down-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;padding: 0%;;margin-top: 5px;margin-bottom: 5px;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
-                                    </svg>
-                                    
+                                    </svg>    
                                 </div>
                             </div>
                             
@@ -50,11 +56,8 @@
                                     <svg class="bi bi-arrow-right-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;margin: 5px;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
                                     </svg>
-                                    
                                 </div>
-                            </div>
-                            
-                            
+                            </div>                   
                         </div>
                     </div>
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-5">
@@ -62,36 +65,56 @@
                     <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"></path>
                     </svg>
                 </button>
+                
                 <div id="navcol-3" class="collapse navbar-collapse">
                     <div>
-                        <div class="row">
-                            <div class="col-md-10" style="padding: 0px 0px;"><svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
+                        <div class="row" style="width: 300px;"  >
+                            <div class="col-md-9" @click="Y_positivo" >
+                                <svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
-                                </svg></div>
+                                </svg>
+                            </div>
+                            <div class="col-md-3" @click="movZ_up">
+                                <svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
+                                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
+                                </svg>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3" @click="X_negativo" >
                                 <svg class="bi bi-arrow-left-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
                                 </svg>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" @click="home" >
                                 <svg class="bi bi-house-door" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"  fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
                                     <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
                                 </svg>
                             </div>
-                            <div class="col-md-3"><svg class="bi bi-arrow-right-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
+                            <div class="col-md-3" @click="X_positivo" >
+                                <svg class="bi bi-arrow-right-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
-                                </svg></div>
+                                </svg>
+                            </div>
+                            <div class="col-md-3">
+                                <p class="justify-content-center align-items-center" style="font-size: 30px; margin:7px 0 0 0; " > {{this.posActualZ}} </p>
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-10" style="padding: 0px 0px;">
+                        <div class="row" style="width: 300px;"  @click="Y_negativo">
+                            <div class="col-md-9" >
+                                <svg class="bi bi-arrow-down-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
+                                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
+                                </svg>
+                            </div>
+
+                            <div class="col-md-3" @click="movZ_Down"  >
                                 <svg class="bi bi-arrow-down-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
                                 </svg>
                             </div>
                         </div>
                     </div>
+
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item"><a class="nav-link active" href="#" style="margin-top: 11px;">Plantar</a></li>
                         <li class="nav-item"><a class="nav-link active" href="#"><svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
@@ -110,16 +133,11 @@
                                 </svg></a></li>
                         <li class="nav-item"><a class="nav-link active" href="#" style="margin-top: 11px;">Censar</a></li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" @click="doPublish"  href="#">
                                 <svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
                                 </svg>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                               <button @click="enviarMensajeMQTT">Enviar Mensaje MQTT</button> 
                             </a>
                         </li>
                     </ul>
@@ -129,13 +147,12 @@
     </section> 
 
 
-
+    <!-- Trasmisión Video Stream-->
     <div>
         <trasmisionVue />
     </div>
 
-    <br>
-
+    <!-- sensores -->
     <section>
         <div class="row">
             <div class="col">
@@ -148,7 +165,7 @@
                             
                             <ul class="list-group">
                                 <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Planta # {{ this.posicionPlanta }}</span></li>
-                                <li class="list-group-item"><span>Coordenada (x,y): ({{ this.coordenadaX }},{{ this.coordenadaY }})</span></li>
+                                <li class="list-group-item" style="" > <span style="justify-content: start;" >Coordenada (x,y): ({{ this.coordenadaX }},{{ this.coordenadaY }}) </span> <button @click="move" class="btn btn-primary" style="justify-content: end;"> Mover </button> </li>
                                 <li class="list-group-item"><span>Humedad: 50%</span></li>
                                 <li class="list-group-item"><span>Temperatura: 25°C</span></li>
                                 <li class="list-group-item"><span>Otro dato</span></li>
@@ -202,9 +219,13 @@
         <footer_imacuna />
     </section>
 
-    <section>
-        <mqtt_pagina/>
-    </section>
+    <div v-if="mostrarModal" class="modal-ayuda" >
+        <div class="modal-dialog-listcultivo">
+            <div class="modal-content-listcultivo">
+                <span class="close" style="cursor: pointer;" data-dismiss="modal-ayuda" aria-label="Close" @click="cerrarModal">&times;</span>
+            </div>
+        </div>
+    </div>
 
 </template>
 
@@ -216,7 +237,8 @@ import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
 import trasmisionVue from '/src/components/agrocablebot/trasmision.vue'
 import listCultivo from '/src/components/agrocablebot/monitoreo/ListCultivo.vue'
 import footer_imacuna from '/src/components/footer.vue'
-import mqtt_pagina from '/src/components/mqtt/mqtt_server.vue'
+import mqtt from 'mqtt';
+import Swal from 'sweetalert2';
 
 export default{
     components:{
@@ -224,8 +246,6 @@ export default{
         trasmisionVue, 
         listCultivo,
         footer_imacuna,
-        mqtt_pagina
-        
     },
 
     data(){
@@ -243,27 +263,32 @@ export default{
             coordenadaX:null,
             coordenadaY:null,
             
+            // Servidor mqtt 
+            posActualX: null,
+            posActualY: null,
+            posActualZ: null,
+
             connection: {
                 protocol: "ws",
-                host: "172.17.91.30",
+                host: '172.17.91.30' ,               //"imacunamqtt.live",
+                // ws: 8083; wss: 8084
                 port: 8083,
                 endpoint: "/mqtt",
                 clean: true,
-                connectTimeout: 60 * 1000, // ms
+                connectTimeout: 30 * 1000, // ms
                 reconnectPeriod: 4000, // ms
                 clientId: "emqx_vue_" + Math.random().toString(16).substring(2, 8),
-                // auth
                 username: "imacuna",
                 password: "pi",
             },
             subscription: {
-                topic: "sensores",
+                topic: "sensores/",
                 qos: 0,
             },
             publish: {
                 topic: "comandos",
                 qos: 0,
-                payload: '{ "msg": "Hello, I am browser." }',
+                payload: '{ "interface": "send_aio" }',
             },
             receiveNews: "",
             qosList: [0, 1, 2],
@@ -272,40 +297,38 @@ export default{
             },
             subscribeSuccess: false,
             connecting: false,
-            retryTimes: 0,        
+            mostrarModal: false,
+            retryTimes: 0,         
         }
     },
 
     mounted(){
+        this.createConnection();
         this.obtenerDatosSensores();
-        //Lectura tipo de cultivo
+        this.PosActual();
         
-        axios.get(this.api + 'api/tipoCultivo').then(
-            response =>{
-                this.tipo_cultivo=response.data
-            }).catch(
-                error =>{
-                    console.log(error)
-                })
+        //Lectura tipo de cultivo
+        axios.get(this.api + '/api/tipoCultivo').then(response =>{
+            this.tipo_cultivo=response.data    
+        }).catch(
+            error =>{
+                console.log(error)
+            })
 
         //Lectura de cultivo
-        axios.get( this.api + '/api/cultivo').then(
-            response =>{
-                this.cultivos=response.data
-            }).catch(
-                error =>{
-                    console.log(error)
-            })
+        axios.get( this.api + '/api/cultivo').then(response =>{
+            this.cultivos=response.data
+        }).catch(error =>{
+            console.log(error)
+        })
         
         //Lectura de plantas
-        axios.get( this.api + '/api/plantas').then(
-            response =>{
-                this.plantas=response.data
-                this.initializeMatriz()
-            }).catch(
-                error =>{
-                    console.log(error)
-            })
+        axios.get( this.api + '/api/plantas').then(response =>{
+            this.plantas=response.data
+            this.initializeMatriz()
+        }).catch(error =>{
+            console.log(error)
+        })
       
     },
 
@@ -335,9 +358,8 @@ export default{
             const planta = this.matriz[filaIndex][columnaIndex];
             this.cultivoSeleccionado = planta ? planta.cultivo : null;
             this.posicionPlanta =filaIndex * this.matriz[0].length + columnaIndex + 1;
-            this.coordenadaX= planta.coordenadaX
-            this.coordenadaY= planta.coordenadaY
-            //console.log("posicion", posicion)
+            this.coordenadaX= parseInt(planta.coordenadaX) ;
+            this.coordenadaY= parseInt(planta.coordenadaY);
         },
         //  ---------- metodos de sensores----------------
         obtenerDatosSensores() {
@@ -370,14 +392,208 @@ export default{
 
         },
 
-    },
+        // METODOS PARA CONEXIÓN, RECONEXIÓN, PUBLICACION
+        handleOnReConnect() {
+            this.retryTimes += 1;
+            if (this.retryTimes > 5) {
+                try {
+                    this.client.end();
+                    this.initData();
+                    this.$message.error("Limite de reconexiones");
+                } catch (error) {
+                    this.$message.error(error.toString());
+                }
+            }
+        },
 
+        createConnection() {
+            try {
+                this.connecting = true;
+                const { protocol, host, port, endpoint, ...options } = this.connection;
+                const connectUrl = `${protocol}://${host}:${port}${endpoint}`;
+                this.client = mqtt.connect(connectUrl, options);
+                if (this.client.on) {
+                this.client.on("connect", () => {
+                    this.connecting = false;
+                    console.log("Connection succeeded!");
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Éxito!',
+                        text:  'Conexión exitosa con el servidor mqtt',
+                    });
+                });
+                this.client.on("reconnect", this.handleOnReConnect);
+                this.client.on("error", (error) => {
+                    console.log("Connection failed", error);
+                });
+                this.client.on("message", (topic, message) => {
+                    this.receiveNews = this.receiveNews.concat(message);
+                    console.log(`Received message ${message} from topic ${topic}`);
+                });
+                }
+            } catch (error) {
+                this.connecting = false;
+                console.log("mqtt.connect error", error);
+            }
+        },
+
+        doPublish() {
+            const { topic, qos, payload } = this.publish
+            this.client.publish(topic, payload, { qos }, error => {
+            if (error) {
+                console.log('Publish error', error)
+            }
+            })
+        },
+
+        PosActual(){
+            this.client.subscribe("status", "0", (error) => {
+                if (error) {
+                    console.log('Subscribe to topics error', error)
+                }
+            })
+            this.client.publish("comandos",'{ "GCODE": "M5" }', "0" , error => {
+                if (error) {
+                console.log('Publish error', error)
+                }
+            })
+
+            this.client.on('message', (topic, message) => {
+                // console.log(`Received message ${message.toString()} from topic ${topic}`);
+                try {
+                    // Analizar el mensaje JSON
+                    const status_actual = JSON.parse(message.toString());
+                    
+                    // Verificar si el objeto tiene las propiedades de posición
+                    if (status_actual && status_actual.x !== undefined && status_actual.y !== undefined && status_actual.z !== undefined) {
+                        // Asignar las propiedades a las variables posActualX, posActualY y posActualZ
+                        this.posActualX = status_actual.x;
+                        this.posActualY = status_actual.y;
+                        this.posActualZ = status_actual.z;
+                        
+                        // Aquí puedes hacer lo que necesites con las variables posActualX, posActualY y posActualZ
+                        console.log('posActualX:', this.posActualX, 'posActualY:', this.posActualY, 'posActualZ:', this.posActualZ);
+                    }
+                } catch (error) {
+                    console.error('Error al analizar el objeto JSON:', error);
+                }
+                // Vaciar la variable receiveNews
+                this.receiveNews = "";
+            });
+
+        },
+
+        movZ_up(){
+            const nueva_posZ = this.posActualZ + 10; 
+            const mensaje = `{ "GCODE": "G1 X${this.posActualX} Y${this.posActualY} Z${nueva_posZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+            this.posActualZ = nueva_posZ 
+        },        
+        
+        movZ_Down(){
+            const nueva_posZ = this.posActualZ - 10; 
+            const mensaje = `{ "GCODE": "G1 X${this.posActualX} Y${this.posActualY} Z${nueva_posZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+            this.posActualZ = nueva_posZ 
+        },
+
+        X_positivo(){
+            const nueva_posX = this.posActualX + 100; 
+            const mensaje = `{ "GCODE": "G1 X${nueva_posX} Y${this.posActualY} Z${this.posActualZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+            this.posActualX = nueva_posX 
+        },
+
+        X_negativo(){
+            const nueva_posX = this.posActualX - 100; 
+            const mensaje = `{ "GCODE": "G1 X${nueva_posX} Y${this.posActualY} Z${this.posActualZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+            this.posActualX = nueva_posX 
+        },
+
+        Y_positivo(){
+            const nueva_posY = this.posActualY + 100; 
+            const mensaje = `{ "GCODE": "G1 X${this.posActualX} Y${nueva_posY} Z${this.posActualZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+            this.posActualY = nueva_posY
+        },
+
+        Y_negativo(){
+            const nueva_posY = this.posActualY - 100; 
+            const mensaje = `{ "GCODE": "G1 X${this.posActualX} Y${nueva_posY} Z${this.posActualZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+            this.posActualY = nueva_posY
+        },   
+        
+        home(){
+            const mensaje = `{ "GCODE": "G1 X0 Y0 Z${this.posActualZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+        },
+
+        move(){
+           const mensaje = `{ "GCODE": "G1 X${this.coordenadaX} Y${this.coordenadaY} Z${this.posActualZ}" }`;
+            this.client.publish("comandos", mensaje, "0" , error => {
+                if (error) {
+                    console.log('Publish error', error)
+                }
+            })
+            this.posActualX =  this.coordenadaX;
+            this.posActualY =  this.coordenadaY;
+        },
+
+        abrirModal() {       
+            this.mostrarModal = true;   // Mostrar el modal
+        },
+        cerrarModal() {       
+            this.mostrarModal = false;   // Mostrar el modal
+        },
+    },
 }
 
 </script>
 
 
 <style>
+    .modal-ayuda {
+        /* Contenedor principal del modal */
+        display: block; /* Mostrar como bloque */
+        position: fixed; /* Fijar la posición en relación con la ventana del navegador */
+        z-index: 9999; /* Colocar sobre otros elementos */
+        left: 0; /* Posición izquierda */
+        top: 0; /* Posición superior */
+        width: 100%; /* Ancho completo */
+        height: 100%; /* Altura completa */
+        overflow: auto; /* Agregar desplazamiento automático si es necesario */
+        background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semi-transparente */
+    }
 
     .divider-style:before {
     content: "";

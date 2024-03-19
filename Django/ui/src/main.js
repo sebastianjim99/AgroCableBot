@@ -2,14 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import '../src/assets/vendor/swiper/swiper-bundle.min.css'
-import '../src/assets/vendor/bootstrap/css/bootstrap.min.css'
-
 import axios from 'axios'
 import store from './store'
 
-
-// import { BootstrapIconsPlugin } from "bootstrap-icons-vue";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import '../src/resources/css/Bootstrap-Calendar.css' 
 import '../src/resources/css/integrantes.css' 
