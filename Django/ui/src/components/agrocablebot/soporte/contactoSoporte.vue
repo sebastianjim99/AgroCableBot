@@ -12,7 +12,7 @@
                             </svg></div>
                         <div class="px-2">
                             <h6 class="mb-0">Celular</h6>
-                            <p class="mb-0">+57 </p>
+                            <p class="mb-0">+57 317 8953542</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center p-3">

@@ -69,7 +69,7 @@ urlpatterns = [
     path('retrieve-update-destroy-usarios/<int:pk>/', RetrieveUpdateDestroyUsuarios.as_view(), name= 'retrieve-update-destroy'),
     # ------------ camara -----------
     path('captura/', capturas , name='captura'),
-    path('publish/', publish_message, name= 'publish' ),
+    path('publish/', publish_message, name= 'publish' ), 
     path('sensar-mqtt/', enviar_mensaje_mqtt, name='sensar-mqtt'),
 
 

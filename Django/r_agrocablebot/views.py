@@ -119,8 +119,14 @@ def enviar_mensaje_mqtt(request):
             'interface': 'send_aio'
         }
         try:
-            # Publicar el mensaje MQTT
-            publish.single('comandos', json.dumps(message), hostname=os.environ['MQTT_SERVER'])
+            auth = {
+                'username': 'imacuna',
+                'password': 'pi'
+            }
+
+            # Publicar el mensaje MQTT con cliente y contraseña especificados
+            publish.single('comandos', json.dumps(message), hostname=os.environ['MQTT_SERVER'], auth=auth)
+            
             return JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
