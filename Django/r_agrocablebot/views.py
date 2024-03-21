@@ -6,9 +6,10 @@ from rest_framework.authtoken.models import Token
 
 import json
 from django.http import JsonResponse
-from r_agrocablebot.mqtt import client as mqtt_client
+# from r_agrocablebot.mqtt import client as mqtt_client
 from django.views.decorators.csrf import csrf_exempt
 import paho.mqtt.publish as publish
+from django.http import HttpResponse
 import os 
 
 from .models import (
@@ -89,32 +90,40 @@ class imagenesxPlantaViewSet(viewsets.ModelViewSet):
 class calendariosViewSet(viewsets.ModelViewSet):
     queryset = calendarios.objects.all()
     serializer_class =calendariosSerializer
-    
-@csrf_exempt
-def publish_message(request):
-    request_data = json.loads(request.body)
-    rc, mid = mqtt_client.publish(request_data['topic'], request_data['msg'])
-    return JsonResponse({'code': rc})
 
-@csrf_exempt
-def enviar_mensaje_mqtt(request):
-    if request.method == 'POST':
-        message = {
-            'interface': 'send_aio'
-        }
-        try:
-            # Definir las credenciales del cliente MQTT
-            auth = {
-                'username': 'imacuna',
-                'password': 'pi'
-            }
 
-            # Publicar el mensaje MQTT con cliente y contraseña especificados
-            publish.single('comandos', json.dumps(message), hostname=os.environ['MQTT_SERVER'], auth=auth)
+# @csrf_exempt
+# def publish_message(request):
+#     message = {
+#             'interface': 'send_aio'
+#         }
+#     # Definir las credenciales del cliente MQTT
+#     auth = {
+#         'username': 'imacuna',
+#         'password': 'pi'
+#     }
+#     publish.single("comandos", json.dumps(message), hostname=os.environ['MQTT_SERVER'], auth=auth)
+#     return HttpResponse("Published")
+
+# @csrf_exempt
+# def enviar_mensaje_mqtt(request):
+#     if request.method == 'POST':
+#         message = {
+#             'interface': 'send_aio'
+#         }
+#         try:
+#             # Definir las credenciales del cliente MQTT
+#             auth = {
+#                 'username': 'imacuna',
+#                 'password': 'pi'
+#             }
+
+#             # Publicar el mensaje MQTT con cliente y contraseña especificados
+#             publish.single('comandos', json.dumps(message), hostname=os.environ['MQTT_SERVER'], auth=auth)
             
-            return JsonResponse({'success': True})
-        except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)})  
+#             return JsonResponse({'success': True})
+#         except Exception as e:
+#             return JsonResponse({'success': False, 'error': str(e)})  
 
 
 

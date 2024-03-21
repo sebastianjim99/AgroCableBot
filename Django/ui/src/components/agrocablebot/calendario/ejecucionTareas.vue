@@ -1,4 +1,4 @@
-
+<!-- 
 <script>
   import axios from 'axios';
   
@@ -6,19 +6,19 @@
     data() {
       return {
         events: [], // Las tareas se cargarán dinámicamente más adelante
-        eventCheckInterval: null, // Variable para almacenar el intervalo de comprobación de eventos
-        intervalDuration: 120000, // Duración del intervalo en milisegundos (2 minutos)
+        // eventCheckInterval: null, // Variable para almacenar el intervalo de comprobación de eventos
+        // intervalDuration: 120000, // Duración del intervalo en milisegundos (2 minutos)
       };
     },
     mounted() {
       this.obtenerTareas(); // Llama a la función para obtener las tareas al montar el componente
-      this.eventCheckInterval = setInterval(this.ejecutarEventos, this.intervalDuration); // Iniciar intervalo de comprobación de eventos
+      // this.eventCheckInterval = setInterval(this.ejecutarEventos, this.intervalDuration); // Iniciar intervalo de comprobación de eventos
       
     },
 
-    beforeUnmount() {
-      clearInterval(this.eventCheckInterval); // Limpiar intervalo al destruir el componente para evitar fugas de memoria
-    },
+    // beforeUnmount() {
+    //   clearInterval(this.eventCheckInterval); // Limpiar intervalo al destruir el componente para evitar fugas de memoria
+    // },
 
     methods: {
        // Método para eliminar todos los eventos antiguos del modelo eventosCalendarios
@@ -42,9 +42,9 @@
       },
       guardarEvento(evento) {
         axios.post('http://localhost:8000/api/eventosCalendarios/', evento)
-          .then(response => {
-            console.log('Evento guardado exitosamente:', response.data);
-          })
+          // .then(response => {
+          //   console.log('Evento guardado exitosamente:', response.data);
+          // })
           .catch(error => {
             console.error('Error al guardar evento:', error);
           });
@@ -58,7 +58,7 @@
               .then(response => {
                 const eventos = this.parsearEventos(response.data);
                 this.events = eventos; // Almacena los eventos obtenidos
-                console.log("Eventos", eventos);
+                // console.log("Eventos", eventos);
               })
               .catch(error => {
                 console.error('Error al obtener tareas:', error);
@@ -143,26 +143,26 @@
           return eventos;
         });
       },
-      ejecutarEventos() {
-        const ahora = new Date();
-        const margen = 1; // Margen de 2 minutos
-        //console.log("Ahora",ahora)
-        this.events.forEach(evento => {
-          const eventoFecha = new Date(evento.start);
-          const diferenciaTiempo = Math.abs(ahora - eventoFecha) / (1000 * 60); // Diferencia en minutos
-          // console.log("Ahora",ahora)
-          // console.log("Evento Fecha",eventoFecha)
-          // console.log("Diferencia",diferenciaTiempo)
+      // ejecutarEventos() {
+      //   const ahora = new Date();
+      //   const margen = 1; // Margen de 2 minutos
+      //   //console.log("Ahora",ahora)
+      //   this.events.forEach(evento => {
+      //     const eventoFecha = new Date(evento.start);
+      //     const diferenciaTiempo = Math.abs(ahora - eventoFecha) / (1000 * 60); // Diferencia en minutos
+      //     // console.log("Ahora",ahora)
+      //     // console.log("Evento Fecha",eventoFecha)
+      //     // console.log("Diferencia",diferenciaTiempo)
 
-          if (diferenciaTiempo <= margen) {
-            console.log('Ejecutando evento: --------', evento.title);
-            // Llama a la acción asociada al evento
-            // (aquí puedes agregar tu lógica específica)
-          }
-          //else{console.log("no entro al if")}
+      //     if (diferenciaTiempo <= margen) {
+      //       console.log('Ejecutando evento: --------', evento.title);
+      //       // Llama a la acción asociada al evento
+      //       // (aquí puedes agregar tu lógica específica)
+      //     }
+      //     //else{console.log("no entro al if")}
           
-        });
-      },
+      //   });
+      // },
 
 
     }
@@ -172,4 +172,4 @@
   <style scoped>
   /* Estilos CSS específicos para este componente */
   </style>
-  
+   -->

@@ -39,6 +39,9 @@ admin.site.register(imagenesxPlanta)
 #admin.site.register(mo_agroCableBot)  
 
 admin.site.register(Sensor_MQTT)
-admin.site.register(eventosCalendarios)
+class eventosCalendariosAdmin(admin.ModelAdmin):
+    list_display=['title','start']
+    list_filter=['start']
+admin.site.register(eventosCalendarios,eventosCalendariosAdmin)
 
 

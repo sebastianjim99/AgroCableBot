@@ -209,9 +209,13 @@
         </div>
       </div>
     </div>
-    <section>
+    <!-- <section>
         <ejecucionTareas ref="ejecucionTareas"/>
+    </section> -->
+    <section>
+        <vistaCalendario ref="vistaCalendario"/>
     </section>
+    
 
   
 
@@ -222,12 +226,14 @@
 // Importación de librerías y configuraciones necesarias
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import ejecucionTareas from './/ejecucionTareas.vue'
+// import ejecucionTareas from './/ejecucionTareas.vue'
+import vistaCalendario from '/src/components/agrocablebot/calendario/vistaCalendario.vue'
 
 
 export default {
   components:{
-        ejecucionTareas,
+        // ejecucionTareas,
+        vistaCalendario,
     },
   // Datos del componente
   data() {
@@ -316,6 +322,11 @@ export default {
         .catch(error => {
           console.error(error);
         });
+    },
+    actualizarVistaCalendario() {
+      // Llama a la función para obtener los calendarios actualizados
+      this.obtenerCalendarios();
+      this.obtenerEventosCalendarios();
     },
     // Método para obtener las acciones desde el servidor
     obtenerAcciones() {
@@ -440,8 +451,10 @@ export default {
             this.editingCalendarioId = null;  // Restablece el ID de edición
             this.obtenerCalendarios();        // Actualiza la lista de tareas
             this.resetForm();                 // Restablece el formulario
-          }).then(()=>{
-            this.$refs.ejecucionTareas.obtenerTareas();
+          })
+          .then(()=>{
+            // this.$refs.ejecucionTareas.obtenerTareas();
+            this.$refs.vistaCalendario.obtenerTareas();
           })
         })
         .catch(error => {
@@ -544,6 +557,9 @@ export default {
               ).then(() => {
                 // Actualiza la lista de cultivos mostrada en la interfaz de usuario después de eliminar
                 this.obtenerCalendarios();
+              }).then(()=>{
+                // this.$refs.ejecucionTareas.obtenerTareas();
+                this.$refs.vistaCalendario.obtenerTareas();
               });
             })
             .catch(error => {
