@@ -13,9 +13,10 @@
                         <svg  @click = "abrirModal"  style="cursor: pointer;"   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                             <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
-                        </svg>             
+                        </svg>            
                     </span>
                 </h2>
+                <p style="font-size: 25px;"> x: {{this.posActualX}}, y:{{this.posActualY}}    </p> 
             </div>
         </section>
     </div>
@@ -27,24 +28,24 @@
                         <!-- Yoystik  para el control del robot -->
                         <div class="container">
                             <div class="row ">
-                                <div class="col-md-10" >
+                                <div class="col-md-10 icon-link " >
                                     <svg class="bi bi-arrow-left-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;margin: 5px;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
                                     </svg>      
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-4 icon-link">
                                     <svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;padding: 0%;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
                                     </svg>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 icon-link">
                                     <svg class="bi bi-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;margin: 5px;">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     </svg>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 icon-link ">
                                     <svg class="bi bi-arrow-down-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;padding: 0%;;margin-top: 5px;margin-bottom: 5px;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
                                     </svg>    
@@ -52,7 +53,7 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-md-3" style="padding: 0px 0px;">
+                                <div class="col-md-3 icon-link " style="padding: 0px 0px;">
                                     <svg class="bi bi-arrow-right-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 40px;margin: 5px;">
                                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
                                     </svg>
@@ -69,30 +70,30 @@
                 <div id="navcol-3" class="collapse navbar-collapse">
                     <div>
                         <div class="row" style="width: 300px;"  >
-                            <div class="col-md-9" @click="Y_positivo" >
-                                <svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
+                            <div class="col-md-9 " @click="Y_positivo" >
+                                <svg class="bi bi-arrow-up-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
                                 </svg>
                             </div>
-                            <div class="col-md-3" @click="movZ_up">
-                                <svg class="bi bi-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
+                            <div class="col-md-3 " @click="movZ_up">
+                                <svg class="bi bi-arrow-up-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
                                 </svg>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3" @click="X_negativo" >
-                                <svg class="bi bi-arrow-left-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
+                            <div class="col-md-3 " @click="X_negativo" >
+                                <svg class="bi bi-arrow-left-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
                                 </svg>
                             </div>
-                            <div class="col-md-3" @click="home" >
-                                <svg class="bi bi-house-door" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"  fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
-                                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
-                                </svg>
+                            <div class="col-md-3 " @click="home" >
+                                    <svg class="bi bi-house-door icono " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"  fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
+                                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                                    </svg>
                             </div>
-                            <div class="col-md-3" @click="X_positivo" >
-                                <svg class="bi bi-arrow-right-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
+                            <div class="col-md-3 " @click="X_positivo" >
+                                <svg class="bi bi-arrow-right-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
                                 </svg>
                             </div>
@@ -100,15 +101,15 @@
                                 <p class="justify-content-center align-items-center" style="font-size: 30px; margin:7px 0 0 0; " > {{this.posActualZ}} </p>
                             </div>
                         </div>
-                        <div class="row" style="width: 300px;"  @click="Y_negativo">
-                            <div class="col-md-9" >
-                                <svg class="bi bi-arrow-down-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
+                        <div class="row" style="width: 300px;"  >
+                            <div class="col-md-9 " @click="Y_negativo" >
+                                <svg class="bi bi-arrow-down-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
                                 </svg>
                             </div>
 
-                            <div class="col-md-3" @click="movZ_Down"  >
-                                <svg class="bi bi-arrow-down-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
+                            <div class="col-md-3 " @click="movZ_Down"  >
+                                <svg class="bi bi-arrow-down-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
                                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
                                 </svg>
                             </div>
@@ -116,25 +117,42 @@
                     </div>
 
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link active" href="#" style="margin-top: 11px;">Plantar</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#"><svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
+                        <li class="">
+                            <p class="nav-link" style="margin-top: 11px;">Plantar</p> </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" @click="movZ_Down">
+                                <svg class="bi bi-play-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
+                                    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <p class="nav-link active" style="margin-top: 11px;">Rutina1</p>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" >
+                                <svg class="bi bi-play-circle icono" @click="Rutina1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
                                 </svg></a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#" style="margin-top: 11px;">Regar</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#"><svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
+                        <li class="nav-item">
+                            <p class="nav-link active"  style="margin-top: 11px;">Rutina 2</p>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" >
+                                <svg class="bi bi-play-circle icono" @click="Rutina2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                                </svg></a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#" style="margin-top: 11px;">Detener</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#"><svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                                </svg></a></li>
-                        <li class="nav-item"><a class="nav-link active" href="#" style="margin-top: 11px;">Censar</a></li>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <p class="nav-link active"  style="margin-top: 11px;">Censar</p>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" @click="doPublish"  href="#">
-                                <svg class="bi bi-play-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
+                                <svg class="bi bi-play-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
                                 </svg>
@@ -220,9 +238,10 @@
     </section>
 
     <div v-if="mostrarModal" class="modal-ayuda" >
-        <div class="modal-dialog-listcultivo">
-            <div class="modal-content-listcultivo">
-                <span class="close" style="cursor: pointer;" data-dismiss="modal-ayuda" aria-label="Close" @click="cerrarModal">&times;</span>
+        <div class="modal-dialog-ayuda">
+            <div class="modal-content-ayuda" >
+                <span class="close" style="font-size: 24px;cursor: pointer; position: absolute; top: 10px; right: 10px;" data-dismiss="modal-ayuda" aria-label="Close" @click="cerrarModal">&times;</span>
+                <img class="img-fluid" style="  width: 700px ; height: 200px ;" src="@/assets/logos/Uso_AgroCableBot.png" alt="Uso adecuado de los motores del robot Agrocablebot">
             </div>
         </div>
     </div>
@@ -415,7 +434,6 @@ export default{
                 if (this.client.on) {
                 this.client.on("connect", () => {
                     this.connecting = false;
-                    console.log("Connection succeeded!");
                     Swal.fire({
                         icon: 'success',
                         title: '¡Éxito!',
@@ -575,6 +593,43 @@ export default{
         cerrarModal() {       
             this.mostrarModal = false;   // Mostrar el modal
         },
+
+        Rutina1(){
+            if (this.posActualX === 0 && this.posActualY === 0) {
+                // Realizar la diagonal 
+                this.coordenadaX = -100
+                this.coordenadaX =  100
+                const mensaje = `{ "GCODE": "G1 X${this.coordenadaX} Y${this.coordenadaY} Z${this.posActualZ}" }`;
+                this.client.publish("comandos", mensaje, "0", error => {
+                    if (error) {
+                    console.log('Publish error', error)
+                    }
+                });
+                const PosAnteriorX = this.coordenadaX
+                const PosAnteriorY = this.coordenadaY
+                      // Esperar un segundo
+                setTimeout(() => {
+                    this.PosActual();
+                    if (this.posActualX === PosAnteriorX  && this.posActualY ===  PosAnteriorY ){
+                        this.posActualX ==  "muy bien"
+                    } 
+                }, 1000); 
+
+
+
+            } else{
+                // Ejecutar Swal.fire si posActualX y posActualY no son iguales a 0
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text:  'Retorne la posición HOME del robot',
+                });
+            }
+        },
+
+        Rutina2(){
+
+        }
     },
 }
 
@@ -593,6 +648,36 @@ export default{
         height: 100%; /* Altura completa */
         overflow: auto; /* Agregar desplazamiento automático si es necesario */
         background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semi-transparente */
+    }
+
+    .modal-dialog-ayuda{
+        position: relative; /* Posición relativa para posicionar elementos secundarios */
+        margin: auto; /* Centrar horizontalmente dentro del modal */
+        padding: 20px; /* Espaciado interno */
+        background-color: #fefefe; /* Color de fondo */
+        border: 1px solid #888; /* Borde sólido */
+        width: 90%; /* Ancho del 90% del contenedor padre */
+        max-width: 800px; /* Ancho máximo */
+        top: 90px;
+    }
+
+    .modal-content-ayuda {
+        margin: auto; /* Centrar horizontalmente */
+        top: 90px; 
+        background-color: #fff; /* Fondo blanco */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        max-width: 700px; /* Ancho máximo del contenido */
+        margin: 0 auto; /* Centrar horizontalmente */
+    }
+
+    .icono:hover {
+        fill: blue; /* Cambia el color de relleno al pasar el mouse sobre el icono */
+    }
+
+    .icono:active {
+        fill: red; /* Cambia el color de relleno al hacer clic en el icono */
     }
 
     .divider-style:before {
