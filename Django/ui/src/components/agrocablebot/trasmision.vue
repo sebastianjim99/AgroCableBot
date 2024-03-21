@@ -41,8 +41,8 @@ export default {
     data(){
         return {
             'api' : `${process.env.VUE_APP_API_URL}`,
-            videoStreamUrl:  'http://imacunamqtt.live:7001/aboveCam/',
-            videoStreamUrl2: 'http://172.17.91.30:7001/belowCam/',
+            videoStreamUrl:  'http://semillero.imacunamqtt.live:7001/aboveCam/',
+            videoStreamUrl2: 'http://172.17.91.30:7002/belowCam/',
             imageUrl: ''
         };
     },
@@ -57,8 +57,8 @@ export default {
     methods: {
         updateStreamUrl() {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
-        this.videoStreamUrl = 'http://imacunamqtt.live:7001/aboveCam/';
-        this.videoStreamUrl2 ='http://172.17.91.30:7001/belowCam/';
+        this.videoStreamUrl = 'http://semillero.imacunamqtt.live:7001/aboveCam/';
+        this.videoStreamUrl2 ='http://172.17.91.30:7002/belowCam/';
 
         },
 

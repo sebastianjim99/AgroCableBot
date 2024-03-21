@@ -3,7 +3,12 @@
         <div class="col-md-9 col-xl-8 text-center mx-auto">
             <h2 class="divider-style">
                 <span> Control de motores individualmente  
-                <button class="btn btn-primary" @click="createConnection"> Conectarse </button>
+                    <svg  @click = "abrirModal"  style="cursor: pointer;"   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                    </svg> 
+                    <button class="btn btn-primary" @click="createConnection"> Conectarse </button>
+ 
                 </span>
             </h2>
         </div>
@@ -74,6 +79,16 @@
         </div>
     </div>
 
+    
+    <div v-if="mostrarModal" class="modal-ayuda" >
+        <div class="modal-dialog-ayuda">
+            <div class="modal-content-ayuda" >
+                <span class="close" style="font-size: 24px;cursor: pointer; position: absolute; top: 10px; right: 10px;" data-dismiss="modal-ayuda" aria-label="Close" @click="cerrarModal">&times;</span>
+                <img class="img-fluid" style="  width: 700px ; height: 200px ;" src="@/assets/logos/Uso_AgroCableBot.png" alt="Uso adecuado de los motores del robot Agrocablebot">
+            </div>
+        </div>
+    </div>
+
 
 
 </template>
@@ -104,6 +119,8 @@ export default {
                 username: "imacuna",
                 password: "pi",
             },
+            
+            mostrarModal: false,
         }
     },
 
@@ -215,19 +232,61 @@ export default {
             })
         },
 
+        abrirModal() {       
+            this.mostrarModal = true;   // Mostrar el modal
+        },
+        cerrarModal() {       
+            this.mostrarModal = false;   // Mostrar el modal
+        },
+
     }
 
 }
 </script>
 
 <style>
-.content-motor{
-    justify-content: center;
-}
-.text-motor{
-    width: 100%;
-    justify-content: center ;
-    align-content: center;
-    font-size: 22px;
-}
+
+    .modal-ayuda {
+        /* Contenedor principal del modal */
+        display: block; /* Mostrar como bloque */
+        position: fixed; /* Fijar la posición en relación con la ventana del navegador */
+        z-index: 9999; /* Colocar sobre otros elementos */
+        left: 0; /* Posición izquierda */
+        top: 0; /* Posición superior */
+        width: 100%; /* Ancho completo */
+        height: 100%; /* Altura completa */
+        overflow: auto; /* Agregar desplazamiento automático si es necesario */
+        background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semi-transparente */
+    }
+
+    .modal-dialog-ayuda{
+        position: relative; /* Posición relativa para posicionar elementos secundarios */
+        margin: auto; /* Centrar horizontalmente dentro del modal */
+        padding: 20px; /* Espaciado interno */
+        background-color: #fefefe; /* Color de fondo */
+        border: 1px solid #888; /* Borde sólido */
+        width: 90%; /* Ancho del 90% del contenedor padre */
+        max-width: 800px; /* Ancho máximo */
+        top: 90px;
+    }
+
+    .modal-content-ayuda {
+        margin: auto; /* Centrar horizontalmente */
+        top: 90px; 
+        background-color: #fff; /* Fondo blanco */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        max-width: 700px; /* Ancho máximo del contenido */
+        margin: 0 auto; /* Centrar horizontalmente */
+    }
+    .content-motor{
+        justify-content: center;
+    }
+    .text-motor{
+        width: 100%;
+        justify-content: center ;
+        align-content: center;
+        font-size: 22px;
+    }
 </style>
