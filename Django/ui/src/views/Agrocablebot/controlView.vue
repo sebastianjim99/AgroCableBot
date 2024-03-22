@@ -292,7 +292,7 @@ export default{
 
             connection: {
                 protocol: "ws",
-                host: '172.17.91.30' ,               //"imacunamqtt.live",
+                host: 'broker.emqx.io',//'172.17.91.30' ,               //"imacunamqtt.live",
                 // ws: 8083; wss: 8084
                 port: 8083,
                 endpoint: "/mqtt",
@@ -471,7 +471,6 @@ export default{
                 });
                 this.client.on("message", (topic, message) => {
                     this.receiveNews = this.receiveNews.concat(message);
-                    console.log(`Received message ${message} from topic ${topic}`);
                 });
                 }
             } catch (error) {
@@ -515,9 +514,7 @@ export default{
                     }
                     if(status_actual && status_actual.esp !== undefined ){
                         this.verificadorOK=status_actual.esp;
-
                         console.log('es un ok?',this.verificadorOK)
-
                     }
                 } catch (error) {
                     console.error('Error al analizar el objeto JSON:', error);
@@ -653,99 +650,72 @@ export default{
                 });
             }
         },
-        // VerificarPosicion(){
-        //     const numeroIteraciones = 10;
-            
-        //     for (let i = 0; i < numeroIteraciones; i++) {
+        async esperarConfirmacion() {
+            return new Promise(resolve => {
+                // Escuchar mensajes MQTT
+                this.client.on('message', (topic, message) => {
+                    // Analizar el mensaje JSON
+                    const status_actual = JSON.parse(message.toString());
 
-        //         this.client.on('message', (topic, message) => {
-        //             try {
-        //                 const status_actual = JSON.parse(message.toString());
-        //                 if(status_actual && status_actual.esp !== undefined ){
-        //                     this.verificadorOK=status_actual.esp;
-        //                     console.log('es un ok?',this.verificadorOK)
-        //                     //Aqui me debo salir del for 
-        //                 }
-        //             } catch (error) {
-        //                 console.error('Error al analizar el objeto JSON:', error);
-        //             }
-        //             this.receiveNews = "";
-        //         });
+                    if (status_actual && status_actual.esp !== undefined) {
+                        this.verificadorOK = status_actual.esp;
+                        console.log('es un ok?', this.verificadorOK);
+                    }
+                    console.log('Mensaje de confirmación recibido:', this.verificadorOK);
+                    resolve(); // Resolver la promesa una vez que se reciba el mensaje
 
-        //         //aqui debo esperar medio segundo para volver a realizar la otra iteracion del for 
-        //     }
-        // },
-
-        VerificarPosicion() {
-            const numeroIteraciones = 20;
-
-            // Función auxiliar para esperar medio segundo
-            const esperarMedioSegundo = () => {
-                return new Promise(resolve => {
-                    setTimeout(resolve, 500); // Esperar 500 milisegundos (medio segundo)
                 });
-            };
+            });
+        },
+        async ejecutarRutinas() {
+            if (this.posActualX === 0 && this.posActualY === 0) {
+                // const rutinas = "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
+                console.log('rutinas ', this.rutina_codigoG);
 
-            // Función asincrónica para ejecutar el bucle
-            const ejecutarBucle = async () => {
-                for (let i = 0; i < numeroIteraciones; i++) {
-                    await new Promise(resolve => {
-                        this.client.on('message', (topic, message) => {
-                            try {
-                                const status_actual = JSON.parse(message.toString());
-                                if (status_actual && status_actual.esp !== undefined) {
-                                    this.verificadorOK = status_actual.esp;
-                                    console.log('es un ok?', this.verificadorOK);
-                                    resolve(); // Resolver la promesa para salir del bucle
-                                }
-                            } catch (error) {
-                                console.error('Error al analizar el objeto JSON:', error);
+                const lineas = this.rutina_codigoG.split('\\n');
+
+                // Suscribirse al evento 'message' una sola vez
+                this.client.on('message', (topic, message) => {
+                    try {
+                        const status_actual = JSON.parse(message.toString());
+                        if (status_actual && status_actual.esp !== undefined) {
+                            this.verificadorOK = status_actual.esp;
+                            console.log('es un ok?', this.verificadorOK);
+                        }
+                        console.log('Mensaje de confirmación recibido:', this.verificadorOK);
+                    } catch (error) {
+                        console.error('Error al analizar el objeto JSON:', error);
+                    }
+                });
+
+                for (const linea of lineas) {
+                    // Enviar el comando al servidor MQTT
+                    const mensaje = `{ "GCODE": "${linea} Z${this.posActualZ}" }`;
+                    
+                    // Crear una promesa para envolver la llamada a client.publish()
+                    await new Promise((resolve, reject) => {
+                        this.client.publish("comandos", mensaje, "0", error => {
+                            if (error) {
+                                console.log('Publish error', error);
+                                reject(error); // Rechazar la promesa en caso de error
+                            } else {
+                                resolve(); // Resolver la promesa cuando el proceso esté completo
                             }
                         });
                     });
 
-                    // Esperar medio segundo antes de la próxima iteración
-                    await esperarMedioSegundo();
+                    // Esperar hasta que se reciba el mensaje "OK" del servidor MQTT después de enviar cada comando
+                    await this.esperarConfirmacion();
                 }
-            };
-            // Llamar a la función para ejecutar el bucle
-            ejecutarBucle();
-        },
-
-        ejecutarRutinas(){
-            if (this.posActualX === 0 && this.posActualY === 0) {
-                const rutinas= "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
-                
-                console.log('rutinas ',this.rutina_codigoG)
-                const lineas = rutinas.split('\n');
-                
-                lineas.forEach(linea => {
-                    
-                    if (this.verificadorOK == 'OK') {
-                        const mensaje = `{ "GCODE": "${linea} Z${this.posActualZ}" }`;
-                        this.client.publish("comandos", mensaje, "0", error => {
-                        
-                        if (error) {
-                            console.log('Publish error', error)
-                        }
-                        
-                        });
-                        this.verificadorOK = '';
-                        this.VerificarPosicion();
-                        
-                    }
-                    return;
-                });
-            }
-            else{
+            } else {
                 // Ejecutar Swal.fire si posActualX y posActualY no son iguales a 0
                 Swal.fire({
                     icon: 'error',
                     title: '¡Error!',
-                    text:  'Retorne la posición HOME del robot',
+                    text: 'Retorne la posición HOME del robot',
                 });
             }
-        },
+        }
     },
 }
 
@@ -865,12 +835,6 @@ export default{
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
-
-
-
-
-
-    
 
 
 </style>
