@@ -132,7 +132,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" >
-                                <svg class="bi bi-play-circle icono" @click="Rutina1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
+                                <svg class="bi bi-play-circle icono" @click="ejecutarRutinas" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
                                 </svg></a></li>
@@ -276,16 +276,19 @@ export default{
             plantas:[],
             matriz: [],
             Datos_sensores: [],
+            RutinasG:[],
+            rutina_codigoG:'',
             plantaSeleccionada: null,
             cultivoSeleccionado:null, 
             posicionPlanta:null,
             coordenadaX:null,
             coordenadaY:null,
+            verificadorOK:'',
             
             // Servidor mqtt 
-            posActualX: null,
-            posActualY: null,
-            posActualZ: null,
+            posActualX: 0,
+            posActualY: 0,
+            posActualZ: 0,
 
             connection: {
                 protocol: "ws",
@@ -324,6 +327,13 @@ export default{
     mounted(){
         this.createConnection();
         this.obtenerDatosSensores();
+
+        this.client.subscribe("status", "0", (error) => {
+                if (error) {
+                    console.log('Subscribe to topics error', error)
+                }
+            })
+
         this.PosActual();
         
         //Lectura tipo de cultivo
@@ -348,6 +358,8 @@ export default{
         }).catch(error =>{
             console.log(error)
         })
+        //lectura de rutinas 
+        this.obtenerRutinaG()
       
     },
 
@@ -365,6 +377,7 @@ export default{
             this.matriz[fila][columna] = planta;  
             }); 
         },
+        
         
         obtenerContadorPosicion(filaIndex, columnaIndex) {
             // Calcula el contador de posición basado en los índices de fila y columna
@@ -392,6 +405,18 @@ export default{
                 console.error('Error al obtener los datos de los sensores:', error);
             });
         },
+        obtenerRutinaG() {
+            axios.get(this.api + '/api/rutinasG/1')
+            .then(response => {
+                this.RutinasG=response.data
+                this.rutina_codigoG=response.data.codigo_g
+                // console.log(this.rutina_codigoG)
+            })
+            .catch(error => {
+                console.error('Error al obtener las rutinas:', error);
+            });
+        },
+        
         obtenerUltimaActualizacion() {
             // Ordenar los datos por timestamp de forma descendente para obtener la última actualización primero
             const ultimaActualizacion = this.Datos_sensores.sort((a, b) => b.id - a.id)[0];
@@ -465,11 +490,7 @@ export default{
         },
 
         PosActual(){
-            this.client.subscribe("status", "0", (error) => {
-                if (error) {
-                    console.log('Subscribe to topics error', error)
-                }
-            })
+
             this.client.publish("comandos",'{ "GCODE": "M5" }', "0" , error => {
                 if (error) {
                 console.log('Publish error', error)
@@ -491,6 +512,12 @@ export default{
                         
                         // Aquí puedes hacer lo que necesites con las variables posActualX, posActualY y posActualZ
                         console.log('posActualX:', this.posActualX, 'posActualY:', this.posActualY, 'posActualZ:', this.posActualZ);
+                    }
+                    if(status_actual && status_actual.esp !== undefined ){
+                        this.verificadorOK=status_actual.esp;
+
+                        console.log('es un ok?',this.verificadorOK)
+
                     }
                 } catch (error) {
                     console.error('Error al analizar el objeto JSON:', error);
@@ -626,10 +653,99 @@ export default{
                 });
             }
         },
+        // VerificarPosicion(){
+        //     const numeroIteraciones = 10;
+            
+        //     for (let i = 0; i < numeroIteraciones; i++) {
 
-        Rutina2(){
+        //         this.client.on('message', (topic, message) => {
+        //             try {
+        //                 const status_actual = JSON.parse(message.toString());
+        //                 if(status_actual && status_actual.esp !== undefined ){
+        //                     this.verificadorOK=status_actual.esp;
+        //                     console.log('es un ok?',this.verificadorOK)
+        //                     //Aqui me debo salir del for 
+        //                 }
+        //             } catch (error) {
+        //                 console.error('Error al analizar el objeto JSON:', error);
+        //             }
+        //             this.receiveNews = "";
+        //         });
 
-        }
+        //         //aqui debo esperar medio segundo para volver a realizar la otra iteracion del for 
+        //     }
+        // },
+
+        VerificarPosicion() {
+            const numeroIteraciones = 20;
+
+            // Función auxiliar para esperar medio segundo
+            const esperarMedioSegundo = () => {
+                return new Promise(resolve => {
+                    setTimeout(resolve, 500); // Esperar 500 milisegundos (medio segundo)
+                });
+            };
+
+            // Función asincrónica para ejecutar el bucle
+            const ejecutarBucle = async () => {
+                for (let i = 0; i < numeroIteraciones; i++) {
+                    await new Promise(resolve => {
+                        this.client.on('message', (topic, message) => {
+                            try {
+                                const status_actual = JSON.parse(message.toString());
+                                if (status_actual && status_actual.esp !== undefined) {
+                                    this.verificadorOK = status_actual.esp;
+                                    console.log('es un ok?', this.verificadorOK);
+                                    resolve(); // Resolver la promesa para salir del bucle
+                                }
+                            } catch (error) {
+                                console.error('Error al analizar el objeto JSON:', error);
+                            }
+                        });
+                    });
+
+                    // Esperar medio segundo antes de la próxima iteración
+                    await esperarMedioSegundo();
+                }
+            };
+            // Llamar a la función para ejecutar el bucle
+            ejecutarBucle();
+        },
+
+        ejecutarRutinas(){
+            if (this.posActualX === 0 && this.posActualY === 0) {
+                const rutinas= "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
+                
+                console.log('rutinas ',this.rutina_codigoG)
+                const lineas = rutinas.split('\n');
+                
+                lineas.forEach(linea => {
+                    
+                    if (this.verificadorOK == 'OK') {
+                        const mensaje = `{ "GCODE": "${linea} Z${this.posActualZ}" }`;
+                        this.client.publish("comandos", mensaje, "0", error => {
+                        
+                        if (error) {
+                            console.log('Publish error', error)
+                        }
+                        
+                        });
+                        this.verificadorOK = '';
+                        this.VerificarPosicion();
+                        
+                    }
+                    return;
+                });
+            }
+            else{
+                // Ejecutar Swal.fire si posActualX y posActualY no son iguales a 0
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text:  'Retorne la posición HOME del robot',
+                });
+            }
+        },
     },
 }
 

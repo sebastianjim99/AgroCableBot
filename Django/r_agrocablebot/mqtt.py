@@ -98,13 +98,19 @@ class MqttClient:
         self.__client.on_message = self.__on_message
         self.__client.on_publish = self.__on_publish
         self.__client.on_disconnect = self.__on_disconnect
-        self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
-       
+    #    REVISAR
+        try:
+            self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
+            self.client.loop_start()
+        except Exception as e:
+            print("No se pudo conectar al servidor MQTT:", e)
+    # ----------
         self.topics = {'comandos' : self.__comandos, 'status' : self.__status}
         self.interfaceCommands = {'send_data' : self.send_data, 'send_aio' : self.send_aio}
         self.last_position = {'x' : 0, 'y' : 0, 'z' : 0}
-        self.__client.loop_start()      
-            
+        # self.__client.loop_start()      
+
+
     def __on_connect(self, client, userdata, flags, rc):
         """
         Método de devolución de llamada para manejar la conexión exitosa al servidor MQTT.

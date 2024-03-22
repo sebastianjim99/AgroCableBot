@@ -22,6 +22,7 @@ from r_agrocablebot.views import (
     Sensor_MQTTViewSet,
     # enviar_mensaje_mqtt,
     eventosCalendariosViewSet,
+    RutinaCodigoGViewSet,
 )
 
 from .views import (
@@ -64,7 +65,7 @@ router.register('calendarios', calendariosViewSet, basename= 'calendarios')
 router.register('mensaje', MensajeViewSet, basename= 'mensaje')
 router.register('Sensor_MQTT', Sensor_MQTTViewSet, basename= 'Sensor_MQTT')
 router.register('eventosCalendarios', eventosCalendariosViewSet, basename= 'eventosCalendarios')
-
+router.register('rutinasG', RutinaCodigoGViewSet, basename= 'Rutinas_G')
 
 # def saludando(re):
 #     MqttClient().publish('tareas',dumps({'tareaaa':'saludando ando'}))

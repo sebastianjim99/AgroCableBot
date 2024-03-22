@@ -96,3 +96,8 @@ class eventosCalendariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = eventosCalendarios
         fields = '__all__'
+
+class RutinaCodigoGSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RutinaCodigoG
+        fields = '__all__'

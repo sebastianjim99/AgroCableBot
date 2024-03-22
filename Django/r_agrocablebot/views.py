@@ -23,7 +23,8 @@ from .models import (
     calendarios,
     Mensaje,
     Sensor_MQTT,
-    eventosCalendarios
+    eventosCalendarios,
+    RutinaCodigoG,
 )
 
 from .serializers import (
@@ -37,7 +38,8 @@ from .serializers import (
     imagenesxPlantaSerializer,
     calendariosSerializer,
     Sensor_MQTTSerializer,
-    eventosCalendariosSerializer
+    eventosCalendariosSerializer,
+    RutinaCodigoGSerializer,
 
 )
 
@@ -143,3 +145,6 @@ class eventosCalendariosViewSet(viewsets.ModelViewSet):
     queryset = eventosCalendarios.objects.all()
     serializer_class = eventosCalendariosSerializer
     
+class RutinaCodigoGViewSet(viewsets.ModelViewSet):
+    queryset = RutinaCodigoG.objects.all()
+    serializer_class =RutinaCodigoGSerializer

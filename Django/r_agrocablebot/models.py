@@ -268,3 +268,17 @@ class Sensor_MQTT(models.Model):
     #     verbose_name_plural = 'Sensores'
     #     db_table = 'Sensores'
     #     ordering = ['id']
+
+
+class RutinaCodigoG(models.Model):
+    nombre = models.CharField(max_length=100)
+    codigo_g = models.TextField()
+
+    def _str_(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name = 'Rutina G'
+        verbose_name_plural = 'Rutinas G'
+        db_table = 'rutinas_g'
+        ordering = ['id']
