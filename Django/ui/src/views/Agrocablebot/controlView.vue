@@ -292,7 +292,7 @@ export default{
 
             connection: {
                 protocol: "ws",
-                host: 'broker.emqx.io',//'172.17.91.30' ,               //"imacunamqtt.live",
+                host: '172.17.91.30',//'172.17.91.30' ,      'broker.emqx.io'         //"imacunamqtt.live",
                 // ws: 8083; wss: 8084
                 port: 8083,
                 endpoint: "/mqtt",
@@ -650,72 +650,128 @@ export default{
                 });
             }
         },
-        async esperarConfirmacion() {
-            return new Promise(resolve => {
-                // Escuchar mensajes MQTT
-                this.client.on('message', (topic, message) => {
+        // async esperarConfirmacion() {
+        //     return new Promise(resolve => {
+        //         // Escuchar mensajes MQTT
+        //         this.client.on('message', (topic, message) => {
+        //             // Analizar el mensaje JSON
+        //             const status_actual = JSON.parse(message.toString());
+
+        //             if (status_actual && status_actual.esp !== undefined) {
+        //                 this.verificadorOK = status_actual.esp;
+        //                 console.log('es un ok?', this.verificadorOK);
+        //             }
+        //             console.log('Mensaje de confirmación recibido:', this.verificadorOK);
+        //             resolve(); // Resolver la promesa una vez que se reciba el mensaje
+
+        //         });
+        //     });
+        // },
+
+      /*  VerificarPosicion(){
+            this.client.on('message', (topic, message) => {
+                // console.log(`Received message ${message.toString()} from topic ${topic}`);
+                try {
                     // Analizar el mensaje JSON
                     const status_actual = JSON.parse(message.toString());
-
-                    if (status_actual && status_actual.esp !== undefined) {
-                        this.verificadorOK = status_actual.esp;
-                        console.log('es un ok?', this.verificadorOK);
-                    }
-                    console.log('Mensaje de confirmación recibido:', this.verificadorOK);
-                    resolve(); // Resolver la promesa una vez que se reciba el mensaje
-
-                });
-            });
-        },
-        async ejecutarRutinas() {
-            if (this.posActualX === 0 && this.posActualY === 0) {
-                // const rutinas = "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
-                console.log('rutinas ', this.rutina_codigoG);
-
-                const lineas = this.rutina_codigoG.split('\\n');
-
-                // Suscribirse al evento 'message' una sola vez
-                this.client.on('message', (topic, message) => {
-                    try {
-                        const status_actual = JSON.parse(message.toString());
-                        if (status_actual && status_actual.esp !== undefined) {
-                            this.verificadorOK = status_actual.esp;
-                            console.log('es un ok?', this.verificadorOK);
-                        }
-                        console.log('Mensaje de confirmación recibido:', this.verificadorOK);
-                    } catch (error) {
-                        console.error('Error al analizar el objeto JSON:', error);
-                    }
-                });
-
-                for (const linea of lineas) {
-                    // Enviar el comando al servidor MQTT
-                    const mensaje = `{ "GCODE": "${linea} Z${this.posActualZ}" }`;
                     
-                    // Crear una promesa para envolver la llamada a client.publish()
-                    await new Promise((resolve, reject) => {
+
+                    if(status_actual && status_actual.esp !== undefined ){
+                        this.verificadorOK=status_actual.esp;
+
+                        console.log('este debe ser el 2 okey?',this.verificadorOK)
+
+                    }
+                } catch (error) {
+                    console.error('Error al analizar el objeto JSON:', error);
+                }
+                // Vaciar la variable receiveNews
+                this.receiveNews = "";
+            });
+
+        },
+
+        ejecutarRutinas(){
+            // if (this.posActualX === 0 && this.posActualY === 0) {
+            const rutinas= "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
+            
+            console.log('rutinas ',this.rutina_codigoG)
+            const lineas = rutinas.split('\n');
+            
+            lineas.forEach(linea => {
+                setTimeout(()=>{
+                    if (this.verificadorOK == 'OK') {
+                        const mensaje = `{ "GCODE": "${linea} Z${this.posActualZ}" }`;
+                        this.client.publish("comandos", mensaje, "0", error => {
+                        
+                        if (error) {
+                            console.log('Publish error', error)
+                        }
+                        
+                        });
+                        console.log('Moviendo')
+                        // this.verificadorOK = '';
+                    
+                            this.VerificarPosicion();
+                            console.log('Despues de la verificacion',this.verificadorOK)
+                            console.log("Se ha completado el tiempo de espera");
+                        
+                        
+                    }
+                    else{
+                        console.log('entro al return ')
+                        return;
+                    }
+                 },6000)
+
+                
+                
+            });
+            
+            // } else {
+            //     // Ejecutar Swal.fire si posActualX y posActualY no son iguales a 0
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: '¡Error!',
+            //         text: 'Retorne la posición HOME del robot',
+            //     });
+            // }
+        }*/
+        async ejecutarRutinas() {
+            // const rutinas = "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
+            const lineas = this.rutina_codigoG.split('\\n');
+
+            for (const linea of lineas) {
+                await this.ejecutarMovimiento(linea);
+            }
+            // Mensaje de finalización
+            console.log("¡Rutinas completadas!");
+        },
+
+        async ejecutarMovimiento(linea) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    if (this.verificadorOK == 'OK') {
+                        const mensaje = `{ "GCODE": "${linea} Z${this.posActualZ}" }`;
                         this.client.publish("comandos", mensaje, "0", error => {
                             if (error) {
                                 console.log('Publish error', error);
-                                reject(error); // Rechazar la promesa en caso de error
+                                resolve(); // Resuelve la promesa incluso si hay un error
                             } else {
-                                resolve(); // Resolver la promesa cuando el proceso esté completo
+                                console.log('Moviendo');
+                                // No necesitas llamar a VerificarPosicion aquí
+                                resolve(); // Resuelve la promesa después de enviar el comando
                             }
                         });
-                    });
-
-                    // Esperar hasta que se reciba el mensaje "OK" del servidor MQTT después de enviar cada comando
-                    await this.esperarConfirmacion();
-                }
-            } else {
-                // Ejecutar Swal.fire si posActualX y posActualY no son iguales a 0
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: 'Retorne la posición HOME del robot',
-                });
-            }
+                    } else {
+                        console.log('Entro al return');
+                        resolve(); // Resuelve la promesa incluso si no hay "OK" para continuar
+                    }
+                }, 10000);
+            });
+            
         }
+
     },
 }
 
