@@ -203,6 +203,23 @@ class calendarios(models.Model):
         db_table = 'calendarios'
         ordering = ['id']
 
+class eventosCalendarios(models.Model):
+    
+    title = models.CharField(max_length=100)
+    start = models.DateTimeField()
+    calendario = models.ForeignKey(calendarios, on_delete=models.CASCADE)
+    allDay = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.title
+ 
+    class Meta:
+        verbose_name = 'Evento calendario'
+        verbose_name_plural = 'Eventos calendarios'
+        db_table = 'eventos_calendarios'
+        ordering = ['id']
+
+
 # class mo_agroCableBot(models.Model):
 #     descripcion=models.TextField(blank=True)
 #     proyectos=models.ForeignKey(models.proyectos, null=True,blank=True,on_delete=models.CASCADE)
@@ -251,3 +268,17 @@ class Sensor_MQTT(models.Model):
     #     verbose_name_plural = 'Sensores'
     #     db_table = 'Sensores'
     #     ordering = ['id']
+
+
+class RutinaCodigoG(models.Model):
+    nombre = models.CharField(max_length=100)
+    codigo_g = models.TextField()
+
+    def _str_(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name = 'Rutina G'
+        verbose_name_plural = 'Rutinas G'
+        db_table = 'rutinas_g'
+        ordering = ['id']

@@ -5,6 +5,8 @@ from rest_framework.routers import DefaultRouter
 from django.conf import settings 
 from django.contrib.staticfiles.urls import static
 # import views
+# from r_agrocablebot.mqtt import MqttClient
+# from json import dumps
 
 from r_agrocablebot.views import (
     accionesViewSet,
@@ -15,10 +17,12 @@ from r_agrocablebot.views import (
     plantasViewSet,
     imagenesxPlantaViewSet,
     calendariosViewSet,
-    publish_message,
+    # publish_message,
     MensajeViewSet,
     Sensor_MQTTViewSet,
-    enviar_mensaje_mqtt,
+    # enviar_mensaje_mqtt,
+    eventosCalendariosViewSet,
+    RutinaCodigoGViewSet,
 )
 
 from .views import (
@@ -60,7 +64,11 @@ router.register('imagenesxPlanta', imagenesxPlantaViewSet, basename= 'imagenesxP
 router.register('calendarios', calendariosViewSet, basename= 'calendarios')
 router.register('mensaje', MensajeViewSet, basename= 'mensaje')
 router.register('Sensor_MQTT', Sensor_MQTTViewSet, basename= 'Sensor_MQTT')
+router.register('eventosCalendarios', eventosCalendariosViewSet, basename= 'eventosCalendarios')
+router.register('rutinasG', RutinaCodigoGViewSet, basename= 'Rutinas_G')
 
+# def saludando(re):
+#     MqttClient().publish('tareas',dumps({'tareaaa':'saludando ando'}))
 
 urlpatterns = [
     path('api/', include(router.urls)),
@@ -69,8 +77,9 @@ urlpatterns = [
     path('retrieve-update-destroy-usarios/<int:pk>/', RetrieveUpdateDestroyUsuarios.as_view(), name= 'retrieve-update-destroy'),
     # ------------ camara -----------
     path('captura/', capturas , name='captura'),
-    path('publish/', publish_message, name= 'publish' ), 
-    path('sensar-mqtt/', enviar_mensaje_mqtt, name='sensar-mqtt'),
+    # path('publish/', publish_message, name= 'publish' ), 
+    # path('sensar-mqtt/', enviar_mensaje_mqtt, name='sensar-mqtt'),
+    # path('testing/',saludando)
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

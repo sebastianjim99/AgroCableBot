@@ -6,9 +6,10 @@ from rest_framework.authtoken.models import Token
 
 import json
 from django.http import JsonResponse
-from r_agrocablebot.mqtt import client as mqtt_client
+# from r_agrocablebot.mqtt import client as mqtt_client
 from django.views.decorators.csrf import csrf_exempt
 import paho.mqtt.publish as publish
+from django.http import HttpResponse
 import os 
 
 from .models import (
@@ -21,7 +22,9 @@ from .models import (
     imagenesxPlanta,
     calendarios,
     Mensaje,
-    Sensor_MQTT
+    Sensor_MQTT,
+    eventosCalendarios,
+    RutinaCodigoG,
 )
 
 from .serializers import (
@@ -34,7 +37,9 @@ from .serializers import (
     plantasSerializer,
     imagenesxPlantaSerializer,
     calendariosSerializer,
-    Sensor_MQTTSerializer
+    Sensor_MQTTSerializer,
+    eventosCalendariosSerializer,
+    RutinaCodigoGSerializer,
 
 )
 
@@ -88,19 +93,43 @@ class calendariosViewSet(viewsets.ModelViewSet):
     queryset = calendarios.objects.all()
     serializer_class =calendariosSerializer
 
-@csrf_exempt 
-def publish_message(request):
-    if request.body:
-        try:
-            request_data = json.loads(request.body)
-            rc, mid = mqtt_client.publish(request_data['topic'], request_data['msg'])
-            # Guarda el mensaje en la base de datos
-            Mensaje.objects.create(topic=request_data['topic'], mensaje=request_data['msg'])
-            return JsonResponse({'code': rc}) 
-        except json.decoder.JSONDecodeError as e:
-            return JsonResponse({'error': 'Invalid JSON format in request body'}, status=400)
-    else:
-        return JsonResponse({'error': 'Request body is empty'}, status=400)
+
+# @csrf_exempt
+# def publish_message(request):
+#     message = {
+#             'interface': 'send_aio'
+#         }
+#     # Definir las credenciales del cliente MQTT
+#     auth = {
+#         'username': 'imacuna',
+#         'password': 'pi'
+#     }
+#     publish.single("comandos", json.dumps(message), hostname=os.environ['MQTT_SERVER'], auth=auth)
+#     return HttpResponse("Published")
+
+# @csrf_exempt
+# def enviar_mensaje_mqtt(request):
+#     if request.method == 'POST':
+#         message = {
+#             'interface': 'send_aio'
+#         }
+#         try:
+#             # Definir las credenciales del cliente MQTT
+#             auth = {
+#                 'username': 'imacuna',
+#                 'password': 'pi'
+#             }
+
+#             # Publicar el mensaje MQTT con cliente y contraseña especificados
+#             publish.single('comandos', json.dumps(message), hostname=os.environ['MQTT_SERVER'], auth=auth)
+            
+#             return JsonResponse({'success': True})
+#         except Exception as e:
+#             return JsonResponse({'success': False, 'error': str(e)})  
+
+
+
+
 
 class MensajeViewSet(viewsets.ModelViewSet):
     queryset = Mensaje.objects.all()
@@ -112,23 +141,10 @@ class Sensor_MQTTViewSet(viewsets.ModelViewSet):
     serializer_class = Sensor_MQTTSerializer
 
 
-@csrf_exempt
-def enviar_mensaje_mqtt(request):
-    if request.method == 'POST':
-        message = {
-            'interface': 'send_aio'
-        }
-        try:
-            auth = {
-                'username': 'imacuna',
-                'password': 'pi'
-            }
-
-            # Publicar el mensaje MQTT con cliente y contraseña especificados
-            publish.single('comandos', json.dumps(message), hostname=os.environ['MQTT_SERVER'], auth=auth)
-            
-            return JsonResponse({'success': True})
-        except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)})
-
-
+class eventosCalendariosViewSet(viewsets.ModelViewSet):
+    queryset = eventosCalendarios.objects.all()
+    serializer_class = eventosCalendariosSerializer
+    
+class RutinaCodigoGViewSet(viewsets.ModelViewSet):
+    queryset = RutinaCodigoG.objects.all()
+    serializer_class =RutinaCodigoGSerializer

@@ -3,6 +3,7 @@ from operator import truediv
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -178,9 +179,30 @@ CELERY_BROKER_URL = 'amqp://{}:{}@{}:{}'.format(
     'localhost',
     '5672'
 )
+CELERY_FLOWER_URL = 'http://{}:{}@{}:{}'.format(
+    'JuanFelipe',
+    'Juanfe142228.',
+    'localhost',
+    '5555'
+)
+
+# Nueva configuración para controlar los intentos de conexión con el broker durante el inicio
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
 CELERY_ACCEPT_CONTENT = ['json', 'pickle']
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULE = {
+    'ejecutar_evento_programado': {
+        'task': 'r_agrocablebot.tasks.ejecutar_evento_programado',
+        'schedule': timedelta(minutes=1),  # Ejecutar cada minuto
+    },
+    # 'ejecutar_evento':{
+    #     'task': 'r_agrocablebot.tasks.ejecutar_evento',
+    #     'schedule': timedelta(minutes=1),  # Ejecutar cada minuto
+    # },
+}
+
+

@@ -7,9 +7,9 @@
     <section>
         <listaTareasProgramadas/>
     </section>
-    <section>
+    <!-- <section>
         <ejecucionTareas/>
-    </section>
+    </section> -->
 
 <!-- 
     <section>
@@ -152,9 +152,9 @@
     </section> -->
 
 
-    <section>
+    <!-- <section>
         <vistaCalendario/>
-    </section>
+    </section> -->
     
 
 
@@ -170,17 +170,17 @@
 <script>
 import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
 import footer_imacuna from '/src/components/footer.vue'
-import vistaCalendario from '/src/components/agrocablebot/calendario/vistaCalendario.vue'
+// import vistaCalendario from '/src/components/agrocablebot/calendario/vistaCalendario.vue'
 import listaTareasProgramadas from '/src/components/agrocablebot/calendario/listaTareasProgramadas.vue'
-import ejecucionTareas from '/src/components/agrocablebot/calendario/ejecucionTareas.vue'
+// import ejecucionTareas from '/src/components/agrocablebot/calendario/ejecucionTareas.vue'
 
 export default{
     components:{
         navbar_monitoreo,
         footer_imacuna,
-        vistaCalendario,
+        // vistaCalendario,
         listaTareasProgramadas,
-        ejecucionTareas,
+        // ejecucionTareas,
        
     }
 }

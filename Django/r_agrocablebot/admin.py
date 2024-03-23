@@ -31,7 +31,12 @@ class CalendarioAdmin(admin.ModelAdmin):
     filter_horizontal = ['cultivo','plantas']
     search_fields = ['acciones__nombre']
 admin.site.register(calendarios, CalendarioAdmin)
-admin.site.register(plantas)  
+
+class plantasAdmin(admin.ModelAdmin):
+    list_display = ['numeroPlanta', 'coordenadaX', 'coordenadaY', 'cultivo']
+    ordering=('numeroPlanta',)
+
+admin.site.register(plantas,plantasAdmin)  
 admin.site.register(imagenesxPlanta)  
 # admin.site.register(tablasEstadisticas)  
 # admin.site.register(graficos)  
@@ -39,5 +44,11 @@ admin.site.register(imagenesxPlanta)
 #admin.site.register(mo_agroCableBot)  
 
 admin.site.register(Sensor_MQTT)
+class eventosCalendariosAdmin(admin.ModelAdmin):
+    list_display=['title','start']
+    list_filter=['start']
+admin.site.register(eventosCalendarios,eventosCalendariosAdmin)
+
+admin.site.register(RutinaCodigoG)  
 
 

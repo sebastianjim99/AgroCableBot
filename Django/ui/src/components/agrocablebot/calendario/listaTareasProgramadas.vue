@@ -209,6 +209,13 @@
         </div>
       </div>
     </div>
+    <!-- <section>
+        <ejecucionTareas ref="ejecucionTareas"/>
+    </section> -->
+    <section>
+        <vistaCalendario ref="vistaCalendario"/>
+    </section>
+    
 
   
 
@@ -219,9 +226,15 @@
 // Importación de librerías y configuraciones necesarias
 import axios from 'axios';
 import Swal from 'sweetalert2';
+// import ejecucionTareas from './/ejecucionTareas.vue'
+import vistaCalendario from '/src/components/agrocablebot/calendario/vistaCalendario.vue'
 
 
 export default {
+  components:{
+        // ejecucionTareas,
+        vistaCalendario,
+    },
   // Datos del componente
   data() {
     return {
@@ -240,6 +253,7 @@ export default {
       cultivos: [],
       selectedPlantas: [],
       calendarios: [],
+      eventosCalendarios:[],
       acciones: [],
       selectedCultivos: [],
       editingCalendarioId: null,
@@ -298,6 +312,21 @@ export default {
         .catch(error => {
           console.error(error);
         });
+    },
+    // Método para obtener las tareas programadas desde el servidor
+    obtenerEventosCalendarios() {
+      axios.get('http://localhost:8000/api/eventosCalendarios')
+        .then(response => {
+          this.eventosCalendarios = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    actualizarVistaCalendario() {
+      // Llama a la función para obtener los calendarios actualizados
+      this.obtenerCalendarios();
+      this.obtenerEventosCalendarios();
     },
     // Método para obtener las acciones desde el servidor
     obtenerAcciones() {
@@ -418,10 +447,15 @@ export default {
             icon: 'success',
             title: '¡Éxito!',
             text: this.editingCalendarioId ? 'Tarea actualizada correctamente' : 'Tarea creada correctamente',
-          });
-          this.editingCalendarioId = null;  // Restablece el ID de edición
-          this.obtenerCalendarios();        // Actualiza la lista de tareas
-          this.resetForm();                 // Restablece el formulario
+          }).then(()=>{
+            this.editingCalendarioId = null;  // Restablece el ID de edición
+            this.obtenerCalendarios();        // Actualiza la lista de tareas
+            this.resetForm();                 // Restablece el formulario
+          })
+          .then(()=>{
+            // this.$refs.ejecucionTareas.obtenerTareas();
+            this.$refs.vistaCalendario.obtenerTareas();
+          })
         })
         .catch(error => {
           // Si hay un error en la solicitud, muestra un mensaje de error y oculta el modal
@@ -523,6 +557,9 @@ export default {
               ).then(() => {
                 // Actualiza la lista de cultivos mostrada en la interfaz de usuario después de eliminar
                 this.obtenerCalendarios();
+              }).then(()=>{
+                // this.$refs.ejecucionTareas.obtenerTareas();
+                this.$refs.vistaCalendario.obtenerTareas();
               });
             })
             .catch(error => {
