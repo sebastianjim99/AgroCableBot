@@ -200,9 +200,9 @@
                                 <h2 class="divider-style"><span>Giroscopio efector</span></h2>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>roll: {{this.giroscopio_pitch}}°</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Pitch: {{this.giroscopio_roll}}°</span></li>
-                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>yaw: {{this.giroscopio_yaw}}°</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>roll: {{this.giroscopioPitch}}°</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>Pitch: {{this.giroscopioRoll}}°</span></li>
+                                <li class="list-group-item" style="background: var(--bs-body-bg);"><span>yaw: {{this.giroscopioYaw}}°</span></li>
                             </ul>
                         </div>
                         <div class="col-12 col-xl-6">
@@ -290,6 +290,20 @@ export default{
             posActualY: 0,
             posActualZ: 0,
 
+            //Sensado
+            acelerometroRoll : null,
+            acelerometroPitch : null, 
+            acelerometroYaw : null, 
+            giroscopioRoll : null, 
+            giroscopioPitch: null,
+            giroscopioYaw: null,
+            magnetometroX: null,
+            magnetometroY: null,
+            magnetometroZ: null,
+            humedad: null,
+            presion: null,
+            temperatura: null,
+
             connection: {
                 protocol: "ws",
                 host: '172.17.91.30',//'172.17.91.30' ,      'broker.emqx.io'         //"imacunamqtt.live",
@@ -327,12 +341,18 @@ export default{
     mounted(){
         this.createConnection();
         this.obtenerDatosSensores();
+        this.actualizar_sensores();
 
         this.client.subscribe("status", "0", (error) => {
                 if (error) {
                     console.log('Subscribe to topics error', error)
                 }
             })
+        this.client.subscribe("sensores", "0", (error) => {
+            if (error) {
+                console.log('Subscribe to topics error', error)
+            }
+        })
 
         this.PosActual();
         
@@ -406,7 +426,7 @@ export default{
             });
         },
         obtenerRutinaG() {
-            axios.get(this.api + '/api/rutinasG/1')
+            axios.get(this.api + '/api/rutinasG/2')
             .then(response => {
                 this.RutinasG=response.data
                 this.rutina_codigoG=response.data.codigo_g
@@ -523,6 +543,73 @@ export default{
                 this.receiveNews = "";
             });
 
+        },
+
+        actualizar_sensores() {
+            this.client.on('message', (sensores, message) => {
+                try {
+
+                    // const mensaje = `{ "interface" : "send_aio" }`;
+                    // this.client.publish("comandos", mensaje, "0" , error => {
+                    //     if (error) {
+                    //         console.log('Publish error', error)
+                    //     }
+                    // })
+                    
+                    // Analizar el mensaje JSON
+                    const sensado = JSON.parse(message.toString());
+                    console.log("SENSORES", sensado)
+                    // Verificar si el objeto tiene las propiedades de posición
+                    if (sensado) {
+                        // Acelerómetro
+                        if (sensado.acelerometro) {
+                            this.acelerometroRoll = sensado.acelerometro.roll;
+                            this.acelerometroPitch = sensado.acelerometro.pitch;
+                            this.acelerometroYaw = sensado.acelerometro.yaw;
+                        }
+
+                        // Giroscopio
+                        if (sensado.giroscopio) {
+                            this.giroscopioRoll = sensado.giroscopio.roll;
+                            this.giroscopioPitch = sensado.giroscopio.pitch;
+                            this.giroscopioYaw = sensado.giroscopio.yaw;
+                        }
+
+                        // Magnetómetro
+                        if (sensado.magnetometro) {
+                            this.magnetometroX = sensado.magnetometro.x;
+                            this.magnetometroY = sensado.magnetometro.y;
+                            this.magnetometroZ = sensado.magnetometro.z;
+                        }
+
+                        // Orientación
+                        if (sensado.orientacion) {
+                            this.orientacionRoll = sensado.orientacion.roll;
+                            this.orientacionPitch = sensado.orientacion.pitch;
+                            this.orientacionYaw = sensado.orientacion.yaw;
+                        }
+
+                        // Humedad
+                        if (sensado.humedad) {
+                            this.humedad = sensado.humedad.value;
+                        }
+
+                        // Presión
+                        if (sensado.presion) {
+                            this.presion = sensado.presion.value;
+                        }
+
+                        // Temperatura
+                        if (sensado.temperatura) {
+                            this.temperatura = sensado.temperatura.value;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error al analizar el objeto JSON:', error);
+                }
+                // Vaciar la variable receiveNews
+                this.receiveNews = "";
+            });
         },
 
         movZ_up(){
@@ -740,12 +827,21 @@ export default{
         async ejecutarRutinas() {
             // const rutinas = "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
             const lineas = this.rutina_codigoG.split('\\n');
+            Swal.fire({
+                icon: 'info',
+                title: '¡Exito!',
+                text: 'Inicio de rutina',
+            });
 
             for (const linea of lineas) {
                 await this.ejecutarMovimiento(linea);
             }
             // Mensaje de finalización
-            console.log("¡Rutinas completadas!");
+            Swal.fire({
+                icon: 'success',
+                title: '¡Exito!',
+                text: 'La rutina finalizó',
+            });
         },
 
         async ejecutarMovimiento(linea) {
@@ -771,7 +867,7 @@ export default{
             });
             
         }
-
+        
     },
 }
 
