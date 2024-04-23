@@ -12,10 +12,6 @@ class sensoresxCultivo(admin.ModelAdmin):
     filter_horizontal=['sensores',]   
 
 admin.site.register(cultivo,sensoresxCultivo) 
-# class plantasxCalendario(admin.ModelAdmin):
-#     filter_horizontal=['plantas','cultivo',]   
-
-# admin.site.register(calendarios,plantasxCalendario) 
 
 class CalendarioAdmin(admin.ModelAdmin):
     def get_cultivo(self, obj):
@@ -38,10 +34,6 @@ class plantasAdmin(admin.ModelAdmin):
 
 admin.site.register(plantas,plantasAdmin)  
 admin.site.register(imagenesxPlanta)  
-# admin.site.register(tablasEstadisticas)  
-# admin.site.register(graficos)  
-# admin.site.register(estadisticas) 
-#admin.site.register(mo_agroCableBot)  
 
 admin.site.register(Sensor_MQTT)
 class eventosCalendariosAdmin(admin.ModelAdmin):
