@@ -1,3 +1,18 @@
+<template>
+  <div class=" container calendario-container ">
+    <div class="row justify-content-center ">
+      <div class="col-12">
+        <h1 class="fc-header-toolbar-title text-center">Calendario de Tareas</h1>
+        <FullCalendar :options='calendarOptions'>
+          <template v-slot:eventContent='arg'>
+            <b>{{ arg.timeText }}</b>
+            <i>{{ arg.event.title }}</i>
+          </template>
+        </FullCalendar>  
+      </div>
+    </div>
+  </div>
+</template>
 
 <script>
 import FullCalendar from '@fullcalendar/vue3'
@@ -12,6 +27,7 @@ export default {
   name: "vistaCalendario",
   data() {
     return {
+      'api' : `${process.env.VUE_APP_API_URL}`,
       calendarOptions: {
         plugins: [
           dayGridPlugin,
@@ -40,7 +56,7 @@ export default {
     obtenerTareas() {
       this.eliminarEventosAntiguos() // Llama al método para eliminar eventos antiguos
           .then(() => {
-            axios.get('http://localhost:8000/api/calendarios') // Endpoint para obtener las tareas
+            axios.get(this.api + '/api/calendarios')  // Endpoint para obtener las tareas
               .then(response => {
                 const eventos = this.parsearEventos(response.data);
                 this.calendarOptions.events = eventos; // Actualiza la lista de eventos del calendario
@@ -195,11 +211,11 @@ export default {
     // metodos para la eliminacion y guardado de eventosCalendarios 
     // Método para eliminar todos los eventos antiguos del modelo eventosCalendarios
     eliminarEventosAntiguos() {
-        return axios.get('http://localhost:8000/api/eventosCalendarios/')
+        return axios.get(this.api + '/api/eventosCalendarios/')
           .then(response => {
             const eventos = response.data;
             const deletePromises = eventos.map(evento => {
-              return axios.delete(`http://localhost:8000/api/eventosCalendarios/${evento.id}`);
+              return axios.delete(`${this.api}/api/eventosCalendarios/${evento.id}`);
             });
             // Ejecutar todas las solicitudes DELETE en paralelo
             return Promise.all(deletePromises);
@@ -213,7 +229,7 @@ export default {
           });
       },
       guardarEvento(evento) {
-        axios.post('http://localhost:8000/api/eventosCalendarios/', evento)
+        axios.post(this.api + '/api/eventosCalendarios/', evento)
           // .then(response => {
           //   console.log('Evento guardado exitosamente:', response.data);
           // })
@@ -221,36 +237,26 @@ export default {
             console.error('Error al guardar evento:', error);
           });
       },
-
-
-
-
-
-
-
   }
 }
 </script>
+
 <style scoped>
 .calendario-container {
-  margin: 60px ; /* Ajusta el margen según tus preferencias */
+  padding: 1rem; /* Usa rems para un espaciado responsivo */
   background-color: #f0f0f0; /* Cambia el color de fondo según tus preferencias */ 
-  
 }
+
 .fc-header-toolbar-title {
   color: #000; /* Color del texto del título de la barra de herramientas */
-  /* Personaliza el fondo y el color del texto de la barra de herramientas del encabezado */
+  margin-bottom: 1rem; /* Agrega un espacio debajo del título */
+}
+
+@media (max-width: 768px) {
+  .calendario-container {
+    padding: 0.5rem; /* Espaciado más pequeño para pantallas más pequeñas */
+  }
 }
 </style>
 
-<template>
-  <div class="calendario-container fc-header-toolbar-title">
-    <h1>Calendario de Tareas</h1>
-    <FullCalendar :options='calendarOptions'>
-      <template v-slot:eventContent='arg'>
-        <b>{{ arg.timeText }}</b>
-        <i>{{ arg.event.title }}</i>
-      </template>
-    </FullCalendar>
-  </div>
-</template>
+

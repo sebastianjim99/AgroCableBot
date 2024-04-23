@@ -21,15 +21,13 @@
                 <div class="content-text">
                     <h2 class="title-proyecto" > {{ proyecto.nombre }}    </h2>
                     <p class="descripcion-proyecto " >  <span> {{ proyecto.descripcion }}  </span>  </p>
-                    <button class="btn btn-primary botton-vermas"  > Mostrar mas </button>
+                    <!-- <button class="btn btn-primary botton-vermas"  > Mostrar mas </button> -->
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-
   </section>
    
 </template>
@@ -69,3 +67,84 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+h2 {
+  font-size: 2.5rem; /* Tamaño de la fuente para los títulos */
+  color: #343a40; /* Color oscuro para los títulos */
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.25rem; /* Tamaño de la fuente para los párrafos */
+  color: #6c757d; /* Color gris para los párrafos */
+  margin-bottom: 2rem;
+}
+
+.cardcontent {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.5rem; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para hover */
+}
+
+.cardcontent:hover {
+  transform: translateY(-5px); /* Eleva la tarjeta un poco cuando se hace hover */
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2); /* Sombra más profunda en hover */
+}
+
+.card-proyecto {
+  background: #ffffff; /* Fondo blanco para las tarjetas */
+}
+
+.img-proyecto {
+  display: flex; /* Usamos flexbox */
+  justify-content: center; /* Centrado horizontal */
+  width: 100%; 
+  height: 400px; 
+  object-fit: contain; 
+}
+
+.content-text {
+  padding: 1rem;
+}
+
+.title-proyecto {
+  font-size: 1.5rem;
+  color: black;/* Un azul que usualmente se asocia con enlaces para el título */
+  margin-bottom: 0.5rem;
+}
+
+.descripcion-proyecto {
+  font-size: 1rem;
+  color: #495057; /* Color gris oscuro para la descripción */
+  margin-bottom: 1rem;
+}
+
+
+/* Estilos para pantallas medianas (tablets) */
+@media (max-width: 1024px) {
+  .card-proyecto {
+    width: 48%; /* Dos tarjetas por fila */
+  }
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .row {
+    gap: 1rem;
+  }
+
+  .card-proyecto {
+    width: 100%; /* Una tarjeta por fila */
+    margin-bottom: 1rem;
+  }
+
+  .img-proyecto {
+    height: auto; /* La altura se ajusta para mantener la relación de aspecto */
+  }
+}
+</style>
+

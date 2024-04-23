@@ -9,12 +9,12 @@
                 <table class="table">
                     <tbody>
                         <tr v-for="(fila, filaIndex) in matriz" :key="filaIndex">
-                            <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" class="position-relative" @click="seleccionarPlanta(filaIndex, columnaIndex)"  :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
+                            <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="padding:1px;" @click="seleccionarPlanta(filaIndex, columnaIndex)"  :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
                                 <div class="text-center">
                                     <p v-if="planta">{{ planta.nombre }}</p>
-                                    <img v-if="planta" :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" width="40" height="40">
+                                    <img  class="img-planta"  style=" margin:0 8px 8px 8px;" v-if="planta" :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" >
                                     <p v-else>{{ obtenerContadorPosicion(filaIndex, columnaIndex) }}
-                                    <img src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" width="40" height="40"></p>
+                                    <img class="img-planta" src="@/assets/iconos/sin_imagen.png"  alt="Sin imagen de planta" ></p>
                                 </div>
                             </td>
                         </tr>
@@ -136,5 +136,26 @@
 </script>
 
 <style>
+  .img-planta{
+    width: 40px;
+    height: 40px;
+  }
+
+    /* Media queries para diferentes tamaños de pantalla */
+    @media (max-width: 768px) { /* Tablets y dispositivos más pequeños */
+      .img-planta{
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 480px) { /* Teléfonos móviles */
+      .img-planta{
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+
 
 </style>

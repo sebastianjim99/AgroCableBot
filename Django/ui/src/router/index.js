@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Inicio from '../views/InicioView.vue'
 import Admin from '../views/AdminView.vue'
-import Crear from '../views/CrearView.vue'
 import Editar from '../views/EditarView.vue'
 import LoginView from '../components/loginView.vue'
 import Signup from '../components/signup.vue'
@@ -18,7 +17,6 @@ const routes = [
   {path: '/loginview', name: 'loginview', component: LoginView},
   {path: '/CrearCuenta', name: 'singnup', component: Signup},
   {path: '/Admin', name: 'Admin', component: Admin},
-  {path: '/crear',name: 'Crear', component: Crear },
   {path: '/editar/:id', name: 'Editar', component: Editar, props:true},
 
   // rutas AgroCableBOt

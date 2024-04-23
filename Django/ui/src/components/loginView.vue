@@ -59,7 +59,7 @@ export default{
 
         },
         submitForm(){
-            console.log(this.username, this.password);
+            // console.log(this.username, this.password);
             if (this.isVaidForm()){
                 // const url = '/loginView/';
                 axios.post(this.api + '/loginView/', {username: this.username, password: this.password})

@@ -2,8 +2,7 @@
     <!-- CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
 
-    <div id="app">
-       
+    <div id="app">    
         <video v-if="showIntroVideo" autoplay muted @ended="hideIntroVideo" class="intro-video">
             <source src="@/assets/logos/intro.mp4" type="video/mp4">
             Tu navegador no admite la reproducción de video.
@@ -180,6 +179,36 @@ export default{
         height: 100%;
         object-fit: cover;
         z-index: 9999; /* Asegúrate de que el video esté en la parte superior */
+    }
+
+    /* Media queries para diferentes tamaños de pantalla */
+    @media (max-width: 768px) { /* Tablets y dispositivos más pequeños */
+        .intro-video {
+            object-fit: contain; /* Cambiar si prefieres que el video no sea recortado */
+            z-index: 9999; /* Asegúrate de que el video esté en la parte superior */
+            position: fixed;
+            top: 0;
+            left: 0;  
+            width: 100%;
+            height: 100%;   
+            background: white;      
+        }
+    }
+
+    @media (max-width: 480px) { /* Teléfonos móviles */
+        .intro-video {
+            object-fit: contain;
+            z-index: 9999; /* Asegúrate de que el video esté en la parte superior */
+            position: fixed;
+            top: 0;
+            left: 0;     
+            width: 100%;
+            height: 100%;   
+            background: white;  
+        }
+        .content {
+            display: none; /* Oculta el contenido principal mientras se reproduce el video */
+        }
     }
 
     .content {

@@ -1,10 +1,14 @@
 <template>
     <!-- Seccion de Trasmision en vivo camas -->
-    <div class="live-stream-section" style="background: rgba(230, 230, 230, 0.47)">
+    <div class="live-stream-section">
         <div class="container py-4 py-xl-5">
             <div class="text-center mb-5">
-                <h1 class="text-danger mb-3" style="font-family: Questrial; font-weight: 400; font-size: 70px;">Transmisión en vivo</h1>
-                <h2 class="text-primary mb-5" style="font-family: Roboto; font-weight: 300; font-size: 50px;">AgroCableBot</h2>
+                <h1 class="divider-style">
+                    <span style="font-family: Questrial; font-weight: 400; font-size: 50px; color: #FB6542;" > 
+                        Transmisión en vivo             
+                    </span>
+                </h1>
+                <h2 class="text-primary mb-5" style="font-family: Roboto; font-weight: 300; font-size: 25px;">AgroCableBot</h2>
             </div>
             <div class="row gy-4" >
                 <div class=" col h-100 d-flex justify-content-center align-items-center"  >
@@ -110,6 +114,7 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
+
     }
 
     .live-stream-section .container {
