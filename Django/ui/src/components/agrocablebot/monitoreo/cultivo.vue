@@ -70,8 +70,7 @@
     mounted(){
       // Realizar las solicitudes HTTP para obtener datos
       //Lectura tipo de cultivo
-      axios.get(this.api + '/api/tipoCultivo')
-      .then(response =>{
+      axios.get(this.api + '/api/tipoCultivo').then(response =>{
         console.log("Tipo de cultivos")
         console.log(response.data)
         this.tipo_cultivo=response.data
@@ -90,7 +89,7 @@
         console.log(error)
       })
       //Lectura de plantas
-      axios.get(this.api +  '/api/plantas')
+      axios.get(this.api + '/api/plantas')
       .then(response =>{
         console.log("plantas")
         console.log(response.data)

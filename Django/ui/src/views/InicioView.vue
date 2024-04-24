@@ -21,7 +21,7 @@
                     <ul class="navbar-nav mx-auto justify-content-center">
                         <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Quienes_somos">Quienes somos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#proyectos">productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#proyectos">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Contacto">Contáctanos</a></li>
                     </ul>
                     <a class="btn" type="button" href="loginView" style="background-color: #FB6542; color: white">Ingresar</a>
