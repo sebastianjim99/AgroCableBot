@@ -109,7 +109,6 @@
         for (let i = 0; i < 9; i++) {
           this.matriz.push(new Array(9).fill(null));
         }
-
         // Asignar las plantas a la matriz según el número de planta asignado
         this.plantas.forEach(planta => {
           const fila = Math.floor((planta.numeroPlanta - 1) / 9);
@@ -136,26 +135,5 @@
 </script>
 
 <style>
-  .img-planta{
-    width: 40px;
-    height: 40px;
-  }
-
-    /* Media queries para diferentes tamaños de pantalla */
-    @media (max-width: 768px) { /* Tablets y dispositivos más pequeños */
-      .img-planta{
-        width: 40px;
-        height: 40px;
-      }
-    }
-
-    @media (max-width: 480px) { /* Teléfonos móviles */
-      .img-planta{
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-
 
 </style>

@@ -1,4 +1,6 @@
 <template>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
     
     <div class="">
         <navbar_monitoreo />
@@ -20,17 +22,15 @@
 <script>
 import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
 import footer_imacuna from '/src/components/footer.vue'
-// import vistaCalendario from '/src/components/agrocablebot/calendario/vistaCalendario.vue'
 import listaTareasProgramadas from '/src/components/agrocablebot/calendario/listaTareasProgramadas.vue'
-// import ejecucionTareas from '/src/components/agrocablebot/calendario/ejecucionTareas.vue'
+
 
 export default{
     components:{
         navbar_monitoreo,
         footer_imacuna,
-        // vistaCalendario,
         listaTareasProgramadas,
-        // ejecucionTareas,
+
        
     }
 }

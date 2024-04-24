@@ -1,4 +1,5 @@
 <template>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
 
     <div class="">
         <navbar_monitoreo />
@@ -869,107 +870,6 @@ export default{
 
 
 <style>
-    .title-rutinas{
-        margin: 15px;
-    }
-
-  @media (max-width: 768px) {
-    .nav-item {
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 15px; /* Espacio entre íconos de navegación y grupo de rutinas */
-    }
-    .nav-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-  }
-
-    .modal-ayuda {
-        /* Contenedor principal del modal */
-        display: block; /* Mostrar como bloque */
-        position: fixed; /* Fijar la posición en relación con la ventana del navegador */
-        z-index: 9999; /* Colocar sobre otros elementos */
-        left: 0; /* Posición izquierda */
-        top: 0; /* Posición superior */
-        width: 100%; /* Ancho completo */
-        height: 100%; /* Altura completa */
-        overflow: auto; /* Agregar desplazamiento automático si es necesario */
-        background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semi-transparente */
-    }
-
-    .modal-dialog-ayuda{
-        position: relative; /* Posición relativa para posicionar elementos secundarios */
-        margin: auto; /* Centrar horizontalmente dentro del modal */
-        padding: 20px; /* Espaciado interno */
-        background-color: #fefefe; /* Color de fondo */
-        border: 1px solid #888; /* Borde sólido */
-        width: 90%; /* Ancho del 90% del contenedor padre */
-        max-width: 800px; /* Ancho máximo */
-        top: 90px;
-    }
-
-    .modal-content-ayuda {
-        margin: auto; /* Centrar horizontalmente */
-        top: 90px; 
-        background-color: #fff; /* Fondo blanco */
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-        max-width: 700px; /* Ancho máximo del contenido */
-        margin: 0 auto; /* Centrar horizontalmente */
-    }
-
-    .icono:hover {
-        fill: blue; /* Cambia el color de relleno al pasar el mouse sobre el icono */
-    }
-
-    .icono:active {
-        fill: red; /* Cambia el color de relleno al hacer clic en el icono */
-    }
-
-    .divider-style:before {
-    content: "";
-    display: block;
-    border-top: solid 1px black;
-    width: 100%;
-    height: 1px;
-    position: absolute;
-    top: 50%;
-    z-index: 1;
-    }
-
-    .divider-style {
-    margin-top: 0px;
-    position: relative;
-    margin-right: 40px;
-    margin-left: 40px;
-    }
-
-    .divider-style span {
-    background: #fff;
-    padding: 0 20px;
-    position: relative;
-    z-index: 5;
-    }
-
-    @media (min-width:768px) {
-    .col-md-12 {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-}
-
-.row > * {
-  flex-shrink: 0;
-  width: 100%;
-  max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * .5);
-  padding-left: calc(var(--bs-gutter-x) * .5);
-  margin-top: var(--bs-gutter-y);
-}
-
 
 
 </style>

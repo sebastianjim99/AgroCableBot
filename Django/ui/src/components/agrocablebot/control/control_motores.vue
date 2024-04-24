@@ -231,7 +231,6 @@ export default {
 </script>
 
 <style>
-
     .modal-ayuda {
         /* Contenedor principal del modal */
         display: block; /* Mostrar como bloque */

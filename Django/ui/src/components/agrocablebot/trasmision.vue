@@ -63,7 +63,6 @@ export default {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
         this.videoStreamUrl = 'http://semillero.imacunamqtt.live:7001/aboveCam/';
         this.videoStreamUrl2 ='http://172.17.91.30:7002/belowCam/';
-
         },
 
         captureImage(imageUrl) {
@@ -110,45 +109,5 @@ export default {
 </script>
 
 <style>
-    .live-stream-section {
-    width: 100%;
-    height: 100%;
-    position: relative;
 
-    }
-
-    .live-stream-section .container {
-        position: relative;
-    }
-
-    .live-stream-section .card {
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .live-stream-section .card-img-top {
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .live-stream-section .card-body {
-        padding: 1.5rem;
-        
-    }
-
-    .live-stream-section .btn {
-        width: 100%;
-        max-width: 200px;
-    }
-
-    @media (min-width: 768px) {
-        .live-stream-section .card {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .live-stream-section .card:hover {
-            transform: translateY(-10px);
-        }
-    }
 </style>
