@@ -13,8 +13,7 @@
 #         mqtt_client.subscribe('comandos')
 #     else:
 #         print('Bad connection. Code:', rc)
-
-    
+   
 # def on_message(client, userdata, msg):
 #     from .models import Sensor_MQTT 
 #     try:
@@ -59,15 +58,16 @@
 # except Exception as e:
 #     print("No se pudo conectar al servidor MQTT:", e)
 
-
 import os
 import uuid
+import json
+from django.db import IntegrityError
 from json import dumps, loads
 import paho.mqtt.client as mqtt
-
 from .mqtt_utils import logger, singleton
+from dotenv import load_dotenv
 
-
+load_dotenv()
 @singleton
 class MqttClient:
     """
@@ -95,7 +95,9 @@ class MqttClient:
             )
         self.__client.username_pw_set(os.environ['MQTT_USER'], os.environ['MQTT_PASSWORD'])
         self.__client.on_connect = self.__on_connect
+        print('Antes del mensaje')
         self.__client.on_message = self.__on_message
+        print('Despues del mensaje')
         self.__client.on_publish = self.__on_publish
         self.__client.on_disconnect = self.__on_disconnect
     #    REVISAR
@@ -115,18 +117,52 @@ class MqttClient:
         """
         Método de devolución de llamada para manejar la conexión exitosa al servidor MQTT.
         """
+        if rc == 0:
+            print('Connected successfully')
+            self.__client.subscribe('sensores')
+            self.__client.subscribe('comandos')
+        else:
+            print('Bad connection. Code:', rc)
         self.__client.subscribe('comandos')
         self.__client.subscribe('status')
+        self.__client.subscribe('sensores')
         self.__client.publish('testingimacuna', 'pos si se conectó')
+        print("Conexion correcta con el servidor mqtt")
 
     def __on_message(self, client, userdata, msg):
         """
         Método de devolución de llamada para manejar mensajes MQTT entrantes.
         """
+        from .models import Sensor_MQTT 
         try:
-            self.topics[msg.topic](loads(msg.payload.decode('utf-8')))
-        except Exception as error:
-            logger.error(f"{type(error)} {error}")
+            data = self.topics[msg.topic](loads(msg.payload.decode('utf-8')))
+            # data = json.loads(msg.payload.decode('utf-8'))
+            Sensor_MQTT.objects.create(
+                acelerometro_roll=data['acelerometro']['roll'],
+                acelerometro_pitch=data['acelerometro']['pitch'],
+                acelerometro_yaw=data['acelerometro']['yaw'],
+                giroscopio_roll=data['giroscopio']['roll'],
+                giroscopio_pitch=data['giroscopio']['pitch'],
+                giroscopio_yaw=data['giroscopio']['yaw'],
+                magnetometro_x=data['magnetometro']['x'],
+                magnetometro_y=data['magnetometro']['y'],
+                magnetometro_z=data['magnetometro']['z'],
+                orientacion_roll=data['orientacion']['roll'],
+                orientacion_pitch=data['orientacion']['pitch'],
+                orientacion_yaw=data['orientacion']['yaw'],
+                humedad=data['humedad']['value'],
+                presion=data['presion']['value'],
+                temperatura=data['temperatura']['value']
+            )
+            print("Datos guardados correctamente")
+        except Exception as e:
+            print("Error al procesar y guardar los datos:", e)
+        
+
+        # try:
+        #     self.topics[msg.topic](loads(msg.payload.decode('utf-8')))
+        # except Exception as error:
+        #     logger.error(f"{type(error)} {error}")
 
     def __on_publish(self, client, userdata, result):
         pass
