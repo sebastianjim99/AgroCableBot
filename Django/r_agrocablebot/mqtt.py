@@ -93,24 +93,23 @@ class MqttClient:
             protocol=mqtt.MQTTv311,
             transport='tcp'
             )
-        self.__client.username_pw_set(os.environ['MQTT_USER'], os.environ['MQTT_PASSWORD'])
+        self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']), keepalive=int(os.environ['MQTT_KEEPALIVE']))
         self.__client.on_connect = self.__on_connect
-        print('Antes del mensaje')
         self.__client.on_message = self.__on_message
-        print('Despues del mensaje')
         self.__client.on_publish = self.__on_publish
-        self.__client.on_disconnect = self.__on_disconnect
+        self.__client.username_pw_set(os.environ['MQTT_USER'], os.environ['MQTT_PASSWORD'])
+        # self.__client.on_disconnect = self.__on_disconnect
     #    REVISAR
-        try:
-            self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
-            self.client.loop_start()
-        except Exception as e:
-            print("No se pudo conectar al servidor MQTT:", e)
+        # try:
+        #     self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
+        #     self.__client.loop_start()
+        # except Exception as e:
+        #     print("No se pudo conectar al servidor MQTT:", e)
     # ----------
         self.topics = {'comandos' : self.__comandos, 'status' : self.__status}
         self.interfaceCommands = {'send_data' : self.send_data, 'send_aio' : self.send_aio}
         self.last_position = {'x' : 0, 'y' : 0, 'z' : 0}
-        # self.__client.loop_start()      
+        self.__client.loop_start()  # ojito esto estaba comentando.   
 
 
     def __on_connect(self, client, userdata, flags, rc):
@@ -119,25 +118,33 @@ class MqttClient:
         """
         if rc == 0:
             print('Connected successfully')
-            self.__client.subscribe('sensores')
             self.__client.subscribe('comandos')
+            self.__client.subscribe('status')
+            self.__client.subscribe('sensores')
+            self.__client.publish('testingimacuna', 'pos si se conectó')
         else:
             print('Bad connection. Code:', rc)
-        self.__client.subscribe('comandos')
-        self.__client.subscribe('status')
-        self.__client.subscribe('sensores')
-        self.__client.publish('testingimacuna', 'pos si se conectó')
-        print("Conexion correcta con el servidor mqtt")
+        
+        # self.__client.subscribe('comandos')
+        # self.__client.subscribe('status')
+        # self.__client.subscribe('sensores')
+        # self.__client.publish('testingimacuna', 'pos si se conectó')
+        # print("Conexion correcta con el servidor mqtt")
 
     def __on_message(self, client, userdata, msg):
         """
         Método de devolución de llamada para manejar mensajes MQTT entrantes.
         """
         from .models import Sensor_MQTT 
+        import json
+        print(f"Recibido mensaje en tópico {msg.topic} con QoS {msg.qos}")
+        
         try:
-            data = self.topics[msg.topic](loads(msg.payload.decode('utf-8')))
-            # data = json.loads(msg.payload.decode('utf-8'))
-            Sensor_MQTT.objects.create(
+            data = json.loads(msg.payload.decode('utf-8'))
+            # Logging para verificar el contenido recibido
+            print(f"Datos recibidos: {data}")
+
+            obj, created = Sensor_MQTT.objects.get_or_create(
                 acelerometro_roll=data['acelerometro']['roll'],
                 acelerometro_pitch=data['acelerometro']['pitch'],
                 acelerometro_yaw=data['acelerometro']['yaw'],
@@ -154,23 +161,19 @@ class MqttClient:
                 presion=data['presion']['value'],
                 temperatura=data['temperatura']['value']
             )
-            print("Datos guardados correctamente")
+            if created:
+                print("Datos guardados correctamente")
+            else:
+                print("El registro ya existía y no se duplicó.")
+
         except Exception as e:
             print("Error al procesar y guardar los datos:", e)
-        
-
-        # try:
-        #     self.topics[msg.topic](loads(msg.payload.decode('utf-8')))
-        # except Exception as error:
-        #     logger.error(f"{type(error)} {error}")
 
     def __on_publish(self, client, userdata, result):
         pass
 
     def __on_disconnect(self, client, userdata, rc):
         pass
-        #self.__client.loop_stop()
-        #self.__client.loop_start()
     
     def __comandos(self, message):
         """

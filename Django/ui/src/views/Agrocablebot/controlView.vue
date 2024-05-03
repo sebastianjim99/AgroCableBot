@@ -363,10 +363,10 @@ export default{
             temperatura: null,
 
             connection: {
-                protocol: "ws",
-                host: '172.17.91.30',//'172.17.91.30' ,      'broker.emqx.io'         //"imacunamqtt.live",
+                protocol: "wss",
+                host: 'imacunamqtt.live',
                 // ws: 8083; wss: 8084
-                port: 8083,
+                port: 8084,
                 endpoint: "/mqtt",
                 clean: true,
                 connectTimeout: 30 * 1000, // ms
