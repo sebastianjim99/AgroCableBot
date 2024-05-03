@@ -93,7 +93,7 @@ class MqttClient:
             protocol=mqtt.MQTTv311,
             transport='tcp'
             )
-        self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']), keepalive=int(os.environ['MQTT_KEEPALIVE']))
+        self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
         self.__client.on_connect = self.__on_connect
         self.__client.on_message = self.__on_message
         self.__client.on_publish = self.__on_publish
