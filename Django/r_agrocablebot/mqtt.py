@@ -93,12 +93,13 @@ class MqttClient:
             protocol=mqtt.MQTTv311,
             transport='tcp'
             )
-        self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
+
+        self.__client.username_pw_set(os.environ['MQTT_USER'], os.environ['MQTT_PASSWORD'])
         self.__client.on_connect = self.__on_connect
         self.__client.on_message = self.__on_message
         self.__client.on_publish = self.__on_publish
-        self.__client.username_pw_set(os.environ['MQTT_USER'], os.environ['MQTT_PASSWORD'])
-        # self.__client.on_disconnect = self.__on_disconnect
+        self.__client.on_disconnect = self.__on_disconnect
+
     #    REVISAR
         # try:
         #     self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
@@ -106,10 +107,31 @@ class MqttClient:
         # except Exception as e:
         #     print("No se pudo conectar al servidor MQTT:", e)
     # ----------
-        self.topics = {'comandos' : self.__comandos, 'status' : self.__status}
-        self.interfaceCommands = {'send_data' : self.send_data, 'send_aio' : self.send_aio}
+        self.topics = {
+            'comandos' : self.__comandos, 
+            'status' : self.__status
+        }
+        self.interfaceCommands = {
+            'send_data' : self.send_data, 
+            'send_aio' : self.send_aio
+        }
         self.last_position = {'x' : 0, 'y' : 0, 'z' : 0}
-        self.__client.loop_start()  # ojito esto estaba comentando.   
+        self.connected = False
+
+        # self.__client.loop_start()  # ojito esto estaba comentando.   
+
+    def connect(self):
+        """
+        Intenta conectar el cliente al servidor MQTT.
+        """
+        try:
+            self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
+            self.__client.loop_start()
+            self.connected = True
+            print("Connected successfully")
+        except Exception as e:
+            print(f"Could not connect to MQTT server: {e}")
+            self.connected = False
 
 
     def __on_connect(self, client, userdata, flags, rc):
@@ -124,12 +146,8 @@ class MqttClient:
             self.__client.publish('testingimacuna', 'pos si se conectó')
         else:
             print('Bad connection. Code:', rc)
-        
-        # self.__client.subscribe('comandos')
-        # self.__client.subscribe('status')
-        # self.__client.subscribe('sensores')
-        # self.__client.publish('testingimacuna', 'pos si se conectó')
-        # print("Conexion correcta con el servidor mqtt")
+
+
 
     def __on_message(self, client, userdata, msg):
         """
@@ -173,7 +191,8 @@ class MqttClient:
         pass
 
     def __on_disconnect(self, client, userdata, rc):
-        pass
+        print(f"Disconnected with result code: {rc}")
+        self.connected = False
     
     def __comandos(self, message):
         """
@@ -208,6 +227,8 @@ class MqttClient:
         """
         Método para publicar un mensaje MQTT en un topic específico.
         """
+        if not self.connected:
+            self.connect()
         self.__client.publish(topic, message)
 
-MqttClient()
+mqtt_client = MqttClient()
