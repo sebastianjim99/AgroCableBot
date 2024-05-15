@@ -33,9 +33,9 @@
                     <th>Fecha de fin</th>
                     <th>Repetición</th>
                     <th>Intervalo</th>
-                    <th>Hora de repeticion 1</th>
-                    <th>Hora de repeticion 2</th>
-                    <th>Hora de repeticion 3</th>
+                    <th>Hora de repetición 1</th>
+                    <th>Hora de repetición 2</th>
+                    <th>Hora de repetición 3</th>
                     <th>Editar/Eliminar</th>
                   </tr>
                 </thead>
@@ -108,7 +108,7 @@
                     <div class="form-group mb-3">
                       <div class="row">
                         <div class="col-md-auto ">
-                          <label for="repeticion" class="col-form-label">Repeticion</label>
+                          <label for="repeticion" class="col-form-label">Repetición</label>
                         </div>
                         <div class="col">
                           <select class="form-select" v-model="repeticion" style="margin:10px ;" required>

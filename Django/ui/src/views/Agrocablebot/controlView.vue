@@ -364,7 +364,7 @@ export default{
 
             connection: {
                 protocol: "wss",
-                host: 'imacunamqtt.live',
+                host:  'imacunamqtt.live' ,  //'imacunamqtt.live',
                 // ws: 8083; wss: 8084
                 port: 8084,
                 endpoint: "/mqtt",

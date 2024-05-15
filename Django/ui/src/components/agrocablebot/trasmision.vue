@@ -61,8 +61,8 @@ export default {
     methods: {
         updateStreamUrl() {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
-        this.videoStreamUrl = 'http://semillero.imacunamqtt.live:7001/aboveCam/';
-        this.videoStreamUrl2 ='http://172.17.91.30:7002/belowCam/';
+        this.videoStreamUrl = 'http://raspimacuna.duckdns.org:51820/aboveCam/';
+        this.videoStreamUrl2 ='http://raspimacuna.duckdns.org:51820/belowCam/';
         },
 
         captureImage(imageUrl) {
