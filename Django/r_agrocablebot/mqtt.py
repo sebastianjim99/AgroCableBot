@@ -13,8 +13,7 @@
 #         mqtt_client.subscribe('comandos')
 #     else:
 #         print('Bad connection. Code:', rc)
-
-    
+   
 # def on_message(client, userdata, msg):
 #     from .models import Sensor_MQTT 
 #     try:
@@ -59,15 +58,16 @@
 # except Exception as e:
 #     print("No se pudo conectar al servidor MQTT:", e)
 
-
 import os
 import uuid
+import json
+from django.db import IntegrityError
 from json import dumps, loads
 import paho.mqtt.client as mqtt
-
 from .mqtt_utils import logger, singleton
+from dotenv import load_dotenv
 
-
+load_dotenv()
 @singleton
 class MqttClient:
     """
@@ -93,48 +93,106 @@ class MqttClient:
             protocol=mqtt.MQTTv311,
             transport='tcp'
             )
+
         self.__client.username_pw_set(os.environ['MQTT_USER'], os.environ['MQTT_PASSWORD'])
         self.__client.on_connect = self.__on_connect
         self.__client.on_message = self.__on_message
         self.__client.on_publish = self.__on_publish
         self.__client.on_disconnect = self.__on_disconnect
+
     #    REVISAR
+        # try:
+        #     self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
+        #     self.__client.loop_start()
+        # except Exception as e:
+        #     print("No se pudo conectar al servidor MQTT:", e)
+    # ----------
+        self.topics = {
+            'comandos' : self.__comandos, 
+            'status' : self.__status
+        }
+        self.interfaceCommands = {
+            'send_data' : self.send_data, 
+            'send_aio' : self.send_aio
+        }
+        self.last_position = {'x' : 0, 'y' : 0, 'z' : 0}
+        self.connected = False
+
+        # self.__client.loop_start()  # ojito esto estaba comentando.   
+
+    def connect(self):
+        """
+        Intenta conectar el cliente al servidor MQTT.
+        """
         try:
             self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
-            self.client.loop_start()
+            self.__client.loop_start()
+            self.connected = True
+            print("Connected successfully")
         except Exception as e:
-            print("No se pudo conectar al servidor MQTT:", e)
-    # ----------
-        self.topics = {'comandos' : self.__comandos, 'status' : self.__status}
-        self.interfaceCommands = {'send_data' : self.send_data, 'send_aio' : self.send_aio}
-        self.last_position = {'x' : 0, 'y' : 0, 'z' : 0}
-        self.__client.loop_start()  #     ojito estaba comoentado
+            print(f"Could not connect to MQTT server: {e}")
+            self.connected = False
 
 
     def __on_connect(self, client, userdata, flags, rc):
         """
         Método de devolución de llamada para manejar la conexión exitosa al servidor MQTT.
         """
-        self.__client.subscribe('comandos')
-        self.__client.subscribe('status')
-        self.__client.publish('testingimacuna', 'pos si se conectó')
+        if rc == 0:
+            print('Connected successfully')
+            self.__client.subscribe('comandos')
+            self.__client.subscribe('status')
+            self.__client.subscribe('sensores')
+            self.__client.publish('testingimacuna', 'pos si se conectó')
+        else:
+            print('Bad connection. Code:', rc)
+
+
 
     def __on_message(self, client, userdata, msg):
         """
         Método de devolución de llamada para manejar mensajes MQTT entrantes.
         """
+        from .models import Sensor_MQTT 
+        import json
+        print(f"Recibido mensaje en tópico {msg.topic} con QoS {msg.qos}")
+        
         try:
-            self.topics[msg.topic](loads(msg.payload.decode('utf-8')))
-        except Exception as error:
-            logger.error(f"{type(error)} {error}")
+            data = json.loads(msg.payload.decode('utf-8'))
+            # Logging para verificar el contenido recibido
+            print(f"Datos recibidos: {data}")
+
+            obj, created = Sensor_MQTT.objects.get_or_create(
+                acelerometro_roll=data['acelerometro']['roll'],
+                acelerometro_pitch=data['acelerometro']['pitch'],
+                acelerometro_yaw=data['acelerometro']['yaw'],
+                giroscopio_roll=data['giroscopio']['roll'],
+                giroscopio_pitch=data['giroscopio']['pitch'],
+                giroscopio_yaw=data['giroscopio']['yaw'],
+                magnetometro_x=data['magnetometro']['x'],
+                magnetometro_y=data['magnetometro']['y'],
+                magnetometro_z=data['magnetometro']['z'],
+                orientacion_roll=data['orientacion']['roll'],
+                orientacion_pitch=data['orientacion']['pitch'],
+                orientacion_yaw=data['orientacion']['yaw'],
+                humedad=data['humedad']['value'],
+                presion=data['presion']['value'],
+                temperatura=data['temperatura']['value']
+            )
+            if created:
+                print("Datos guardados correctamente")
+            else:
+                print("El registro ya existía y no se duplicó.")
+
+        except Exception as e:
+            print("Error al procesar y guardar los datos:", e)
 
     def __on_publish(self, client, userdata, result):
         pass
 
     def __on_disconnect(self, client, userdata, rc):
-        pass
-        #self.__client.loop_stop()
-        #self.__client.loop_start()
+        print(f"Disconnected with result code: {rc}")
+        self.connected = False
     
     def __comandos(self, message):
         """
@@ -169,6 +227,8 @@ class MqttClient:
         """
         Método para publicar un mensaje MQTT en un topic específico.
         """
+        if not self.connected:
+            self.connect()
         self.__client.publish(topic, message)
 
-MqttClient()
+mqtt_client = MqttClient()

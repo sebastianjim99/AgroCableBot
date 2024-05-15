@@ -56,7 +56,7 @@
                       <td style="text-align: justify;" >{{ tipoDeCultivoSeleccionado.fertilizacion }}</td>
                     </tr>
                     <tr>
-                      <td><strong>Fertilización</strong></td>
+                      <td><strong>Monitoreo y Registro:</strong></td>
                       <td style="text-align: justify;" >{{ tipoDeCultivoSeleccionado.moniteroRegistro }}</td>
                     </tr>
                     <!-- Agregar más información aquí -->

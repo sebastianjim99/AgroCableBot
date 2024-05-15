@@ -9,12 +9,12 @@
                 <table class="table">
                     <tbody>
                         <tr v-for="(fila, filaIndex) in matriz" :key="filaIndex">
-                            <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" class="position-relative" @click="seleccionarPlanta(filaIndex, columnaIndex)"  :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
+                            <td v-for="(planta, columnaIndex) in fila" :key="columnaIndex" style="padding:1px;" @click="seleccionarPlanta(filaIndex, columnaIndex)"  :style="{ backgroundColor: plantaSeleccionada && filaIndex === plantaSeleccionada.fila && columnaIndex === plantaSeleccionada.columna ? 'rgb(178,218,250, 0.5)' : '' }">
                                 <div class="text-center">
                                     <p v-if="planta">{{ planta.nombre }}</p>
-                                    <img v-if="planta" :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" width="40" height="40">
+                                    <img  class="img-planta"  style=" margin:0 8px 8px 8px;" v-if="planta" :src="planta.cultivo.iconosPlantas" alt="Imagen de planta" >
                                     <p v-else>{{ obtenerContadorPosicion(filaIndex, columnaIndex) }}
-                                    <img src="@/assets/iconos/sin_imagen.png" alt="Sin imagen de planta" width="40" height="40"></p>
+                                    <img class="img-planta" src="@/assets/iconos/sin_imagen.png"  alt="Sin imagen de planta" ></p>
                                 </div>
                             </td>
                         </tr>
@@ -70,8 +70,7 @@
     mounted(){
       // Realizar las solicitudes HTTP para obtener datos
       //Lectura tipo de cultivo
-      axios.get(this.api + '/api/tipoCultivo')
-      .then(response =>{
+      axios.get(this.api + '/api/tipoCultivo').then(response =>{
         console.log("Tipo de cultivos")
         console.log(response.data)
         this.tipo_cultivo=response.data
@@ -90,7 +89,7 @@
         console.log(error)
       })
       //Lectura de plantas
-      axios.get(this.api +  '/api/plantas')
+      axios.get(this.api + '/api/plantas')
       .then(response =>{
         console.log("plantas")
         console.log(response.data)
@@ -109,7 +108,6 @@
         for (let i = 0; i < 9; i++) {
           this.matriz.push(new Array(9).fill(null));
         }
-
         // Asignar las plantas a la matriz según el número de planta asignado
         this.plantas.forEach(planta => {
           const fila = Math.floor((planta.numeroPlanta - 1) / 9);

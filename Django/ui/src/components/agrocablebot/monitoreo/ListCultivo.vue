@@ -17,49 +17,49 @@
       <!-- Tabla para mostrar los cultivos -->
       <div class="row">
         <div class="col-md-12">
-          <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>Cultivo</th>
-                <th>Fecha de siembra</th>
-                <th>Responsable</th>
-                <th>Cantidad</th>
-                <th>Estimado de cosecha</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Iteración sobre la lista de cultivos -->
-              <tr v-for="cultivo in cultivos" :key="cultivo.id">
-                <!-- Datos de cada cultivo -->
-                <td>{{ cultivo.nombre }}</td>
-                <td>{{ cultivo.fechaSiembra }}</td>
-                <td>{{ cultivo.responsable }}</td>
-                <td>{{ cultivo.cantidad }}</td>
-                <td>Dec 1, 2022</td>
-                <td>A tiempo</td>
-                <td>
-                  <!-- Botones para editar y eliminar cada cultivo -->
-                  <button class="btn btn-warning btn-editar" type="button" @click="editarCultivo(cultivo)">
-                    <i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                    </svg>
-                  </button>
+          <div class="table-responsive">
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Cultivo</th>
+                  <th>Fecha de siembra</th>
+                  <th>Responsable</th>
+                  <th>Cantidad</th>
+                  <th>Estimado de cosecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Iteración sobre la lista de cultivos -->
+                <tr v-for="cultivo in cultivos" :key="cultivo.id">
+                  <!-- Datos de cada cultivo -->
+                  <td>{{ cultivo.nombre }}</td>
+                  <td>{{ cultivo.fechaSiembra }}</td>
+                  <td>{{ cultivo.responsable }}</td>
+                  <td>{{ cultivo.cantidad }}</td>
+                  <td>{{ cultivo.tipoCultivo.estimadoCosechaMin }} Dias despues de la siembra</td>
+                  <td>
+                    <!-- Botones para editar y eliminar cada cultivo -->
+                    <button class="btn btn-warning btn-editar" type="button" @click="editarCultivo(cultivo)">
+                      <i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                      </svg>
+                    </button>
 
-                  <button class="btn btn-danger btn-eliminar "  type="button" @click="eliminarCultivo(cultivo.id)">
-                    <i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                    </svg>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    <button class="btn btn-danger btn-eliminar "  type="button" @click="eliminarCultivo(cultivo.id)">
+                      <i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -111,6 +111,7 @@ import Swal from 'sweetalert2';
 export default {
   data() {
     return {
+      'api' : `${process.env.VUE_APP_API_URL}`,
       mostrarModal: false,
       // Datos del componente
       showForm: false,        // muestra formularios
@@ -148,7 +149,7 @@ export default {
     // Métodos para interactuar con la API --------------- CRUD -------------------
     getCultivos() {
       // Realiza una solicitud GET al servidor para obtener la lista de cultivos
-      axios.get('http://localhost:8000/api/cultivo')
+      axios.get(this.api + '/api/cultivo')
         .then(response => {
           // Almacena la lista de cultivos obtenida del servidor en la variable 'cultivos'
           this.cultivos = response.data;
@@ -160,7 +161,7 @@ export default {
     },
     getTiposDeCultivo() {
       // Realiza una solicitud GET al servidor para obtener la lista de tipos de cultivo
-      axios.get('http://localhost:8000/api/tipoCultivo')
+      axios.get( this.api + '/api/tipoCultivo')
         .then(response => {
           //console.log('tipos de cultivo get',response.data)
           this.listaDeTipos = response.data; // Almacena la lista de tipos de cultivo obtenida del servidor en la variable 'listaDeTipos'
@@ -171,7 +172,7 @@ export default {
     },
     getSensores() {
       // Realiza una solicitud GET al servidor para obtener la lista de sensores
-      axios.get('http://localhost:8000/api/sensor')
+      axios.get( this.api + '/api/sensor')
         .then(response => {
           this.listaDeSensores = response.data;
         })
@@ -219,8 +220,7 @@ export default {
       // Determina si la solicitud es para actualizar o crear un nuevo cultivo
       let requestMethod = this.editingCultivoId ? 'patch' : 'post';
       // Construye la URL de la solicitud en función de si se está editando o creando un cultivo
-      let requestUrl = this.editingCultivoId ? `http://localhost:8000/api/cultivo/${this.editingCultivoId}/` : 'http://localhost:8000/api/cultivo/';
-
+      let requestUrl = this.editingCultivoId ? `${this.api}/api/cultivo/${this.editingCultivoId}/` :  `${this.api}/api/cultivo/`;
 
       // Realiza la solicitud HTTP al servidor utilizando axios
       axios[requestMethod](requestUrl, formData)
@@ -290,7 +290,7 @@ export default {
         // Si el usuario confirma la eliminación
         if (result.isConfirmed) {
           // Realiza una solicitud DELETE al servidor para eliminar el cultivo
-          axios.delete(`http://localhost:8000/api/cultivo/${cultivoId}/`)
+          axios.delete(`${this.api}/api/cultivo/${cultivoId}/`)
             .then(() => {
               // Muestra una alerta de éxito al usuario
               Swal.fire(
@@ -466,4 +466,53 @@ export default {
     background-color: #dc3545; /* Color rojo */
     color: #fff; /* Texto blanco */
   }
+
+  table-responsive {
+  overflow-x: auto; /* Hace la tabla desplazable horizontalmente */
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+.table th, .table td {
+  white-space: nowrap; /* Evita que el contenido de las celdas se ajuste a líneas múltiples */
+}
+
+.btn {
+  padding: .375rem .75rem; /* Tamaño estándar para botones */
+  margin: 0 .125rem; /* Espaciado entre botones */
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 768px) {
+  .table th, .table td {
+    padding: .75rem .5rem; /* Aumenta el padding para hacer más grande el área táctil */
+    font-size: .875rem; /* Reduce el tamaño del texto para que quepa mejor en pantallas pequeñas */
+  }
+
+  .btn {
+    padding: .375rem; /* Reduce el padding para botones en dispositivos pequeños */
+    font-size: .875rem; /* Reduce el tamaño del texto en los botones */
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .table th, .table td {
+    padding: .5rem; /* Más reducción del padding en celdas para espacios aún más pequeños */
+    font-size: .75rem; /* Más reducción del tamaño del texto para una mejor adaptación */
+  }
+
+  .btn {
+    padding: .25rem; /* Reducción adicional para los botones */
+    font-size: .75rem; /* Texto más pequeño para los botones */
+  }
+}
+
+
+
+
 </style>

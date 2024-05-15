@@ -1,4 +1,6 @@
 <template>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
     
     <div class="">
         <navbar_monitoreo />
@@ -20,11 +22,7 @@
         <footer_imacuna />
     </div>
 
-
-
-
 </template>
-
 
 <script>
 import navbar_monitoreo from '/src/components/agrocablebot/base.vue'
@@ -42,4 +40,5 @@ export default{
         control_motores,
     }
 }
+
 </script>

@@ -2,7 +2,7 @@
   <div class="home-container">
     <el-card shadow="always" style="margin-bottom:30px;">
       <div class="emq-title">
-        Configuration
+        Configuración
       </div>
       <el-form ref="configForm" hide-required-asterisk size="small" label-position="top" :model="connection">
         <el-row :gutter="20">
@@ -49,11 +49,11 @@
 
           <el-col :span="24">
             <el-button type="success" size="small" class="conn-btn" style="margin-right: 20px;" :disabled="client.connected" @click="createConnection" :loading="connecting">
-              {{ client.connected ? 'Connected' : 'Connect' }}
+              {{ client.connected ? 'Conectado ' : 'Conectar' }}
             </el-button>
 
             <el-button v-if="client.connected" type="danger" size="small" class="conn-btn" @click="destroyConnection">
-              Disconnect
+              Desconectar
             </el-button>
           </el-col>
         </el-row>
@@ -61,7 +61,7 @@
     </el-card>
     <el-card shadow="always" style="margin-bottom:30px;">
       <div class="emq-title">
-        Subscribe
+        Suscripción 
       </div>
       <el-form ref="subscription" hide-required-asterisk size="small" label-position="top" :model="subscription">
         <el-row :gutter="20">
@@ -84,7 +84,7 @@
               class="subscribe-btn"
               @click="doSubscribe"
             >
-              {{ subscribeSuccess ? 'Subscribed' : 'Subscribe' }}
+              {{ subscribeSuccess ? 'Suscrito  ' : 'Suscribir' }}
             </el-button>
             <el-button
               type="success"
@@ -94,7 +94,7 @@
               @click="doUnSubscribe"
               v-if="subscribeSuccess"
             >
-              Unsubscribe
+              Cancelar
             </el-button>
           </el-col>
         </el-row>
@@ -102,7 +102,7 @@
     </el-card>
     <el-card shadow="always" style="margin-bottom:30px;">
       <div class="emq-title">
-        Publish
+        Publicar
       </div>
       <el-form ref="publish" hide-required-asterisk size="small" label-position="top" :model="publish">
         <el-row :gutter="20">
@@ -112,7 +112,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item prop="payload" label="Payload">
+            <el-form-item prop="payload" label="Message">
               <el-input v-model="publish.payload"></el-input>
             </el-form-item>
           </el-col>
@@ -131,13 +131,13 @@
         size="small" 
         class="publish-btn" 
         @click="doPublish">
-          Publish
+          Publicar
         </el-button>
       </el-col>
     </el-card>
     <el-card shadow="always" style="margin-bottom:30px;">
       <div class="emq-title">
-        Receive
+        Mensajes recibidos 
       </div>
       <el-col :span="24">
         <el-input type="textarea" :rows="3" style="margin-bottom: 15px" v-model="receiveNews" readOnly></el-input>

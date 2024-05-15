@@ -2,8 +2,7 @@
     <!-- CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
 
-    <div id="app">
-       
+    <div id="app">    
         <video v-if="showIntroVideo" autoplay muted @ended="hideIntroVideo" class="intro-video">
             <source src="@/assets/logos/intro.mp4" type="video/mp4">
             Tu navegador no admite la reproducción de video.
@@ -22,7 +21,7 @@
                     <ul class="navbar-nav mx-auto justify-content-center">
                         <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Quienes_somos">Quienes somos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#proyectos">productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#proyectos">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Contacto">Contáctanos</a></li>
                     </ul>
                     <a class="btn" type="button" href="loginView" style="background-color: #FB6542; color: white">Ingresar</a>
@@ -165,143 +164,11 @@ export default{
             this.showIntroVideo = false;
         }
     },
-
-
 }
 </script>
 
 <style>
-
-    .intro-video {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 9999; /* Asegúrate de que el video esté en la parte superior */
-    }
-
-    .content {
-        display: none; /* Oculta el contenido principal mientras se reproduce el video */
-    }
-
-    .mobile-background {
-
-        background-image: url("/src/assets/logos/semillero.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: bottom;
-    }
-    .video-parallax-container {
-        height: 50vh;
-        overflow: hidden;
-    }
-
-    .title-header{
-        text-align: center;
-        font-size: 18px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .swiper3-slide {
-        text-align: center;
-        font-size: 18px;
-        position: relative;
-    }
-
-    #bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 50%;
-    object-fit: cover; /* Ajusta el tamaño del video para que cubra el contenedor */
-    }
-
-    :root {
-        --bs-breakpoint-xs: 0;
-        --bs-breakpoint-sm: 576px;
-        --bs-breakpoint-md: 768px;
-        --bs-breakpoint-lg: 992px;
-        --bs-breakpoint-xl: 1200px;
-        --bs-breakpoint-xxl: 1400px;
-    }
-
-    .navbar-light {
-    transition: 1000ms ease;
-    background: white
-    }
-
-    .navbar {
-    border: none;
-    background-color: white;
-}
-
-    
-
-/* Nav bar  */
-
-.bs-icon {
-  --bs-icon-size: .75rem;
-  display: flex;
-  flex-shrink: 0;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--bs-icon-size);
-  width: calc(var(--bs-icon-size) * 2);
-  height: calc(var(--bs-icon-size) * 2);
-  color: var(--bs-primary);
-}
-
-.bs-icon-xs {
-  --bs-icon-size: 1rem;
-  width: calc(var(--bs-icon-size) * 1.5);
-  height: calc(var(--bs-icon-size) * 1.5);
-}
-
-.bs-icon-sm {
-  --bs-icon-size: 1rem;
-}
-
-.bs-icon-md {
-  --bs-icon-size: 1.5rem;
-}
-
-.bs-icon-lg {
-  --bs-icon-size: 2rem;
-}
-
-.bs-icon-xl {
-  --bs-icon-size: 2.5rem;
-}
-
-.bs-icon.bs-icon-primary {
-  color: var(--bs-white);
-  background: var(--bs-primary);
-}
-
-.bs-icon.bs-icon-primary-light {
-  color: var(--bs-primary);
-  background: rgba(var(--bs-primary-rgb), .2);
-}
-
-.bs-icon.bs-icon-semi-white {
-  color: var(--bs-primary);
-  background: rgba(255, 255, 255, .5);
-}
-
-.bs-icon.bs-icon-rounded {
-  border-radius: .5rem;
-}
-
-.bs-icon.bs-icon-circle {
-  border-radius: 50%;
-}
-
-
+   
 
 </style>
 

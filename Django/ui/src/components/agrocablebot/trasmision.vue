@@ -1,10 +1,14 @@
 <template>
     <!-- Seccion de Trasmision en vivo camas -->
-    <div class="live-stream-section" style="background: rgba(230, 230, 230, 0.47)">
+    <div class="live-stream-section">
         <div class="container py-4 py-xl-5">
             <div class="text-center mb-5">
-                <h1 class="text-danger mb-3" style="font-family: Questrial; font-weight: 400; font-size: 70px;">Transmisión en vivo</h1>
-                <h2 class="text-primary mb-5" style="font-family: Roboto; font-weight: 300; font-size: 50px;">AgroCableBot</h2>
+                <h1 class="divider-style">
+                    <span style="font-family: Questrial; font-weight: 400; font-size: 50px; color: #FB6542;" > 
+                        Transmisión en vivo             
+                    </span>
+                </h1>
+                <h2 class="text-primary mb-5" style="font-family: Roboto; font-weight: 300; font-size: 25px;">AgroCableBot</h2>
             </div>
             <div class="row gy-4" >
                 <div class=" col h-100 d-flex justify-content-center align-items-center"  >
@@ -57,9 +61,8 @@ export default {
     methods: {
         updateStreamUrl() {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
-        this.videoStreamUrl = 'http://semillero.imacunamqtt.live:7001/aboveCam/';
-        this.videoStreamUrl2 ='http://172.17.91.30:7002/belowCam/';
-
+        this.videoStreamUrl = 'http://raspimacuna.duckdns.org:51820/aboveCam/';
+        this.videoStreamUrl2 ='http://raspimacuna.duckdns.org:51820/belowCam/';
         },
 
         captureImage(imageUrl) {
@@ -104,46 +107,3 @@ export default {
     }
 }
 </script>
-
-<style>
-    .live-stream-section {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    }
-
-    .live-stream-section .container {
-        position: relative;
-    }
-
-    .live-stream-section .card {
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .live-stream-section .card-img-top {
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .live-stream-section .card-body {
-        padding: 1.5rem;
-        
-    }
-
-    .live-stream-section .btn {
-        width: 100%;
-        max-width: 200px;
-    }
-
-    @media (min-width: 768px) {
-        .live-stream-section .card {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .live-stream-section .card:hover {
-            transform: translateY(-10px);
-        }
-    }
-</style>

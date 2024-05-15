@@ -21,9 +21,9 @@
                 <div class="d-flex flex-column align-items-center">
                     <img src="@/assets/iconos/presion.png" class="img-fluid mb-3" alt="Ultimo censado de presión" style="width: 100px; height: 100px;">
                     <div>
-                        <h4>Ultimo censado de presión</h4>
+                        <h4>Ultimo sensado de presión</h4>
                         <p>Fecha: {{ this.fechaActualizacion }} </p>
-                        <p>Hora: {{ this.horaActualizacion }}</p>
+                        <p>Hora: {{ this.horaActualizacion}}</p>
                         <p>Presion: {{ this.presion }}</p>
                     </div>
                 </div>
@@ -32,9 +32,9 @@
                 <div class="d-flex flex-column align-items-center">
                     <img src="@/assets/iconos/temperatura.png" class="img-fluid mb-3" alt="Ultimo censado de Temperatura" style="width: 100px; height: 100px;">
                     <div>
-                        <h4>Ultimo censado de Temperatura</h4>
+                        <h4>Ultimo sensado de Temperatura</h4>
                         <p>Fecha: {{ this.fechaActualizacion }} </p>
-                        <p>Hora: {{ this.horaActualizacion }}</p>
+                        <p>Hora: {{ this.horaActualizacion}}</p>
                         <p>Temperatura: {{ this.temperatura }}</p>
                     </div>
                 </div>
@@ -43,9 +43,9 @@
                 <div class="d-flex flex-column align-items-center">
                     <img src="@/assets/iconos/humedad.png" class="img-fluid mb-3" alt="Ultimo censado de humedad" style="width: 100px; height: 100px;">
                     <div>
-                        <h4>Ultimo censado de humedad</h4>
+                        <h4>Ultimo sensado de humedad</h4>
                         <p>Fecha: {{ this.fechaActualizacion }} </p>
-                        <p>Hora: {{ this.horaActualizacion }}</p>
+                        <p>Hora: {{ this.horaActualizacion}}</p>
                         <p>Humedad: {{ this.humedad }}</p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export default {
         humedad: null,
         timestamp: null,
         fechaActualizacion:null,
-        horaActualizacion:null
+        horaActualizacion:null,
       }
     },
 
@@ -91,7 +91,9 @@ export default {
                 console.error('Error al obtener los datos de los sensores:', error);
             });
         },
+
         obtenerUltimaActualizacion() {
+
             // Ordenar los datos por timestamp de forma descendente para obtener la última actualización primero
             const ultimaActualizacion = this.Datos_sensores.sort((a, b) => b.id - a.id)[0];
 
@@ -134,8 +136,6 @@ export default {
             this.humedad = ultimaActualizacion.humedad;
             this.presion = ultimaActualizacion.presion;
             this.temperatura = ultimaActualizacion.temperatura;
-
-            console.log(this.temperatura)
 
         },
     },

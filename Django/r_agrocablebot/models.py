@@ -244,7 +244,7 @@ class calendarios(models.Model):
         db_table = 'calendarios'
         ordering = ['id']
 
-class eventosCalendarios(models.Model):
+class eventosCalendarios (models.Model):
     
     title = models.CharField(max_length=100)
     start = models.DateTimeField()
@@ -259,23 +259,6 @@ class eventosCalendarios(models.Model):
         verbose_name_plural = 'Eventos calendarios'
         db_table = 'eventos_calendarios'
         ordering = ['id']
-
-
-# class mo_agroCableBot(models.Model):
-#     descripcion=models.TextField(blank=True)
-#     proyectos=models.ForeignKey(models.proyectos, null=True,blank=True,on_delete=models.CASCADE)
-#     integrantes=models.ForeignKey(models.integrante, null=True,blank=True,on_delete=models.CASCADE)
-#     estadisticas=models.ForeignKey(estadisticas, null=True,blank=True,on_delete=models.CASCADE)
-
-
-#     def __str__(self):
-#         return self.nombre
-
-#     class Meta:
-#         verbose_name = 'Tipo de sensor'
-#         verbose_name_plural = 'Tipos de sensores'
-#         db_table = 'tipos_sensores'
-#         ordering = ['id']
 
 class Mensaje (models.Model):
     topic = models.CharField(max_length=100)
