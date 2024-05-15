@@ -12,7 +12,8 @@
                     <img src="@/assets/iconos/reigo.png" class="img-fluid mb-3" alt="Ultimo Riego" style="width: 100px; height: 100px;">
                     <div>
                         <h4>Ultimo Riego</h4>
-                        <p>{{ this.timestamp }}</p>
+                        <p>Fecha: {{ this.fechaActualizacion }} </p>
+                        <p>Hora: {{ this.horaActualizacion }}</p>
                     </div>
                 </div>
             </div>
