@@ -108,7 +108,7 @@ class MqttClient:
         self.topics = {'comandos' : self.__comandos, 'status' : self.__status}
         self.interfaceCommands = {'send_data' : self.send_data, 'send_aio' : self.send_aio}
         self.last_position = {'x' : 0, 'y' : 0, 'z' : 0}
-        # self.__client.loop_start()      
+        self.__client.loop_start()  #     ojito estaba comoentado
 
 
     def __on_connect(self, client, userdata, flags, rc):

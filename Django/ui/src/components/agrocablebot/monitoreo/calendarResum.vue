@@ -12,7 +12,8 @@
                     <img src="@/assets/iconos/reigo.png" class="img-fluid mb-3" alt="Ultimo Riego" style="width: 100px; height: 100px;">
                     <div>
                         <h4>Ultimo Riego</h4>
-                        <p>{{ this.timestamp }}</p>
+                        <p>Fecha: {{ this.fechaActualizacion }} </p>
+                        <p>Hora: {{ this.horaActualizacion }}</p>
                     </div>
                 </div>
             </div>
@@ -21,7 +22,8 @@
                     <img src="@/assets/iconos/presion.png" class="img-fluid mb-3" alt="Ultimo censado de presión" style="width: 100px; height: 100px;">
                     <div>
                         <h4>Ultimo censado de presión</h4>
-                        <p>{{ this.timestamp }}</p>
+                        <p>Fecha: {{ this.fechaActualizacion }} </p>
+                        <p>Hora: {{ this.horaActualizacion }}</p>
                         <p>Presion: {{ this.presion }}</p>
                     </div>
                 </div>
@@ -31,7 +33,8 @@
                     <img src="@/assets/iconos/temperatura.png" class="img-fluid mb-3" alt="Ultimo censado de Temperatura" style="width: 100px; height: 100px;">
                     <div>
                         <h4>Ultimo censado de Temperatura</h4>
-                        <p>Fecha: {{ this.timestamp }}</p>
+                        <p>Fecha: {{ this.fechaActualizacion }} </p>
+                        <p>Hora: {{ this.horaActualizacion }}</p>
                         <p>Temperatura: {{ this.temperatura }}</p>
                     </div>
                 </div>
@@ -41,7 +44,8 @@
                     <img src="@/assets/iconos/humedad.png" class="img-fluid mb-3" alt="Ultimo censado de humedad" style="width: 100px; height: 100px;">
                     <div>
                         <h4>Ultimo censado de humedad</h4>
-                        <p>{{ this.timestamp }}</p>
+                        <p>Fecha: {{ this.fechaActualizacion }} </p>
+                        <p>Hora: {{ this.horaActualizacion }}</p>
                         <p>Humedad: {{ this.humedad }}</p>
                     </div>
                 </div>
@@ -65,7 +69,9 @@ export default {
         Datos_sensores: [],
         temperatura: null,
         humedad: null,
-        timestamp: null
+        timestamp: null,
+        fechaActualizacion:null,
+        horaActualizacion:null
       }
     },
 
@@ -89,7 +95,32 @@ export default {
             // Ordenar los datos por timestamp de forma descendente para obtener la última actualización primero
             const ultimaActualizacion = this.Datos_sensores.sort((a, b) => b.id - a.id)[0];
 
-            this.timestamp = ultimaActualizacion.timestamp;
+            // Obtener el timestamp de la última actualización
+            const timestamp = ultimaActualizacion.timestamp;
+
+            // Convertir el timestamp a un objeto Date de JavaScript
+            const fechaHora = new Date(timestamp);
+
+            // Extraer componentes de fecha
+            const dia = fechaHora.getDate();
+            const mes = fechaHora.getMonth() + 1; // Los meses van de 0 a 11, sumamos 1
+            const anio = fechaHora.getFullYear();
+
+            // Formatear la fecha en DD/MM/AAAA
+            const fechaFormateada = `${dia}/${mes}/${anio}`;
+
+            // Extraer componentes de hora
+            const horas = fechaHora.getHours();
+            const minutos = fechaHora.getMinutes();
+            const segundos = fechaHora.getSeconds();
+
+            // Formatear la hora en formato de 24 horas HH:MM:SS
+            const horaFormateada = `${horas}:${minutos}:${segundos}`;
+
+            // Asignar los datos formateados a las variables de la interfaz de usuario
+            this.timestamp = `${fechaFormateada} ${horaFormateada}`;
+            this.fechaActualizacion= `${fechaFormateada}`;
+            this.horaActualizacion= `${horaFormateada}`;
             
             // Actualizar las variables de la interfaz de usuario con los datos de la última actualización
             this.acelerometro_roll = ultimaActualizacion.acelerometro_roll;
