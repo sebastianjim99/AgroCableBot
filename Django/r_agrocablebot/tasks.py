@@ -1,9 +1,12 @@
 # import paho.mqtt.publish as publish
 import json
-from .models import eventosCalendarios
+from .models import eventosCalendarios,Sensor_MQTT
 from django.utils import timezone
 from celery import shared_task
 from .mqtt import mqtt_client
+# Para el empaquetamiento y envio periodico de datos
+# from django.core.mail import EmailMessage
+
 
 @shared_task
 def ejecutar_evento_programado():
