@@ -321,17 +321,7 @@ export default{
         this.PosActual();
         this.obtenerRutinaG()
 
-        this.client.subscribe("status", "0", (error) => {
-                if (error) {
-                    console.log('Subscribe to topics error', error)
-                }
-            })
 
-        this.client.subscribe("sensores", "0", (error) => {
-            if (error) {
-                console.log('Subscribe to topics error', error)
-            }
-        })
     },
 
     methods: {
@@ -397,17 +387,20 @@ export default{
         handleOnReConnect() {
             this.retryTimes += 1;
             if (this.retryTimes > 5) {
-                try {
-                    this.client.end();
-                    this.initData();
-                    this.$message.error("Limite de reconexiones");
-                } catch (error) {
-                    this.$message.error(error.toString());
-                }
+                this.client.end(true, () => {
+                    console.log("Desconexión forzada después de exceder el límite de reconexiones.");
+                });
+                this.$message.error("Limite de reconexiones alcanzado, conexión cerrada.");
             }
         },
 
         createConnection() {
+            // Verificar si ya existe una conexión activa
+            if (this.client && this.client.connected) {
+                console.log("Ya existe una conexión activa.");
+                return;
+            }
+
             try {
                 this.connecting = true;
                 const { protocol, host, port, endpoint, ...options } = this.connection;
@@ -421,6 +414,19 @@ export default{
                         title: '¡Éxito!',
                         text:  'Conexión exitosa con el servidor mqtt',
                     });
+
+                    this.client.subscribe("status", "0", (error) => {
+                        if (error) {
+                            console.log('Subscribe to topics error', error)
+                        }
+                    })
+
+                    this.client.subscribe("sensores", "0", (error) => {
+                        if (error) {
+                        console.log('Subscribe to topics error', error)
+                        }
+                    })
+
                 });
                 this.client.on("reconnect", this.handleOnReConnect);
                 this.client.on("error", (error) => {
@@ -444,34 +450,6 @@ export default{
                 console.log('Publish error', error)
             }
             })
-
-            // const message = {
-            //     acelerometro_roll   : this.acelerometroRoll,
-            //     acelerometro_pitch  : this.acelerometroPitch  ,
-            //     acelerometro_yaw : this.acelerometroYaw,
-            //     giroscopio_roll : this.giroscopioRoll ,
-            //     giroscopio_pitch :  this.giroscopioPitch,
-            //     giroscopio_yaw : this.giroscopioYaw ,
-            //     magnetometro_x : this.magnetometroX ,
-            //     magnetometro_y :this.magnetometroY,
-            //     magnetometro_z :this.magnetometroZ,
-            //     orientacion_roll : 0,
-            //     orientacion_pitch : 0,
-            //     orientacion_yaw : 0 ,
-            //     humedad : this.humedad,
-            //     presion : this.presion ,
-            //     temperatura : this.temperatura, 
-            // };
-            // // Enviar una solicitud POST al servidor Django
-            // axios.post( this.api + '/api/Sensor_MQTT/', message, {
-
-            // })
-            // .then(() => {
-            //     console.log('Mensaje MQTT enviado correctamente');
-            // })
-            // .catch(error => {
-            //     console.error('Error al enviar mensaje MQTT:', error);
-            // });
 
         },
 
@@ -677,7 +655,6 @@ export default{
 
         async ejecutarRutinas(codigoG){
             const lineas = codigoG.split('\\n');
-            // console.log( 'rutina:' + codigoG )
             Swal.fire({
                 icon: 'info',
                 title: '¡Exito!',

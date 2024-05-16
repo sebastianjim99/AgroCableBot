@@ -59,12 +59,9 @@ export default{
 
         },
         submitForm(){
-            // console.log(this.username, this.password);
             if (this.isVaidForm()){
-                // const url = '/loginView/';
                 axios.post(this.api + '/loginView/', {username: this.username, password: this.password})
                 .then(Response=> {
-                    //console.log(Response.data);
                     this.$store.commit('setToken', Response.data);
                     this.username = "";
                     this.password = "";
@@ -74,7 +71,6 @@ export default{
                     console.log(error)
                     const statusCode = error.response.status;
                     if(statusCode){
-                        console.log("Usuario o contraseña incorrecta" + "" + statusCode)
                         this.errors.wrong_credentials = "Usuario o contraseña incorrecta";
                     }else{
                         this.errors.wrong_credentials = "";
