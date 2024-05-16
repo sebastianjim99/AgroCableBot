@@ -93,24 +93,17 @@
                     </li>
 
                     <!-- Grupo de rutinas -->
-                    <li class="nav-item d-flex flex-row align-items-center justify-content-between ">
-                        <!-- Texto y botones de rutina -->
-                        <a class="nav-link" >Rutina1</a>
-                        <a class="nav-link" @click="ejecutarRutinas">
-                            <!-- Icono de play -->
-                            <svg class="bi bi-play-circle icono " xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width="35" height="35">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                            </svg>
-                        </a>
-                        <a class="nav-link" >Rutina2</a>
-                        <a class="nav-link" @click="Rutina2" >
-                            <!-- Icono de play -->
-                            <svg class="bi bi-play-circle icono " xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width="35" height="35">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                            </svg>
-                        </a>
+                    <li class="nav-item d-flex flex-row align-items-center justify-content-between " >
+                        <div class="nav-item d-flex flex-row align-items-center justify-content-between "  v-for ="rutinasG in RutinasG" :key="rutinasG.id" >
+                            <a class="nav-link" > {{rutinasG.nombre}} </a>
+                            <a class="nav-link" @click="ejecutarRutinas(rutinasG.codigo_g)" >
+                                <!-- Icono de play -->
+                                <svg class="bi bi-play-circle icono " xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width="35" height="35">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
+                                    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
+                                </svg>
+                            </a>
+                        </div>
                         <a class="nav-link" >Sensar</a>
                         <a class="nav-link" @click="doPublish" >
                             <!-- Icono de play -->
@@ -126,110 +119,10 @@
     </nav>
 </section>
 
-
-    <!-- <section>
-        <nav class="navbar navbar-expand-md bg-body py-3">
-            <div class="container">
-                <div>
-                    <div class="row" style="width: 300px;"  >
-                        <div class="col-md-9 " @click="Y_positivo" >
-                            <svg class="bi bi-arrow-up-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
-                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
-                            </svg>
-                        </div>
-                        <div class="col-md-3 " @click="movZ_up">
-                            <svg class="bi bi-arrow-up-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;padding: 0%;margin-left: 0%;margin-top: 10px;margin-bottom: 5px;">
-                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 " @click="X_negativo" >
-                            <svg class="bi bi-arrow-left-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
-                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
-                            </svg>
-                        </div>
-                        <div class="col-md-3 " @click="home" >
-                                <svg class="bi bi-house-door icono " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"  fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
-                                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
-                                </svg>
-                        </div>
-                        <div class="col-md-3 " @click="X_positivo" >
-                            <svg class="bi bi-arrow-right-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;margin: 3px;">
-                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
-                            </svg>
-                        </div>
-                        <div class="col-md-3">
-                            <p class="justify-content-center align-items-center" style="font-size: 30px; margin:7px 0 0 0; " > {{this.posActualZ}} </p>
-                        </div>
-                    </div>
-                    <div class="row" style="width: 300px;"  >
-                        <div class="col-md-9 " @click="Y_negativo" >
-                            <svg class="bi bi-arrow-down-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
-                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
-                            </svg>
-                        </div>
-
-                        <div class="col-md-3 " @click="movZ_Down"  >
-                            <svg class="bi bi-arrow-down-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px; padding: 0%; margin-left: 0%; margin-top: 5px;margin-bottom: 5px;">
-                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <ul class="navbar-nav mx-auto">
-                    <li class="">
-                        <p class="nav-link" style="margin-top: 11px;">Plantar</p> </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" >
-                            <svg class="bi bi-play-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <p class="nav-link active" style="margin-top: 11px;">Rutina1</p>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" >
-                            <svg class="bi bi-play-circle icono" @click="ejecutarRutinas" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                            </svg></a></li>
-                    <li class="nav-item">
-                        <p class="nav-link active"  style="margin-top: 11px;">Rutina 2</p>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" >
-                            <svg class="bi bi-play-circle icono" @click="Rutina2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <p class="nav-link active"  style="margin-top: 11px;">Sensar</p>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" @click="doPublish"  href="#">
-                            <svg class="bi bi-play-circle icono" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 50px;">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
-                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"></path>
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </section>  -->
-
     <!-- Trasmisión Video Stream-->
     <div>
         <trasmisionVue />
     </div>
-
 
     <!-- sensores y Distribución del cultivo -->
     <section>
@@ -291,8 +184,6 @@
     <div>
         <listCultivo />
     </div>
-    
-
     <section>
         <footer_imacuna />
     </section>
@@ -334,9 +225,13 @@ export default{
             plantas:[],
             matriz: [],
             Datos_sensores: [],
-            RutinasG:[],
+            RutinasG:[],      
+            'rutinasG':{
+                'nombre': '',
+                'rutina_codigoG': '',
+            },
             rutina_codigoG:'',
-            rutinaSeleccionada:null,
+            nombre_Rutina:'',
             plantaSeleccionada: null,
             cultivoSeleccionado:null, 
             posicionPlanta:null,
@@ -401,10 +296,9 @@ export default{
         //Lectura tipo de cultivo
         axios.get(this.api + '/api/tipoCultivo').then(response =>{
             this.tipo_cultivo=response.data    
-        }).catch(
-            error =>{
-                console.log(error)
-            })
+        }).catch(error =>{
+            console.log(error)
+        });
 
         //Lectura de cultivo
         axios.get( this.api + '/api/cultivo').then(response =>{
@@ -424,22 +318,20 @@ export default{
         this.createConnection();
         this.obtenerDatosSensores();
         this.actualizar_sensores();
+        this.PosActual();
+        this.obtenerRutinaG()
 
         this.client.subscribe("status", "0", (error) => {
                 if (error) {
                     console.log('Subscribe to topics error', error)
                 }
             })
+
         this.client.subscribe("sensores", "0", (error) => {
             if (error) {
                 console.log('Subscribe to topics error', error)
             }
         })
-
-        this.PosActual();
-        //lectura de rutinas 
-        this.obtenerRutinaG()
-      
     },
 
     methods: {
@@ -464,7 +356,6 @@ export default{
         // Seleccion de la planta mediante click y despliegue de informacion
         seleccionarPlanta(filaIndex, columnaIndex) {
             this.plantaSeleccionada = { fila: filaIndex, columna: columnaIndex };
-            //console.log("Planta seleccionada", this.plantaSeleccionada)
             const planta = this.matriz[filaIndex][columnaIndex];
             this.cultivoSeleccionado = planta ? planta.cultivo : null;
             this.posicionPlanta =filaIndex * this.matriz[0].length + columnaIndex + 1;
@@ -477,21 +368,9 @@ export default{
             .then(response => {
                 this.Datos_sensores=response.data
                 this.obtenerUltimaActualizacion();
-                // console.log(this.Datos_sensores)
             })
             .catch(error => {
                 console.error('Error al obtener los datos de los sensores:', error);
-            });
-        },
-        obtenerRutinaG() {
-            axios.get(this.api + '/api/rutinasG/')
-            .then(response => {
-                this.RutinasG=response.data
-                // this.rutina_codigoG=response.data.codigo_g
-                // console.log(this.rutina_codigoG)
-            })
-            .catch(error => {
-                console.error('Error al obtener las rutinas:', error);
             });
         },
         
@@ -786,41 +665,19 @@ export default{
             this.mostrarModal = false;   // Mostrar el modal
         },
 
-        Rutina1(){
-            if (this.posActualX === 0 && this.posActualY === 0) {
-                // Realizar la diagonal 
-                this.coordenadaX = -100
-                this.coordenadaX =  100
-                const mensaje = `{ "GCODE": "G1 X${this.coordenadaX} Y${this.coordenadaY} Z${this.posActualZ}" }`;
-                this.client.publish("comandos", mensaje, "0", error => {
-                    if (error) {
-                    console.log('Publish error', error)
-                    }
-                });
-                const PosAnteriorX = this.coordenadaX
-                const PosAnteriorY = this.coordenadaY
-                      // Esperar un segundo
-                setTimeout(() => {
-                    this.PosActual();
-                    if (this.posActualX === PosAnteriorX  && this.posActualY ===  PosAnteriorY ){
-                        this.posActualX ==  "muy bien"
-                    } 
-                }, 1000); 
-
-
-
-            } else{
-                // Ejecutar Swal.fire si posActualX y posActualY no son iguales a 0
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text:  'Retorne la posición HOME del robot',
-                });
-            }
+        obtenerRutinaG() {
+            axios.get(this.api + '/api/rutinasG/')
+            .then(response => {
+                this.RutinasG=response.data
+            })
+            .catch(error => {
+                console.error('Error al obtener las rutinas:', error);
+            });
         },
-        async ejecutarRutinas() {
-            // const rutinas = "G1 X-100 Y100\nG1 X-200 Y200\nG1 X-300 Y300\nG1 X-400 Y400";
-            const lineas = this.rutina_codigoG.split('\\n');
+
+        async ejecutarRutinas(codigoG){
+            const lineas = codigoG.split('\\n');
+            console.log( 'rutina:' + codigoG )
             Swal.fire({
                 icon: 'info',
                 title: '¡Exito!',
@@ -869,22 +726,23 @@ export default{
 
 
 <style>
+
     .title-rutinas{
         margin: 15px;
     }
 
-  @media (max-width: 768px) {
-    .nav-item {
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 15px; /* Espacio entre íconos de navegación y grupo de rutinas */
+    @media (max-width: 768px) {
+        .nav-item {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px; /* Espacio entre íconos de navegación y grupo de rutinas */
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
-    .nav-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-  }
 
     .modal-ayuda {
         /* Contenedor principal del modal */
