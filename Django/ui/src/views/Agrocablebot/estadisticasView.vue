@@ -67,7 +67,11 @@
           </div>
         </div>
       </div>
-  
+      
+      <div class="">
+        <empaquetado_datos />
+      </div>
+
       <section>
         <footer_imacuna />
       </section>
@@ -84,7 +88,7 @@ import grafica_historica_temperatura  from '/src/components/agrocablebot/estadis
 import grafica_humedad_dia_esp from '/src/components/agrocablebot/estadisticas/graficaHumedadDiaEsp.vue'
 import grafica_temperatura_rango_fecha from '/src/components/agrocablebot/estadisticas/graficaTemperaturaRangoFecha.vue'
 import grafica_humedad_rango_fecha from '/src/components/agrocablebot/estadisticas/graficaHumedadRangoFecha.vue'
-
+import empaquetado_datos from '/src/components/agrocablebot/soporte/empaquetadoDatos.vue'
 
  export default {
 
@@ -97,6 +101,7 @@ import grafica_humedad_rango_fecha from '/src/components/agrocablebot/estadistic
     grafica_humedad_dia_esp,
     grafica_temperatura_rango_fecha,
     grafica_humedad_rango_fecha,
+    empaquetado_datos,
   },  
   
   data(){

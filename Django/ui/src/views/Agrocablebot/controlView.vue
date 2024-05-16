@@ -122,20 +122,6 @@
                     </li>
                 </ul>
             </div>
-            <div>
-                <table class="table table-hover">
-                    <thead >
-                        <tr>
-                        <th>Rutinas de movimiento</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="rutina in RutinasG" :key="rutina.id" @click="seleccionarRutina(rutina)">
-                        <td>{{ rutina.nombre }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </nav>
 </section>
@@ -503,18 +489,6 @@ export default{
                 this.RutinasG=response.data
                 // this.rutina_codigoG=response.data.codigo_g
                 // console.log(this.rutina_codigoG)
-            })
-            .catch(error => {
-                console.error('Error al obtener las rutinas:', error);
-            });
-        },
-        seleccionarRutina(rutina){
-            axios.get(this.api + `/api/rutinasG/${rutina.id}`)
-            .then(response => {
-                // this.RutinasG=response.data
-                this.rutinaSeleccionada=response.data.nombre
-                this.rutina_codigoG=response.data.codigo_g
-                console.log(this.rutinaSeleccionada)
             })
             .catch(error => {
                 console.error('Error al obtener las rutinas:', error);

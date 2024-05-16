@@ -23,6 +23,7 @@ from r_agrocablebot.views import (
     # enviar_mensaje_mqtt,
     eventosCalendariosViewSet,
     RutinaCodigoGViewSet,
+
 )
 
 from .views import (
@@ -77,6 +78,7 @@ urlpatterns = [
     path('retrieve-update-destroy-usarios/<int:pk>/', RetrieveUpdateDestroyUsuarios.as_view(), name= 'retrieve-update-destroy'),
     # ------------ camara -----------
     path('captura/', capturas , name='captura'),
+    # path('download-data/', DataDownloadView.as_view(), name='download-data'),
     # path('publish/', publish_message, name= 'publish' ), 
     # path('sensar-mqtt/', enviar_mensaje_mqtt, name='sensar-mqtt'),
     # path('testing/',saludando)
