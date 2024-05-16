@@ -726,22 +726,23 @@ export default{
 
 
 <style>
+
     .title-rutinas{
         margin: 15px;
     }
 
-  @media (max-width: 768px) {
-    .nav-item {
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 15px; /* Espacio entre íconos de navegación y grupo de rutinas */
+    @media (max-width: 768px) {
+        .nav-item {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px; /* Espacio entre íconos de navegación y grupo de rutinas */
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
-    .nav-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-  }
 
     .modal-ayuda {
         /* Contenedor principal del modal */

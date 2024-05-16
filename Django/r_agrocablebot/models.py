@@ -6,10 +6,23 @@ from .choices import unidadMedida,estadoSalud, SioNO, repeticionChoices
 
 
 #ACCIONES 
+class RutinaCodigoG(models.Model):
+    nombre = models.CharField(max_length=100)
+    codigo_g = models.TextField()
+
+    def _str_(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name = 'Rutina G'
+        verbose_name_plural = 'Rutinas G'
+        db_table = 'rutinas_g'
+        ordering = ['id']
 
 class acciones(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre', unique=True)
     descripcion=models.TextField(blank=True)
+    RutinaG=models.ForeignKey(RutinaCodigoG, null=True,blank=True,on_delete=models.CASCADE,verbose_name='Codigo G de la rutina')
 
     def __str__(self):
         return self.nombre
@@ -81,6 +94,33 @@ class sensor(models.Model):
         db_table = 'sensores'
         ordering = ['id']
 
+class Sensor_MQTT(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    acelerometro_roll = models.FloatField()
+    acelerometro_pitch = models.FloatField()
+    acelerometro_yaw = models.FloatField()
+    giroscopio_roll = models.FloatField()
+    giroscopio_pitch = models.FloatField()
+    giroscopio_yaw = models.FloatField()
+    magnetometro_x = models.FloatField()
+    magnetometro_y = models.FloatField()
+    magnetometro_z = models.FloatField()
+    orientacion_roll = models.FloatField()
+    orientacion_pitch = models.FloatField()
+    orientacion_yaw = models.FloatField()
+    humedad = models.FloatField()
+    presion = models.FloatField()
+    temperatura = models.FloatField()
+
+    # def __str__(self):
+    #     return self.temperatura
+
+    # class Meta:
+    #     verbose_name = 'Sensor'
+    #     verbose_name_plural = 'Sensores'
+    #     db_table = 'Sensores'
+    #     ordering = ['id']
+
 
 class cultivo(models.Model):
     nombre=models.CharField(max_length= 100, verbose_name='Nombre')
@@ -91,6 +131,7 @@ class cultivo(models.Model):
     fechaSiembra = models.DateField(verbose_name='Fecha de siembra')
     tipoCultivo=models.ForeignKey(tipoCultivo, null=True,blank=True,on_delete=models.CASCADE)
     sensores=models.ManyToManyField(sensor, verbose_name="Sensores",blank=True)
+    SensorMQTT=models.ForeignKey(Sensor_MQTT, null=True,blank=True,on_delete=models.CASCADE,verbose_name='Datos obtenidos del SenseHat')
     
     def __str__(self):
         return self.nombre
@@ -225,43 +266,6 @@ class Mensaje (models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
 
-class Sensor_MQTT(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
-    acelerometro_roll = models.FloatField()
-    acelerometro_pitch = models.FloatField()
-    acelerometro_yaw = models.FloatField()
-    giroscopio_roll = models.FloatField()
-    giroscopio_pitch = models.FloatField()
-    giroscopio_yaw = models.FloatField()
-    magnetometro_x = models.FloatField()
-    magnetometro_y = models.FloatField()
-    magnetometro_z = models.FloatField()
-    orientacion_roll = models.FloatField()
-    orientacion_pitch = models.FloatField()
-    orientacion_yaw = models.FloatField()
-    humedad = models.FloatField()
-    presion = models.FloatField()
-    temperatura = models.FloatField()
-
-    # def __str__(self):
-    #     return self.temperatura
-
-    # class Meta:
-    #     verbose_name = 'Sensor'
-    #     verbose_name_plural = 'Sensores'
-    #     db_table = 'Sensores'
-    #     ordering = ['id']
 
 
-class RutinaCodigoG(models.Model):
-    nombre = models.CharField(max_length=100)
-    codigo_g = models.TextField()
 
-    def _str_(self):
-        return self.nombre
-
-    class Meta:
-        verbose_name = 'Rutina G'
-        verbose_name_plural = 'Rutinas G'
-        db_table = 'rutinas_g'
-        ordering = ['id']
