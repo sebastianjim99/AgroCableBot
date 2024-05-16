@@ -20,3 +20,20 @@ app.autodiscover_tasks()
 @app.task(bind=True, ignore_result=True)
 def debug_task(self):
     print(f'Request: {self.request!r}')
+
+# Tareas periodicas-----------
+from celery.schedules import crontab
+
+app.conf.beat_schedule = {
+    'send_data_every_three_months': {
+        'task': 'r_agrocablebot.tasks.send_data_via_email',
+        # 'schedule': crontab(minute='*/5'), 
+        'schedule': crontab(day_of_month=17, month_of_year='1,5,7,10'),
+        # Ajusta los meses si deseas que se ejecute en diferentes meses
+    },
+    'ejecutar_evento_programado': {
+        'task': 'r_agrocablebot.tasks.ejecutar_evento_programado',
+        'schedule': crontab(minute='*/1'),  # Ejecutar cada minuto
+    },
+    
+}
