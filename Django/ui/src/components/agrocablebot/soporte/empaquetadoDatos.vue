@@ -30,6 +30,7 @@
     export default {
         data() {
             return {
+                'api': `${process.env.VUE_APP_API_URL}`,
                 startDate: '',
                 endDate: ''
             };  
@@ -37,11 +38,11 @@
         methods: {
 
             downloadData() {
-                const url = `//localhost:8000/download-data/?start=${this.startDate}&end=${this.endDate}`;
+                const url = `${this.api}/download-data/?start=${this.startDate}&end=${this.endDate}`;
                 window.open(url, '_blank');
             },
             downloadAllData() {
-                const url = '//localhost:8000/download-all-data/'; // Asegúrate de que esta URL es accesible según tu configuración de Django
+                const url =  (this.api+'/download-all-data/'); // Asegúrate de que esta URL es accesible según tu configuración de Django
                 window.open(url, '_blank');
             }
         }
