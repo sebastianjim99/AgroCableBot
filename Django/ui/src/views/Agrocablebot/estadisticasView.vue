@@ -68,6 +68,14 @@
         </div>
       </div>
       
+
+      <div class="">
+        <grafica_giroscopio_historico />
+      </div>
+      <div class="">
+        <grafica_giroscopio_dia />
+      </div>
+
       <div class="">
         <empaquetado_datos />
       </div>
@@ -88,6 +96,8 @@ import grafica_historica_temperatura  from '/src/components/agrocablebot/estadis
 import grafica_humedad_dia_esp from '/src/components/agrocablebot/estadisticas/graficaHumedadDiaEsp.vue'
 import grafica_temperatura_rango_fecha from '/src/components/agrocablebot/estadisticas/graficaTemperaturaRangoFecha.vue'
 import grafica_humedad_rango_fecha from '/src/components/agrocablebot/estadisticas/graficaHumedadRangoFecha.vue'
+import grafica_giroscopio_historico from '/src/components/agrocablebot/estadisticas/graficaGiroscopioHistorico.vue'
+import grafica_giroscopio_dia from '/src/components/agrocablebot/estadisticas/graficaGiroscopioDiaEspecifico.vue'
 import empaquetado_datos from '/src/components/agrocablebot/soporte/empaquetadoDatos.vue'
 
  export default {
@@ -101,6 +111,8 @@ import empaquetado_datos from '/src/components/agrocablebot/soporte/empaquetadoD
     grafica_humedad_dia_esp,
     grafica_temperatura_rango_fecha,
     grafica_humedad_rango_fecha,
+    grafica_giroscopio_historico,
+    grafica_giroscopio_dia,
     empaquetado_datos,
   },  
   
