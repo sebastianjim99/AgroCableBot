@@ -64,10 +64,10 @@ def send_data_via_email():
 
     # Enviar el email con el archivo CSV adjunto usando configuraciones de Django
     email = EmailMessage(
-        'Datos de los Últimos Tres Meses',
-        'Aquí están los datos de los últimos tres meses.',
+        'AgroCableBot - Datos de los Últimos Tres Meses',
+        'Aquí están los datos de los sensores de los últimos tres meses.',
         settings.DEFAULT_FROM_EMAIL,  # Usa el remitente por defecto configurado en Django
-        ['2420192018@estudiantesunibague.edu.co']  # Asegúrate de cambiar esto a la dirección de correo real deseada
+        ['semillero.imacuna@gmail.com']  # Asegúrate de cambiar esto a la dirección de correo real deseada
     )
     email.attach('data.csv', csvfile.getvalue(), 'text/csv')
     email.send()
