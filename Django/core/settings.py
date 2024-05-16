@@ -194,15 +194,29 @@ CELERY_ACCEPT_CONTENT = ['json', 'pickle']
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_BEAT_SCHEDULE = {
-    'ejecutar_evento_programado': {
-        'task': 'r_agrocablebot.tasks.ejecutar_evento_programado',
-        'schedule': timedelta(minutes=1),  # Ejecutar cada minuto
-    },
-    # 'ejecutar_evento':{
-    #     'task': 'r_agrocablebot.tasks.ejecutar_evento',
-    #     'schedule': timedelta(minutes=1),  # Ejecutar cada minuto
-    # },
-}
+# CELERY_BEAT_SCHEDULE = {
+#     'ejecutar_evento_programado': {
+#         'task': 'r_agrocablebot.tasks.ejecutar_evento_programado',
+#         'schedule': timedelta(minutes=1),  # Ejecutar cada minuto
+#     },
+#     # 'ejecutar_evento':{
+#     #     'task': 'r_agrocablebot.tasks.ejecutar_evento',
+#     #     'schedule': timedelta(minutes=1),  # Ejecutar cada minuto
+#     # },
+#     # 'send_data_via_email':{
+#     #     'task': 'r_agrocablebot.tasks.send_data_via_email',
+#     #     'schedule': timedelta(minutes=2), 
+#     # }
+# }
 
 
+
+
+# Para el envio de correos
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Cambia esto por tu servidor SMTP
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '2420191018@estudiantesunibague.edu.co'  # Tu dirección de correo
+EMAIL_HOST_PASSWORD = 'cebx dmky zcdd dqdd'  # Tu contraseña
+DEFAULT_FROM_EMAIL = '2420191018@estudiantesunibague.edu.co'  # La dirección desde la que se envían los correos

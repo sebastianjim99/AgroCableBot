@@ -5,7 +5,10 @@ from django.utils import timezone
 from celery import shared_task
 from .mqtt import mqtt_client
 # Para el empaquetamiento y envio periodico de datos
-# from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage
+import csv
+from io import StringIO
+from django.conf import settings
 
 
 @shared_task
@@ -40,3 +43,32 @@ def ejecutar_evento(evento_id):
         return f"El evento con ID '{evento_id}' no existe"
     except Exception as e:
         return f"Se produjo un error al ejecutar el evento: {str(e)}"
+
+
+# Empaquetamiento y envio de datos 
+@shared_task
+def send_data_via_email():
+    # Recopilar todos los datos
+    data = Sensor_MQTT.objects.all()
+
+    # Crear un archivo CSV en memoria
+    csvfile = StringIO()
+    writer = csv.writer(csvfile)
+    writer.writerow(['timestamp', 'acelerometro_roll', 'acelerometro_pitch', 'acelerometro_yaw', 'giroscopio_roll', 'giroscopio_pitch', 'giroscopio_yaw', 'magnetometro_x', 'magnetometro_y', 'magnetometro_z', 'orientacion_roll', 'orientacion_pitch', 'orientacion_yaw', 'humedad', 'presion', 'temperatura'])
+
+    for item in data:
+        writer.writerow([item.timestamp, item.acelerometro_roll, item.acelerometro_pitch, item.acelerometro_yaw, item.giroscopio_roll, item.giroscopio_pitch, item.giroscopio_yaw, item.magnetometro_x, item.magnetometro_y, item.magnetometro_z, item.orientacion_roll, item.orientacion_pitch, item.orientacion_yaw, item.humedad, item.presion, item.temperatura])
+
+    # Mover al principio del archivo para preparar la lectura
+    csvfile.seek(0)
+
+    # Enviar el email con el archivo CSV adjunto usando configuraciones de Django
+    email = EmailMessage(
+        'Datos de los Últimos Tres Meses',
+        'Aquí están los datos de los últimos tres meses.',
+        settings.DEFAULT_FROM_EMAIL,  # Usa el remitente por defecto configurado en Django
+        ['2420192018@estudiantesunibague.edu.co']  # Asegúrate de cambiar esto a la dirección de correo real deseada
+    )
+    email.attach('data.csv', csvfile.getvalue(), 'text/csv')
+    email.send()
+    return "Enviando paquete de datos"
