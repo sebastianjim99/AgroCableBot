@@ -61,8 +61,8 @@ export default {
     methods: {
         updateStreamUrl() {
         // Agregar un timestamp a la URL para evitar el almacenamiento en caché
-        this.videoStreamUrl = 'http://imacunamqtt.live:7001/aboveCam/';
-        this.videoStreamUrl2 ='http://imacunamqtt.live:7001/belowCam/';
+        this.videoStreamUrl = '//imacunamqtt.live:7001/aboveCam/';
+        this.videoStreamUrl2 ='//imacunamqtt.live:7001/belowCam/';
         },
 
         captureImage(imageUrl) {

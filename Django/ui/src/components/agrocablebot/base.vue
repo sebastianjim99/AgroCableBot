@@ -42,18 +42,10 @@ export default{
     },
 
     mounted(){
-        console.log(this.username, this.password);
     },
 
     methods: {
 
-        // obtenerListaDeCultivos() {
-        //     axios.get(this.api + '/api/tipoCultivo').then(response => {
-        //         this.listaDeCultivos = response.data;
-        //     }).catch(error => {
-        //         console.error('Error al obtener la lista de cultivos:', error);
-        //     });
-        // },
 
         logout(){
             this.$store.commit('removeToken');
