@@ -451,34 +451,6 @@ export default{
             }
             })
 
-            // const message = {
-            //     acelerometro_roll   : this.acelerometroRoll,
-            //     acelerometro_pitch  : this.acelerometroPitch  ,
-            //     acelerometro_yaw : this.acelerometroYaw,
-            //     giroscopio_roll : this.giroscopioRoll ,
-            //     giroscopio_pitch :  this.giroscopioPitch,
-            //     giroscopio_yaw : this.giroscopioYaw ,
-            //     magnetometro_x : this.magnetometroX ,
-            //     magnetometro_y :this.magnetometroY,
-            //     magnetometro_z :this.magnetometroZ,
-            //     orientacion_roll : 0,
-            //     orientacion_pitch : 0,
-            //     orientacion_yaw : 0 ,
-            //     humedad : this.humedad,
-            //     presion : this.presion ,
-            //     temperatura : this.temperatura, 
-            // };
-            // // Enviar una solicitud POST al servidor Django
-            // axios.post( this.api + '/api/Sensor_MQTT/', message, {
-
-            // })
-            // .then(() => {
-            //     console.log('Mensaje MQTT enviado correctamente');
-            // })
-            // .catch(error => {
-            //     console.error('Error al enviar mensaje MQTT:', error);
-            // });
-
         },
 
         PosActual(){

@@ -23,66 +23,69 @@
           <grafica_humedad_dia_esp />
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <h1 class="divider-style mb-4"> 
-      <span>Gráficas históricas </span>    
-        <span> <button @click="showTemperatureChart = true" :class="{ 'active': showTemperatureChart }" class="btn btn-success me-2">Temperatura</button> </span>
-        <span> <button @click="showTemperatureChart = false" :class="{ 'active': !showTemperatureChart }" class="btn btn-success">Humedad</button> </span> 
-    
-    </h1> 
-    
-    <div class="row">
-      <div class="col-lg-12">
-        <h2 class="text-center mb-4">{{ chartMessage }}</h2>
-        <grafica_historica_temperatura v-if="showTemperatureChart" />
-        <grafica_humedad v-else />
-      </div>
-    </div>
-
-
-  </div>
-
-
-
-      <div class="container">
-        <h1 class="divider-style mb-4"> <span>Gráficas por rango de fechas</span> </h1> 
-        <div class="row">
-          <!-- Columna 1 -->
-          <div class="col-lg-6">
-            <div class="mb-4">
-              <h2 class="mb-3">Temperatura</h2>
-              <grafica_temperatura_rango_fecha />
-            </div>
-          </div>
-
-          <!-- Columna 2 -->
-          <div class="col-lg-6">
-            <div class="mb-4">
-              <h2 class="mb-3">Humedad</h2>
-              <grafica_humedad_rango_fecha />
-            </div>
-          </div>
+            <!-- Columna 3 -->
+      <div class="col-lg-6">
+        <div class="mb-4">
+          <h2 class="mb-3">Gráfica de giroscopio </h2>
+          <grafica_giroscopio_dia/>
         </div>
       </div>
+    </div>
+  </div>
+
+    <div class="container">
+      <h1 class="divider-style mb-4"> 
+        <span>Gráficas históricas</span>    
+          <span>
+            <button @click="setCurrentChart('temperatura')" :class="{ 'active': currentChart === 'temperatura' }" class="btn btn-success me-2">Temperatura</button>
+          </span>
+          <span>
+            <button @click="setCurrentChart('humedad')" :class="{ 'active': currentChart === 'humedad' }" class="btn btn-success me-2">Humedad</button>
+          </span>
+          <span>
+            <button @click="setCurrentChart('giroscopio')" :class="{ 'active': currentChart === 'giroscopio' }" class="btn btn-success">Giroscopio</button>
+          </span> 
+      </h1>
       
-
-      <div class="">
-        <grafica_giroscopio_historico />
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="text-center mb-4">{{ chartMessage }}</h2>
+          <!-- Componentes de gráficas que se muestran condicionalmente -->
+          <grafica_historica_temperatura v-if="currentChart === 'temperatura'" />
+          <grafica_humedad v-else-if="currentChart === 'humedad'" />
+          <grafica_giroscopio_historico v-else-if="currentChart === 'giroscopio'" />
+        </div>
       </div>
-      <div class="">
-        <grafica_giroscopio_dia />
+    </div>
+
+  <div class="container">
+    <h1 class="divider-style mb-4"> <span>Gráficas por rango de fechas</span> </h1> 
+    <div class="row">
+      <!-- Columna 1 -->
+      <div class="col-lg-6">
+        <div class="mb-4">
+          <h2 class="mb-3">Temperatura</h2>
+          <grafica_temperatura_rango_fecha />
+        </div>
       </div>
 
-      <div class="">
-        <empaquetado_datos />
+      <!-- Columna 2 -->
+      <div class="col-lg-6">
+        <div class="mb-4">
+          <h2 class="mb-3">Humedad</h2>
+          <grafica_humedad_rango_fecha />
+        </div>
       </div>
+    </div>
+  </div>
+  
+  <div class="">
+    <empaquetado_datos />
+  </div>
 
-      <section>
-        <footer_imacuna />
-      </section>
+  <section>
+    <footer_imacuna />
+  </section>
 
 </template>
  
@@ -118,13 +121,25 @@ import empaquetado_datos from '/src/components/agrocablebot/soporte/empaquetadoD
   
   data(){
     return {
+      currentChart: 'temperatura',  // Estado inicial, muestra la gráfica de temperatura por defecto
+      chartMessage: '',
       showTemperatureChart: true
     };
   },
   computed: {
-    chartMessage() {
-      return this.showTemperatureChart ? "Gráfica de temperatura" : "Gráfica de humedad";
+
+    // chartMessage() {
+    //   return this.showTemperatureChart ? "Gráfica de temperatura" : "Gráfica de humedad";
+    // }
+  },
+
+  methods: {
+    
+    setCurrentChart(chartType) {
+      this.currentChart = chartType;
+      this.chartMessage = `Gráfica de ${chartType}`;
     }
+
   }
 }
 
