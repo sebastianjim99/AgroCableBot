@@ -677,7 +677,7 @@ export default{
 
         async ejecutarRutinas(codigoG){
             const lineas = codigoG.split('\\n');
-            console.log( 'rutina:' + codigoG )
+            // console.log( 'rutina:' + codigoG )
             Swal.fire({
                 icon: 'info',
                 title: '¡Exito!',
