@@ -140,8 +140,8 @@ class MqttClient:
         """
         if rc == 0:
             print('Connected successfully')
-            self.__client.subscribe('comandos')
-            self.__client.subscribe('status')
+#            self.__client.subscribe('comandos')
+#            self.__client.subscribe('status')
             self.__client.subscribe('sensores')
             self.__client.publish('testingimacuna', 'pos si se conectó')
         else:

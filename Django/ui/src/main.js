@@ -20,10 +20,13 @@ import 'swiper/css/pagination';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-axios.defaults.baseURL = 'http://0.0.0.0:8000'
+axios.defaults.timeout = 30000;
+axios.defaults.baseURL = '//0.0.0.0:8000'
 
 
 const app = createApp(App);
+
+app.config.globalProperties.$axios = axios;
 app.use(ElementPlus)
 app.use(router).use(store);
 // app.use(BootstrapIconsPlugin);

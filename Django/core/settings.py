@@ -41,10 +41,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # Para crear tokens de identificacion
     'imacuna.apps.ImacunaConfig',
     'r_agrocablebot',
-    # 'rtsp',   # probando libreria de stream 
     'django_celery_results', #celery
     'django_celery_beat',
-    # 'channels',
+
     
 ]
 
