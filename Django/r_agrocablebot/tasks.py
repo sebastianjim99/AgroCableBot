@@ -36,7 +36,11 @@ def ejecutar_evento_programado():
 def ejecutar_evento(evento_id):
     try:
         evento = eventosCalendarios.objects.get(id=evento_id)
-        mqtt_client.connect()  # Asegurarse de que el cliente esté conectado
+        if not mqtt_client.connected:
+            mqtt_client.connect()
+            print("Reconexion")
+        
+        # mqtt_client.connect()  # Asegurarse de que el cliente esté conectado
         mqtt_client.publish('comandos', json.dumps({'interface': 'send_aio'}))  # Publicar el mensaje MQTT
         return f"Ejecutando evento '{evento.title}'"
     except eventosCalendarios.DoesNotExist:

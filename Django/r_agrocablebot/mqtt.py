@@ -1,63 +1,3 @@
-# import paho.mqtt.client as mqtt
-# from django.conf import settings
-# import json
-# import os
-# from dotenv import load_dotenv
-
-# load_dotenv()
-
-# def on_connect(mqtt_client, userdata, flags, rc):
-#     if rc == 0:
-#         print('Connected successfully')
-#         mqtt_client.subscribe('sensores')
-#         mqtt_client.subscribe('comandos')
-#     else:
-#         print('Bad connection. Code:', rc)
-   
-# def on_message(client, userdata, msg):
-#     from .models import Sensor_MQTT 
-#     try:
-#         data = json.loads(msg.payload.decode('utf-8'))
-#         Sensor_MQTT.objects.create(
-#             acelerometro_roll=data['acelerometro']['roll'],
-#             acelerometro_pitch=data['acelerometro']['pitch'],
-#             acelerometro_yaw=data['acelerometro']['yaw'],
-#             giroscopio_roll=data['giroscopio']['roll'],
-#             giroscopio_pitch=data['giroscopio']['pitch'],
-#             giroscopio_yaw=data['giroscopio']['yaw'],
-#             magnetometro_x=data['magnetometro']['x'],
-#             magnetometro_y=data['magnetometro']['y'],
-#             magnetometro_z=data['magnetometro']['z'],
-#             orientacion_roll=data['orientacion']['roll'],
-#             orientacion_pitch=data['orientacion']['pitch'],
-#             orientacion_yaw=data['orientacion']['yaw'],
-#             humedad=data['humedad']['value'],
-#             presion=data['presion']['value'],
-#             temperatura=data['temperatura']['value']
-#         )
-#     except Exception as e:
-#         print("Error al procesar y guardar los datos:", e)
-
-# def publish(cliente,topic,message):
-#     result = cliente.publish(topic, json.dumps(message))
-
-# client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
-# client.on_connect = on_connect
-# client.on_message = on_message
-# client.username_pw_set(os.environ['MQTT_USER'], os.environ['MQTT_PASSWORD'])
-
-# try:
-#     # Intentar conectar al servidor MQTT
-#     client.connect(
-#         host=os.environ['MQTT_SERVER'],
-#         port=int(os.environ['MQTT_PORT']),
-#         keepalive=int(os.environ['MQTT_KEEPALIVE']),
-#     )
-#     # Comenzar el bucle de escucha de MQTT
-#     client.loop_start()
-# except Exception as e:
-#     print("No se pudo conectar al servidor MQTT:", e)
-
 import os
 import uuid
 import json
@@ -66,6 +6,8 @@ from json import dumps, loads
 import paho.mqtt.client as mqtt
 from .mqtt_utils import logger, singleton
 from dotenv import load_dotenv
+
+from datetime import datetime, timedelta
 
 load_dotenv()
 @singleton
@@ -99,6 +41,9 @@ class MqttClient:
         self.__client.on_message = self.__on_message
         self.__client.on_publish = self.__on_publish
         self.__client.on_disconnect = self.__on_disconnect
+        self.connected = False   # -----------AGG
+        self.connected_once = False    # -----------AGG}
+        self.last_message_time = None  # -----------AGG}
 
     #    REVISAR
         # try:
@@ -124,14 +69,15 @@ class MqttClient:
         """
         Intenta conectar el cliente al servidor MQTT.
         """
-        try:
-            self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
-            self.__client.loop_start()
-            self.connected = True
-            print("Connected successfully")
-        except Exception as e:
-            print(f"Could not connect to MQTT server: {e}")
-            self.connected = False
+        if not self.connected: # -----------AGG
+            try:
+                self.__client.connect(os.environ['MQTT_SERVER'], int(os.environ['MQTT_PORT']))
+                self.__client.loop_start()
+                self.connected = True
+                print("Connected successfully")
+            except Exception as e:
+                print(f"Could not connect to MQTT server: {e}")
+                self.connected = False
 
 
     def __on_connect(self, client, userdata, flags, rc):
@@ -139,11 +85,13 @@ class MqttClient:
         Método de devolución de llamada para manejar la conexión exitosa al servidor MQTT.
         """
         if rc == 0:
-            print('Connected successfully')
-#            self.__client.subscribe('comandos')
-#            self.__client.subscribe('status')
-            self.__client.subscribe('sensores')
-            self.__client.publish('testingimacuna', 'pos si se conectó')
+            if not self.connected_once:  # -----------AGG
+                print('Connected successfully')
+                self.__client.subscribe('comandos')
+                self.__client.subscribe('status')
+                self.__client.subscribe('sensores')
+                self.__client.publish('testingimacuna', 'pos si se conectó')
+                self.connected_once = True
         else:
             print('Bad connection. Code:', rc)
 
@@ -157,12 +105,51 @@ class MqttClient:
         import json
         print(f"Recibido mensaje en tópico {msg.topic} con QoS {msg.qos}")
         
+        # try:
+        #     data = json.loads(msg.payload.decode('utf-8'))
+        #     # Logging para verificar el contenido recibido
+        #     print(f"Datos recibidos: {data}")
+
+        #     obj, created = Sensor_MQTT.objects.get_or_create(
+        #         acelerometro_roll=data['acelerometro']['roll'],
+        #         acelerometro_pitch=data['acelerometro']['pitch'],
+        #         acelerometro_yaw=data['acelerometro']['yaw'],
+        #         giroscopio_roll=data['giroscopio']['roll'],
+        #         giroscopio_pitch=data['giroscopio']['pitch'],
+        #         giroscopio_yaw=data['giroscopio']['yaw'],
+        #         magnetometro_x=data['magnetometro']['x'],
+        #         magnetometro_y=data['magnetometro']['y'],
+        #         magnetometro_z=data['magnetometro']['z'],
+        #         orientacion_roll=data['orientacion']['roll'],
+        #         orientacion_pitch=data['orientacion']['pitch'],
+        #         orientacion_yaw=data['orientacion']['yaw'],
+        #         humedad=data['humedad']['value'],
+        #         presion=data['presion']['value'],
+        #         temperatura=data['temperatura']['value']
+        #     )
+        #     if created:
+        #         print("Datos guardados correctamente")
+        #     else:
+        #         print("El registro ya existía y no se duplicó.")
+
+        # except Exception as e:
+        #     print("Error al procesar y guardar los datos:", e)
         try:
             data = json.loads(msg.payload.decode('utf-8'))
-            # Logging para verificar el contenido recibido
-            print(f"Datos recibidos: {data}")
+            timestamp_str = data['timestamp']['fecha']
+            timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
 
-            obj, created = Sensor_MQTT.objects.get_or_create(
+            # Verifica si el mensaje llega en el mismo segundo o en un intervalo pequeño
+            if self.last_message_time and (timestamp - self.last_message_time) < timedelta(seconds=2):
+                print("Mensaje descartado por ser repetido en el mismo segundo")
+                return
+
+            # Actualiza el tiempo del último mensaje
+            self.last_message_time = timestamp
+
+            # Aquí sigue tu lógica para guardar o promediar los datos...
+            Sensor_MQTT.objects.create(
+                timestamp=timestamp,
                 acelerometro_roll=data['acelerometro']['roll'],
                 acelerometro_pitch=data['acelerometro']['pitch'],
                 acelerometro_yaw=data['acelerometro']['yaw'],
@@ -179,10 +166,7 @@ class MqttClient:
                 presion=data['presion']['value'],
                 temperatura=data['temperatura']['value']
             )
-            if created:
-                print("Datos guardados correctamente")
-            else:
-                print("El registro ya existía y no se duplicó.")
+            print(f"Nuevo registro creado en {timestamp}")
 
         except Exception as e:
             print("Error al procesar y guardar los datos:", e)
@@ -211,6 +195,7 @@ class MqttClient:
             self.last_position = message
 
     
+    
     def send_aio(self):
         """
         Método para publicar datos de sensores en un topic MQTT llamado 'sensores'.
@@ -227,8 +212,12 @@ class MqttClient:
         """
         Método para publicar un mensaje MQTT en un topic específico.
         """
-        if not self.connected:
-            self.connect()
+        #comente ----
+        # if not self.connected:
+        #     self.connect()
+        # self.__client.publish(topic, message)
+        #-----
+        self.connect()  # Asegura la conexión antes de publicar
         self.__client.publish(topic, message)
 
 mqtt_client = MqttClient()
